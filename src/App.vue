@@ -20,4 +20,7 @@ export default {
 </script>
 
 <style>
+html{
+  width:100%;
+}
 </style>

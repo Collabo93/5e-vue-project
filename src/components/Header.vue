@@ -50,12 +50,16 @@ export default {
 </script>
 
 <style>
+.navbar{
+    width:100%;
+}
 ul.nav{
     list-style-type: none;
     margin:0;
     padding:0px;
     overflow: hidden;
     background-color: #333;
+    width:100%;
 }
 ul.nav li{
     float: left;
