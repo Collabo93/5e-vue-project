@@ -10,6 +10,6 @@
 
 <script>
 export default{
-    name: "rwv-login"
+    name: "RwvLogin"
 }
 </script>

@@ -10,6 +10,6 @@
 
 <script>
 export default {
-  name: "rwv-creature"
+  name: "RwvCreature"
 };
 </script>

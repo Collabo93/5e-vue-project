@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: "rwv-home"
+  name: "RwvHome"
 };
 </script>
 
