@@ -1,6 +1,5 @@
 <template>
     <footer>
-        <img src="@/assets/logo.png" />
     </footer>
 </template>
 

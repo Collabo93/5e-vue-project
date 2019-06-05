@@ -1,5 +1,11 @@
 <template>
-   <p>About</p>
+   <b-container class="padding">
+        <b-row>
+            <b-col>
+                <p>Register</p>
+            </b-col>
+        </b-row>
+   </b-container>
 </template>
 
 <script>

@@ -33,7 +33,7 @@
                     <router-link
                         active-class="active"
                         exact
-                        :to="{ name: 'register' }"
+                        :to="{ name: 'about' }"
                     >
                         About
                     </router-link>
@@ -66,6 +66,7 @@ ul.nav li{
 }
 ul.nav li.rightfloat{
     float:right;
+    right:0;
 }
 ul.nav li a{
     text-decoration: none;
