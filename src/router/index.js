@@ -29,6 +29,21 @@ export default new Router({
         name:"about",
         path:"/about",
         component:() => import("@/views/About")
+      },
+      {
+        name:"characterCreation",
+        path:"/characterCreation",
+        component:() => import("@/views/CharacterCreation")
+      },
+      {
+        name:"creature",
+        path:"/creature",
+        component:() => import("@/views/Creature")
+      },
+      {
+        name:"items",
+        path:"/items",
+        component:() => import("@/views/Items")
       }
     ]
   });

@@ -1,25 +1,43 @@
 <template>
     <b-container class="padding">
         <b-row>
-            <b-col>
-                <div class="setToMiddle">
-                    <img src="@/assets/home-character-creation.jpg" class="home-pictures"/>
+            <b-col class="column">
+                <div class="setToMiddle padding">
+                    <router-link
+                        active-class="active"
+                        exact
+                        :to="{ name: 'characterCreation' }"
+                    >
+                        <img src="@/assets/home-character-creation.jpg" class="home-pictures" />
+                    </router-link>
                 </div>
                 <p class="HomeMenuText">
                     Character creation
                 </p>
             </b-col>
-            <b-col>
-                <div class="setToMiddle">
-                    <img src="@/assets/home-items.jpg" class="home-pictures"/>
+            <b-col class="column">
+                <div class="setToMiddle padding">
+                    <router-link
+                        active-class="active"
+                        exact
+                        :to="{ name: 'items' }"
+                    >
+                        <img src="@/assets/home-items.jpg" class="home-pictures"/>
+                    </router-link>
                 </div>
                 <p class="HomeMenuText">
                     Items
                 </p>
             </b-col>
-            <b-col>
-                <div class="setToMiddle">
-                    <img src="@/assets/home-creatures.jpg" class="home-pictures"/>
+            <b-col class="column">
+                <div class="setToMiddle padding">      
+                    <router-link
+                        active-class="active"
+                        exact
+                        :to="{ name: 'creature' }"
+                    >
+                        <img src="@/assets/home-creatures.jpg" class="home-pictures"/>
+                    </router-link>
                 </div>
                 <p class="HomeMenuText">
                     Creatures
@@ -45,7 +63,6 @@ export default{
             rgba(166,173,201,.2);
     }
     .setToMiddle{
-        align:middle;
         display: flex; 
         align-items: center; 
         justify-content: center;
@@ -55,6 +72,9 @@ export default{
         font-size:18px;
     }
     .padding{
-        padding:5em;
+        padding:2em;
+    }
+    .column:Hover{
+        background-color: rgba(76,175,80,.5);
     }
 </style>
