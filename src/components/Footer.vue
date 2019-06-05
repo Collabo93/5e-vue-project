@@ -27,8 +27,7 @@ export default {
 
 <style>
 footer {
-  position: absolute !important;
-  bottom: 0;
+  margin-top:auto;
   width: 100%;
 }
 .ConstructionIMG {

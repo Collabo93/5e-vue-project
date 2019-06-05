@@ -22,6 +22,11 @@ export default {
 <style>
 html, body{
   width:100%!important;
+  height:100%!important;
+}
+body{
+  display:flex!important;
+  flex-flow:column;
 }
 .padding{
   padding: 2em!important;
