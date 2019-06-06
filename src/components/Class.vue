@@ -12,7 +12,7 @@ export default {
       ClassesAll: [],
       ClassesName: [],
       SelectedClassName: "",
-      Class:["name","url"]
+      Class: [{ name: "" }, { url: "" }]
     };
   },
   created: function() {
@@ -39,13 +39,12 @@ export default {
     SelectedClassName: function() {
       for (let index = 0; index < this.ClassesName.length; index++) {
         if (this.SelectedClassName == this.ClassesName[index]) {
-          this.Class["url"]=this.ClassesAll["results"][index]["url"];
+          this.Class["url"] = this.ClassesAll["results"][index]["url"];
           break;
         }
       }
-      this.Class["name"]=this.SelectedClassName;
+      this.Class["name"] = this.SelectedClassName;
       this.$emit("inputData", this.Class);
-      this.Class=[];
     }
   }
 };
