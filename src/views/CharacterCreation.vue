@@ -6,7 +6,7 @@
         <p>Character Name</p>
       </b-col>
       <b-col md="2" sm="4">
-        <RwvClass />
+        <RwvClass @inputData="Class" />
         <p>Class</p>
       </b-col>
       <b-col md="2" sm="4">
@@ -53,7 +53,7 @@ export default {
     return {
       CharacterSheet: {
         CharacterName: "",
-        Class: "",
+        Class: ["name","url"],
         Level: "",
         Race: "",
         PlayerName: "",
@@ -61,6 +61,11 @@ export default {
         Alignment: ""
       }
     };
+  },
+  methods:{
+    Class(name){
+      this.Class = name;
+    }
   }
 };
 </script>
