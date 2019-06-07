@@ -5,28 +5,31 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "RwvLevel",
-  data(){
-      return{
-          Level:"",
-          LevelRange:[],
-          LevelMax:20
-      }
+  data() {
+    return {
+      Level: "",
+      LevelRange: [],
+      LevelMax: 20
+    };
   },
-   created: function() {
+  created: function() {
     this.SetLevelRange();
   },
-  methods:{
-      SetLevelRange(){
-          for (let index = 1; index <= this.LevelMax; index++) {
-              this.LevelRange.push(index);           
-          }
+  methods: {
+    SetLevelRange() {
+      for (let index = 1; index <= this.LevelMax; index++) {
+        this.LevelRange.push(index);
       }
+    },
+    ...mapMutations(["SetLevel"])
   },
   watch: {
     Level: function() {
-      this.$emit("inputData", this.Level);
+      this.SetLevel(this.Level);
     }
   }
 };

@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "RwvAlignment",
   data() {
@@ -24,9 +26,12 @@ export default {
       SelectedAlignmentName: ""
     };
   },
+  methods:{
+    ...mapMutations(["SetAlignment"])
+  },
   watch: {
     SelectedAlignmentName: function() {
-      this.$emit("inputData", this.SelectedAlignmentName);
+      this.SetAlignment(this.SelectedAlignmentName);
     }
   }
 };

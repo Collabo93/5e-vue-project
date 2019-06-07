@@ -7,18 +7,18 @@
         <p>Character Name</p>
       </b-col>
       <b-col md="2" sm="4">
-        <RwvClass @inputData="Class"/>
-        {{CharacterSheet.Class["name"]}}
+        <RwvClass/>
+        <div v-if="GetCharacterSheet.Class">{{GetCharacterSheet.Class["name"]}}</div>
         <p>Class</p>
       </b-col>
       <b-col md="2" sm="4">
-        <RwvLevel @inputData="Level"/>
-        {{CharacterSheet.Level}}
+        <RwvLevel/>
+        <div v-if="GetCharacterSheet.Level">{{GetCharacterSheet.Level}}</div>
         <p>Level</p>
       </b-col>
       <b-col md="2" sm="4">
-        <RwvRace @inputData="Race"/>
-        {{CharacterSheet.Race["name"]}}
+        <RwvRace/>
+        <div v-if="GetCharacterSheet.Race">{{GetCharacterSheet.Race["name"]}}</div>
         <p>Race</p>
       </b-col>
     </b-row>
@@ -34,8 +34,8 @@
         <p>Background</p>
       </b-col>
       <b-col md="2" sm="4">
-        <RwvAlignment @inputData="Alignment"/>
-        {{CharacterSheet.Alignment}}
+        <RwvAlignment/>
+        <div v-if="GetCharacterSheet.Alignment">{{GetCharacterSheet.Alignment}}</div>
         <p>Alignment</p>
       </b-col>
     </b-row>
@@ -53,6 +53,8 @@ import RwvLevel from "@/components/Level";
 import RwvRace from "@/components/Race";
 import RwvAlignment from "@/components/Alignment";
 
+import { mapGetters } from "vuex";
+
 export default {
   name: "RwvCharacterCreation",
   components: {
@@ -65,28 +67,12 @@ export default {
     return {
       CharacterSheet: {
         CharacterName: "",
-        Class: [{ name: String }, { url: String }],
-        Level: "",
-        Race: [{ name: String }, { url: String }],
         PlayerName: "",
-        Background: "",
-        Alignment: ""
       }
+      //Need to move to store
     };
   },
-  methods: {
-    Class(Class) {
-      this.CharacterSheet.Class = Class;
-    },
-    Level(Level) {
-      this.CharacterSheet.Level = Level;
-    },
-    Race(Race) {
-      this.CharacterSheet.Race = Race;
-    },
-    Alignment(Alignment) {
-      this.CharacterSheet.Alignment = Alignment;
-    }
-  }
+  computed: mapGetters(["GetCharacterSheet"]),
+  methods: {}
 };
 </script>
