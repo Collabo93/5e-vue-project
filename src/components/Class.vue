@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {RepositoryFactory} from "../services/RepositoryFactory";
+import { RepositoryFactory } from "../services/RepositoryFactory";
 const ClassRepository = RepositoryFactory.get("classes");
 
 export default {
@@ -15,7 +15,7 @@ export default {
       ClassesAll: [],
       ClassesName: [],
       SelectedClassName: "",
-      Class: [{ name: "" }, { url: "" }]
+      Class: [{ name: String }, { url: String }]
     };
   },
   created: function() {
@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     async fetch() {
-      const {data} = await ClassRepository.get();
+      const { data } = await ClassRepository.get();
       this.ClassesAll = data;
       for (var index = 0; index < this.ClassesAll["count"]; index++) {
         this.ClassesName.push(this.ClassesAll["results"][index]["name"]);

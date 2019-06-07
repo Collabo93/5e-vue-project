@@ -7,14 +7,17 @@
       </b-col>
       <b-col md="2" sm="4">
         <RwvClass @inputData="Class"/>
+        {{CharacterSheet.Class["name"]}}
         <p>Class</p>
       </b-col>
       <b-col md="2" sm="4">
         <RwvLevel @inputData="Level"/>
+        {{CharacterSheet.Level}}
         <p>Level</p>
       </b-col>
       <b-col md="2" sm="4">
-        <b-form-input id="Race" v-model="CharacterSheet.Race" required></b-form-input>
+        <RwvRace @inputData="Race" />
+        {{CharacterSheet.Race["name"]}}
         <p>Race</p>
       </b-col>
     </b-row>
@@ -44,12 +47,14 @@
 <script>
 import RwvClass from "@/components/Class";
 import RwvLevel from "@/components/Level";
+import RwvRace from "@/components/Race";
 
 export default {
   name: "RwvCharacterCreation",
   components: {
     RwvClass,
-    RwvLevel
+    RwvLevel,
+    RwvRace
   },
   data() {
     return {
@@ -57,7 +62,7 @@ export default {
         CharacterName: "",
         Class: [{ name: String }, { url: String }],
         Level: "",
-        Race: "",
+        Race: [{ name: String }, { url: String }],
         PlayerName: "",
         Background: "",
         Alignment: ""
@@ -70,6 +75,9 @@ export default {
     },
     Level(Level) {
       this.CharacterSheet.Level = Level;
+    },
+    Race(Race) {
+      this.CharacterSheet.Race = Race;
     }
   }
 };
