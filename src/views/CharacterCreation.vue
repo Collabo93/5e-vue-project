@@ -8,12 +8,10 @@
       <b-col md="2" sm="4">
         <RwvClass @inputData="Class"/>
         <p>Class</p>
-        {{CharacterSheet.Class["name"]}}
       </b-col>
       <b-col md="2" sm="4">
         <RwvLevel @inputData="Level"/>
         <p>Level</p>
-        {{CharacterSheet.Level}}
       </b-col>
       <b-col md="2" sm="4">
         <b-form-input id="Race" v-model="CharacterSheet.Race" required></b-form-input>

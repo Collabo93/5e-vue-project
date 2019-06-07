@@ -5,6 +5,9 @@
 </template>
 
 <script>
+import {RepositoryFactory} from "../services/RepositoryFactory";
+const ClassRepository = RepositoryFactory.get("classes");
+
 export default {
   name: "RwvClass",
   data() {
@@ -16,20 +19,12 @@ export default {
     };
   },
   created: function() {
-    this.GetClasses();
+    this.fetch();
   },
   methods: {
-    async GetClasses() {
-      let config = {
-        headers: {
-          Accept: "application/json"
-        }
-      };
-      const fetchAll = await this.$http.get(
-        "http://www.dnd5eapi.co/api/classes/",
-        config
-      );
-      this.ClassesAll = fetchAll.data;
+    async fetch() {
+      const {data} = await ClassRepository.get();
+      this.ClassesAll = data;
       for (var index = 0; index < this.ClassesAll["count"]; index++) {
         this.ClassesName.push(this.ClassesAll["results"][index]["name"]);
       }
