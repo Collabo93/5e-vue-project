@@ -3,6 +3,7 @@
     <b-row>
       <b-col md="6" sm="12">
         <b-form-input id="CharacterName" v-model="CharacterSheet.CharacterName" required></b-form-input>
+        {{CharacterSheet.CharacterName}}
         <p>Character Name</p>
       </b-col>
       <b-col md="2" sm="4">
@@ -16,7 +17,7 @@
         <p>Level</p>
       </b-col>
       <b-col md="2" sm="4">
-        <RwvRace @inputData="Race" />
+        <RwvRace @inputData="Race"/>
         {{CharacterSheet.Race["name"]}}
         <p>Race</p>
       </b-col>
@@ -25,6 +26,7 @@
       <b-col md="6"></b-col>
       <b-col md="2" sm="4">
         <b-form-input id="PlayerName" v-model="CharacterSheet.PlayerName"></b-form-input>
+        {{CharacterSheet.PlayerName}}
         <p>Player Name</p>
       </b-col>
       <b-col md="2" sm="4">
@@ -32,7 +34,8 @@
         <p>Background</p>
       </b-col>
       <b-col md="2" sm="4">
-        <b-form-input id="PlayerName" v-model="CharacterSheet.Alignment" required></b-form-input>
+        <RwvAlignment @inputData="Alignment"/>
+        {{CharacterSheet.Alignment}}
         <p>Alignment</p>
       </b-col>
     </b-row>
@@ -48,13 +51,15 @@
 import RwvClass from "@/components/Class";
 import RwvLevel from "@/components/Level";
 import RwvRace from "@/components/Race";
+import RwvAlignment from "@/components/Alignment";
 
 export default {
   name: "RwvCharacterCreation",
   components: {
     RwvClass,
     RwvLevel,
-    RwvRace
+    RwvRace,
+    RwvAlignment
   },
   data() {
     return {
@@ -78,6 +83,9 @@ export default {
     },
     Race(Race) {
       this.CharacterSheet.Race = Race;
+    },
+    Alignment(Alignment) {
+      this.CharacterSheet.Alignment = Alignment;
     }
   }
 };
