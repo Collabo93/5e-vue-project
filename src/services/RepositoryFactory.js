@@ -1,9 +1,11 @@
 import ClassRepository from "./ClassRepository";
 import RaceRepository from "./RaceRepository";
+import BackgroundRepository from "./BackgroundRepository";
 
 const repositories = {
   classes: ClassRepository,
-  races: RaceRepository
+  races: RaceRepository,
+  backgrounds: BackgroundRepository
 };
 
 export const RepositoryFactory = {

@@ -1,5 +1,7 @@
 <template>
   <b-container class="padding">
+    <RwvStandardInformations />
+    <!--
     <b-row>
       <b-col md="6" sm="12">
         <b-form-input id="CharacterName" v-model="CharacterSheet.CharacterName" required></b-form-input>
@@ -44,35 +46,34 @@
         <img src="@/assets/test-characterSheet.jpg">
       </b-col>
     </b-row>
+    -->
+    <b-button :pressed.sync="debugButtonPressed" variant="primary">
+      Debug Mode
+    </b-button>
+    <p v-if="debugButtonPressed">{{GetCharacterSheet.CharacterName}}</p>
+    
   </b-container>
 </template>
 
 <script>
-import RwvClass from "@/components/Class";
-import RwvLevel from "@/components/Level";
-import RwvRace from "@/components/Race";
-import RwvAlignment from "@/components/Alignment";
+import RwvStandardInformations from "@/components/StandardInformations";
 
 import { mapGetters } from "vuex";
 
 export default {
   name: "RwvCharacterCreation",
   components: {
-    RwvClass,
-    RwvLevel,
-    RwvRace,
-    RwvAlignment
+    RwvStandardInformations
   },
   data() {
     return {
-      CharacterSheet: {
-        CharacterName: "",
-        PlayerName: "",
-      }
-      //Need to move to store
+      debugButtonPressed:false
     };
   },
-  computed: mapGetters(["GetCharacterSheet"]),
-  methods: {}
+  computed: {
+    ...mapGetters(["GetCharacterSheet"])
+  },
+  methods: {
+  }
 };
 </script>
