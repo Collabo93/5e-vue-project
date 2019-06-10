@@ -1,7 +1,8 @@
 <template>
   <b-container class="padding">
     <RwvStandardInformations/>
-    <b-row>
+    <RwvAttributes />
+    <b-row class="padding">
       <b-col>
         <b-button :pressed.sync="debugButtonPressed" variant="primary">Debug Mode</b-button>
       </b-col>
@@ -10,11 +11,11 @@
       <b-col>
         <div v-if="debugButtonPressed">
           <p>{{GetCharacterSheet.CharacterName}}</p>
-          <p v-if="GetCharacterSheet.Class">{{GetCharacterSheet.Class["name"]}}</p>
+          <p v-if="GetCharacterSheet.Class">{{GetCharacterSheet.Class["name"]}} {{GetCharacterSheet.Class["url"]}}</p>
           <p>{{GetCharacterSheet.Level}}</p>
-          <p v-if="GetCharacterSheet.Race">{{GetCharacterSheet.Race["name"]}}</p>
+          <p v-if="GetCharacterSheet.Race">{{GetCharacterSheet.Race["name"]}} {{GetCharacterSheet.Race["url"]}}</p>
           <p>{{GetCharacterSheet.PlayerName}}</p>
-          <p v-if="GetCharacterSheet.Background">{{GetCharacterSheet.Background["name"]}}</p>
+          <p v-if="GetCharacterSheet.Background">{{GetCharacterSheet.Background["name"]}} {{GetCharacterSheet.Background["url"]}}</p>
           <p>{{GetCharacterSheet.Alignment}}</p>
         </div>
       </b-col>
@@ -24,13 +25,15 @@
 </template>
 <script>
 import RwvStandardInformations from "@/components/StandardInformations";
+import RwvAttributes from "@/components/Attributes";
 
 import { mapGetters } from "vuex";
 
 export default {
   name: "RwvCharacterCreation",
   components: {
-    RwvStandardInformations
+    RwvStandardInformations,
+    RwvAttributes
   },
   data() {
     return {
