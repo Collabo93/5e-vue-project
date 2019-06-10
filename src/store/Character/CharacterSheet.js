@@ -6,7 +6,7 @@ const state = {
       Level: "",
       Race: [{ name: "String" }, { url: String }],
       PlayerName: "",
-      Background: "",
+      Background: [{ name: "String" }, { url: String }],
       Alignment: ""
     }
   ]
@@ -25,6 +25,7 @@ const mutations = {
   SetLevel: (state, Level) => (state.CharacterSheet.Level = Level),
   SetRace: (state, Race) => (state.CharacterSheet.Race = Race),
   SetPlayerName: (state, PlayerName) => (state.CharacterSheet.PlayerName = PlayerName),
+  SetBackground: (state, Background) => (state.CharacterSheet.Background = Background),
   SetAlignment: (state, Alignment) =>
     (state.CharacterSheet.Alignment = Alignment)
 };
