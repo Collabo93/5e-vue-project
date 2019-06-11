@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations} from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "RwvClass",
@@ -14,16 +14,15 @@ export default {
       SelectedClassName: ""
     };
   },
-  computed: mapGetters([
-    "GetClassNames","GetClass","GetCharacterSheet"
-  ]),
+  computed: mapGetters(["GetClassNames", "GetClass", "GetCharacterSheet"]),
   created: function() {
     this.fetchDataClass();
   },
   methods: {
     ...mapActions(["fetchDataClass"]),
     ...mapActions(["SetDataClass"]),
-    ...mapMutations(["SetClass"])
+    ...mapMutations(["SetClass"]),
+    ...mapMutations(["SetChoosenOptions"])
   },
   watch: {
     SelectedClassName: function() {

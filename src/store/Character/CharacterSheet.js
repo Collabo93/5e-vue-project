@@ -1,4 +1,5 @@
 const state = {
+  //StandartInformation
   CharacterSheet: [
     {
       CharacterName: String,
@@ -19,20 +20,38 @@ const state = {
         }
       ]
     }
+  ],
+  BaseAttributePoints: 27,
+  AbilityModifier: Int32Array,
+  ChoosenOptions: [
+    {
+      Class: String,
+      Level: String,
+      Race: String,
+      Background: String
+    }
   ]
 };
 
 const getters = {
-  GetCharacterSheet: state => state.CharacterSheet
+  //StandartInformation
+  GetCharacterSheet: state => state.CharacterSheet,
+
+  //Attributes
+  GetAbilityModifier: state => state.AbilityModifier
 };
 
 const actions = {};
 
 const mutations = {
+  //StandartInformation
   SetCharacterName: (state, CharacterName) =>
     (state.CharacterSheet.CharacterName = CharacterName),
   SetClass: (state, Class) => (state.CharacterSheet.Class = Class),
-  SetLevel: (state, Level) => (state.CharacterSheet.Level = Level),
+  SetLevel(state, Level) {
+    state.CharacterSheet.Level = Level;
+    state.AbilityModifier = Math.floor(state.CharacterSheet.Level / 2 - 5);
+  },
   SetRace: (state, Race) => (state.CharacterSheet.Race = Race),
   SetPlayerName: (state, PlayerName) =>
     (state.CharacterSheet.PlayerName = PlayerName),
@@ -41,7 +60,18 @@ const mutations = {
   SetAlignment: (state, Alignment) =>
     (state.CharacterSheet.Alignment = Alignment),
   SetAttributes: (state, Attributes) =>
-    (state.CharacterSheet.Attributes = Attributes)
+    (state.CharacterSheet.Attributes = Attributes),
+
+  //Attributes
+  SetBaseAttributes: (state, BaseAttributes) =>
+    (state.CharacterSheet.Attributes = BaseAttributes),
+  SetAbilityModifier() {
+    state.AbilityModifier = Math.floor(
+      state.CharacterSheet.Attributes[0].Strength / 2 - 5
+    );
+  },
+  SetAttributeStrength: (state, Strength) =>
+    (state.CharacterSheet.Attributes[0].Strength = Strength)
 };
 
 export default {
