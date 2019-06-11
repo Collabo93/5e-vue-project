@@ -1,5 +1,4 @@
-public class BackgroundsData1 {
-	private XMLFactoryBackgrounds XMLFactoryBackgrounds;
+public class BackgroundsData1 implements BackgroundsData{
 	private String name = "Adept";
 	private int index = 1;
 	private int skillproficienciesChoose = 1;
@@ -72,15 +71,5 @@ public class BackgroundsData1 {
 
 	public String[] getDesc() {
 		return desc;
-	}
-	
-	public BackgroundsData1() {
-		XMLFactoryBackgrounds = new XMLFactoryBackgrounds(name, index, skillproficienciesChoose,
-				skillproficiencies, weaponproficienciesChoose, weaponproficiencies, toolproficienciesChoose,
-				toolproficiencies, languagesChoose, languages, equipment, descChoose, descNames, desc);
-	}
-
-	public String GetJSON() {
-		return XMLFactoryBackgrounds.GetJSON();
 	}
 }
