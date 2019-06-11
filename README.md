@@ -1,5 +1,7 @@
 # 5e-vue-project
 
+College project - only meant for this purpose.
+
 ## Project setup
 ```
 npm install
