@@ -7,7 +7,10 @@
 
     <div class="AttributeOutput padding">
       <p class="AttributeTitel">Constitution</p>
-      <p>{{CurrentBaseAttribute}}</p>
+      <div class="AttributeAbilityScore">
+        <p>{{CurrentBaseAttribute}}&nbsp;</p>
+        <p class="AttributeRaceAbilityScore">+{{GetRaceAbilityBonusConstitution}}</p>
+      </div>
       <p class="AbilityModifier">{{GetAbilityModifierConstitution}}</p>
     </div>
   </div>
@@ -29,7 +32,8 @@ export default {
     ...mapGetters(["GetCharacterSheet"]),
     ...mapGetters(["GetAbilityModifierConstitution"]),
     ...mapGetters(["GetAttributePointsAvailableMinus"]),
-    ...mapGetters(["GetAttributePointsAvailablePlus"])
+    ...mapGetters(["GetAttributePointsAvailablePlus"]),
+    ...mapGetters(["GetRaceAbilityBonusConstitution"])
   },
   methods: {
     ...mapMutations(["SetAbilityModifier"]),
@@ -39,7 +43,7 @@ export default {
   },
   created: function() {
     this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Constitution;
-    this.SetAbilityModifier("Constitution");
+    this.SetAbilityModifier(["Constitution", 0]);
   },
   watch: {
     IncrementPressed: function() {
@@ -51,7 +55,10 @@ export default {
           this.CurrentBaseAttribute += 1;
           this.SetAvailableAttributePointsMinus(cache);
           this.SetAttributeConstitution(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Constitution");
+          this.SetAbilityModifier([
+            "Constitution",
+            this.GetRaceAbilityBonusConstitution
+          ]);
         }
       }
       this.IncrementPressed = false;
@@ -65,7 +72,10 @@ export default {
           this.CurrentBaseAttribute -= 1;
           this.SetAvailableAttributePointsPlus(cache);
           this.SetAttributeConstitution(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Constitution");
+          this.SetAbilityModifier([
+            "Constitution",
+            this.GetRaceAbilityBonusConstitution
+          ]);
         }
         this.DecrementPressed = false;
       }

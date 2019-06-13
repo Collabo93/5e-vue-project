@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations} from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "RwvRace",
@@ -14,21 +14,48 @@ export default {
       SelectedRaceName: ""
     };
   },
-  computed: mapGetters([
-    "GetRaceNames","GetRace","GetCharacterSheet"
-  ]),
+  computed: {
+    ...mapGetters(["GetRaceNames"]),
+    ...mapGetters(["GetRace"]),
+    ...mapGetters(["GetCharacterSheet"]),
+
+    ...mapGetters(["GetRaceAbilityBonusStrength"]),
+    ...mapGetters(["GetRaceAbilityBonusDexterity"]),
+    ...mapGetters(["GetRaceAbilityBonusConstitution"]),
+    ...mapGetters(["GetRaceAbilityBonusIntelligence"]),
+    ...mapGetters(["GetRaceAbilityBonusWisdom"]),
+    ...mapGetters(["GetRaceAbilityBonusCharisma"])
+  },
   created: function() {
     this.fetchDataRace();
   },
   methods: {
     ...mapActions(["fetchDataRace"]),
     ...mapActions(["SetDataRace"]),
-    ...mapMutations(["SetRace"])
+    ...mapActions(["SetRaceInfo"]),
+    ...mapMutations(["SetRace"]),
+
+    ...mapMutations(["SetAbilityModifier"])
   },
   watch: {
     SelectedRaceName: function() {
       this.SetDataRace(this.SelectedRaceName);
       this.SetRace(this.GetRace);
+      this.SetRaceInfo();
+      //need to wait for SetRaceInfo to update the race bonuses
+      this.SetAbilityModifier(["Strength", this.GetRaceAbilityBonusStrength]);
+      this.SetAbilityModifier(["Dexterity", this.GetRaceAbilityBonusDexterity]);
+      this.SetAbilityModifier([
+        "Constitution",
+        this.GetRaceAbilityBonusConstitution
+      ]);
+      this.SetAbilityModifier([
+        "Intelligence",
+        this.GetRaceAbilityBonusIntelligence
+      ]);
+      this.SetAbilityModifier(["Wisdom", this.GetRaceAbilityBonusWisdom]);
+      this.SetAbilityModifier(["Charisma", this.GetRaceAbilityBonusCharisma]);
+
     }
   }
 };

@@ -118,29 +118,29 @@ const mutations = {
     }
   },
   SetAbilityModifier(state, Attribute) {
-    if (Attribute == "Strength") {
+    if (Attribute[0] == "Strength") {
       state.AbilityModifierStrength = Math.floor(
-        state.CharacterSheet.Attributes[0].Strength / 2 - 5
+        (state.CharacterSheet.Attributes[0].Strength + Attribute[1]) / 2 - 5
       );
-    } else if (Attribute == "Dexterity") {
+    } else if (Attribute[0] == "Dexterity") {
       state.AbilityModifierDexterity = Math.floor(
-        state.CharacterSheet.Attributes[0].Dexterity / 2 - 5
+        (state.CharacterSheet.Attributes[0].Dexterity + Attribute[1]) / 2 - 5
       );
-    } else if (Attribute == "Constitution") {
+    } else if (Attribute[0] == "Constitution") {
       state.AbilityModifierConstitution = Math.floor(
-        state.CharacterSheet.Attributes[0].Constitution / 2 - 5
+        (state.CharacterSheet.Attributes[0].Constitution + Attribute[1]) / 2 - 5
       );
-    } else if (Attribute == "Intelligence") {
+    } else if (Attribute[0] == "Intelligence") {
       state.AbilityModifierIntelligence = Math.floor(
-        state.CharacterSheet.Attributes[0].Intelligence / 2 - 5
+        (state.CharacterSheet.Attributes[0].Intelligence + Attribute[1]) / 2 - 5
       );
-    } else if (Attribute == "Wisdom") {
+    } else if (Attribute[0] == "Wisdom") {
       state.AbilityModifierWisdom = Math.floor(
-        state.CharacterSheet.Attributes[0].Wisdom / 2 - 5
+        (state.CharacterSheet.Attributes[0].Wisdom + Attribute[1]) / 2 - 5
       );
-    } else if (Attribute == "Charisma") {
+    } else if (Attribute[0] == "Charisma") {
       state.AbilityModifierCharisma = Math.floor(
-        state.CharacterSheet.Attributes[0].Charisma / 2 - 5
+        (state.CharacterSheet.Attributes[0].Charisma + Attribute[1]) / 2 - 5
       );
     }
   },

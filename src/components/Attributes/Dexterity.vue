@@ -7,7 +7,10 @@
 
     <div class="AttributeOutput padding">
       <p class="AttributeTitel">Dexterity</p>
-      <p>{{CurrentBaseAttribute}}</p>
+      <div class="AttributeAbilityScore">
+        <p>{{CurrentBaseAttribute}}&nbsp;</p>
+        <p class="AttributeRaceAbilityScore">+{{GetRaceAbilityBonusDexterity}}</p>
+      </div>
       <p class="AbilityModifier">{{GetAbilityModifierDexterity}}</p>
     </div>
   </div>
@@ -29,7 +32,8 @@ export default {
     ...mapGetters(["GetCharacterSheet"]),
     ...mapGetters(["GetAbilityModifierDexterity"]),
     ...mapGetters(["GetAttributePointsAvailableMinus"]),
-    ...mapGetters(["GetAttributePointsAvailablePlus"])
+    ...mapGetters(["GetAttributePointsAvailablePlus"]),
+    ...mapGetters(["GetRaceAbilityBonusDexterity"])
   },
   methods: {
     ...mapMutations(["SetAbilityModifier"]),
@@ -39,7 +43,7 @@ export default {
   },
   created: function() {
     this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Dexterity;
-    this.SetAbilityModifier("Dexterity");
+    this.SetAbilityModifier(["Dexterity", 0]);
   },
   watch: {
     IncrementPressed: function() {
@@ -51,7 +55,10 @@ export default {
           this.CurrentBaseAttribute += 1;
           this.SetAvailableAttributePointsMinus(cache);
           this.SetAttributeDexterity(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Dexterity");
+          this.SetAbilityModifier([
+            "Dexterity",
+            this.GetRaceAbilityBonusDexterity
+          ]);
         }
       }
       this.IncrementPressed = false;
@@ -65,7 +72,10 @@ export default {
           this.CurrentBaseAttribute -= 1;
           this.SetAvailableAttributePointsPlus(cache);
           this.SetAttributeDexterity(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Dexterity");
+          this.SetAbilityModifier([
+            "Dexterity",
+            this.GetRaceAbilityBonusDexterity
+          ]);
         }
         this.DecrementPressed = false;
       }

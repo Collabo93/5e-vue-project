@@ -1,4 +1,4 @@
-import { RepositoryFactory } from "../../services/RepositoryFactory";
+import { RepositoryFactory } from "../../services/RepositoryFactoryDnDAPI";
 const ClassRepository = RepositoryFactory.get("classes");
 
 const state = {

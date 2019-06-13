@@ -1,4 +1,4 @@
-import { RepositoryFactory } from "../../services/RepositoryFactory";
+import { RepositoryFactory } from "../../services/RepositoryFactoryHomeAPI";
 const BackgroundRepository = RepositoryFactory.get("backgrounds");
 
 const state = {

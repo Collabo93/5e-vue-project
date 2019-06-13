@@ -7,7 +7,10 @@
 
     <div class="AttributeOutput padding">
       <p class="AttributeTitel">Wisdom</p>
-      <p>{{CurrentBaseAttribute}}</p>
+      <div class="AttributeAbilityScore">
+        <p>{{CurrentBaseAttribute}}&nbsp;</p>
+        <p class="AttributeRaceAbilityScore">+{{GetRaceAbilityBonusWisdom}}</p>
+      </div>
       <p class="AbilityModifier">{{GetAbilityModifierWisdom}}</p>
     </div>
   </div>
@@ -29,7 +32,8 @@ export default {
     ...mapGetters(["GetCharacterSheet"]),
     ...mapGetters(["GetAbilityModifierWisdom"]),
     ...mapGetters(["GetAttributePointsAvailableMinus"]),
-    ...mapGetters(["GetAttributePointsAvailablePlus"])
+    ...mapGetters(["GetAttributePointsAvailablePlus"]),
+    ...mapGetters(["GetRaceAbilityBonusWisdom"])
   },
   methods: {
     ...mapMutations(["SetAbilityModifier"]),
@@ -39,7 +43,7 @@ export default {
   },
   created: function() {
     this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Wisdom;
-    this.SetAbilityModifier("Wisdom");
+    this.SetAbilityModifier(["Wisdom", 0]);
   },
   watch: {
     IncrementPressed: function() {
@@ -51,7 +55,7 @@ export default {
           this.CurrentBaseAttribute += 1;
           this.SetAvailableAttributePointsMinus(cache);
           this.SetAttributeWisdom(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Wisdom");
+          this.SetAbilityModifier(["Wisdom", this.GetRaceAbilityBonusWisdom]);
         }
       }
       this.IncrementPressed = false;
@@ -65,7 +69,7 @@ export default {
           this.CurrentBaseAttribute -= 1;
           this.SetAvailableAttributePointsPlus(cache);
           this.SetAttributeWisdom(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Wisdom");
+          this.SetAbilityModifier(["Wisdom", this.GetRaceAbilityBonusWisdom]);
         }
         this.DecrementPressed = false;
       }

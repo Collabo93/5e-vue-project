@@ -7,7 +7,10 @@
 
     <div class="AttributeOutput padding">
       <p class="AttributeTitel">Charisma</p>
-      <p>{{CurrentBaseAttribute}}</p>
+      <div class="AttributeAbilityScore">
+        <p>{{CurrentBaseAttribute}}&nbsp;</p>
+        <p class="AttributeRaceAbilityScore">+{{GetRaceAbilityBonusCharisma}}</p>
+      </div>
       <p class="AbilityModifier">{{GetAbilityModifierCharisma}}</p>
     </div>
   </div>
@@ -29,7 +32,8 @@ export default {
     ...mapGetters(["GetCharacterSheet"]),
     ...mapGetters(["GetAbilityModifierCharisma"]),
     ...mapGetters(["GetAttributePointsAvailableMinus"]),
-    ...mapGetters(["GetAttributePointsAvailablePlus"])
+    ...mapGetters(["GetAttributePointsAvailablePlus"]),
+    ...mapGetters(["GetRaceAbilityBonusCharisma"])
   },
   methods: {
     ...mapMutations(["SetAbilityModifier"]),
@@ -39,7 +43,7 @@ export default {
   },
   created: function() {
     this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Charisma;
-    this.SetAbilityModifier("Charisma");
+    this.SetAbilityModifier(["Charisma", 0]);
   },
   watch: {
     IncrementPressed: function() {
@@ -51,7 +55,10 @@ export default {
           this.CurrentBaseAttribute += 1;
           this.SetAvailableAttributePointsMinus(cache);
           this.SetAttributeCharisma(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Charisma");
+          this.SetAbilityModifier([
+            "Charisma",
+            this.GetRaceAbilityBonusCharisma
+          ]);
         }
       }
       this.IncrementPressed = false;
@@ -65,7 +72,10 @@ export default {
           this.CurrentBaseAttribute -= 1;
           this.SetAvailableAttributePointsPlus(cache);
           this.SetAttributeCharisma(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Charisma");
+          this.SetAbilityModifier([
+            "Charisma",
+            this.GetRaceAbilityBonusCharisma
+          ]);
         }
         this.DecrementPressed = false;
       }

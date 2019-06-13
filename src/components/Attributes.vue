@@ -88,12 +88,20 @@ export default {
 </script>
 
 <style>
-.AttributeFrame {
-}
 .AvailableAttributePoints {
-  font-size: 30px;
+  font-size: 20px;
 }
-.AttributeOutput {
+.AttributeFrame .AtributeIncDec {
+  padding: 10px;
+  text-align: center;
+}
+.AttributeFrame .AtributeIncDec button {
+  margin: 5px;
+}
+.AttributeFrame .AtributeIncDec .decrement {
+  transform: rotate(180deg);
+}
+.AttributeFrame .AttributeOutput {
   text-align: center;
   border: solid 1px;
   border-color: grey;
@@ -101,18 +109,14 @@ export default {
   box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
     0 15px 40px rgba(166, 173, 201, 0.2);
 }
-.AtributeIncDec {
-  padding: 10px;
-  text-align: center;
-}
-.AtributeIncDec button {
-  margin: 5px;
-}
-.AtributeIncDec .decrement {
-  transform: rotate(180deg);
-}
-.AttributeTitel {
-  font-size: 18px;
+.AttributeFrame .AttributeOutput .AttributeTitel {
+  font-size: 16px;
   font-weight: bold;
+}
+.AttributeFrame .AttributeOutput .AttributeAbilityScore p{
+  display: inline-block;
+}
+.AttributeFrame .AttributeOutput .AttributeRaceAbilityScore{
+  color: green;
 }
 </style>

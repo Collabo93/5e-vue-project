@@ -7,7 +7,10 @@
 
     <div class="AttributeOutput padding">
       <p class="AttributeTitel">Strength</p>
-      <p>{{CurrentBaseAttribute}}</p>
+      <div class="AttributeAbilityScore">
+        <p>{{CurrentBaseAttribute}}&nbsp;</p>
+        <p class="AttributeRaceAbilityScore">+{{GetRaceAbilityBonusStrength}}</p>
+      </div>
       <p class="AbilityModifier">{{GetAbilityModifierStrength}}</p>
     </div>
   </div>
@@ -29,7 +32,8 @@ export default {
     ...mapGetters(["GetCharacterSheet"]),
     ...mapGetters(["GetAbilityModifierStrength"]),
     ...mapGetters(["GetAttributePointsAvailableMinus"]),
-    ...mapGetters(["GetAttributePointsAvailablePlus"])
+    ...mapGetters(["GetAttributePointsAvailablePlus"]),
+    ...mapGetters(["GetRaceAbilityBonusStrength"])
   },
   methods: {
     ...mapMutations(["SetAbilityModifier"]),
@@ -39,7 +43,7 @@ export default {
   },
   created: function() {
     this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Strength;
-    this.SetAbilityModifier("Strength");
+    this.SetAbilityModifier(["Strength", 0]);
   },
   watch: {
     IncrementPressed: function() {
@@ -51,7 +55,10 @@ export default {
           this.CurrentBaseAttribute += 1;
           this.SetAvailableAttributePointsMinus(cache);
           this.SetAttributeStrength(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Strength");
+          this.SetAbilityModifier([
+            "Strength",
+            this.GetRaceAbilityBonusStrength
+          ]);
         }
       }
       this.IncrementPressed = false;
@@ -65,7 +72,10 @@ export default {
           this.CurrentBaseAttribute -= 1;
           this.SetAvailableAttributePointsPlus(cache);
           this.SetAttributeStrength(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Strength");
+          this.SetAbilityModifier([
+            "Strength",
+            this.GetRaceAbilityBonusStrength
+          ]);
         }
         this.DecrementPressed = false;
       }
