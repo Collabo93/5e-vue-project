@@ -2,6 +2,7 @@
   <b-container class="padding">
     <RwvStandardInformations/>
     <RwvAttributes />
+    <RwvSavingThrows />
     <b-row class="padding">
       <b-col>
         <b-button :pressed.sync="debugButtonPressed" variant="primary">Debug Mode</b-button>
@@ -26,6 +27,7 @@
 <script>
 import RwvStandardInformations from "@/components/StandardInformations";
 import RwvAttributes from "@/components/Attributes";
+import RwvSavingThrows from "@/components/SavingThrows";
 
 import { mapGetters } from "vuex";
 
@@ -33,7 +35,8 @@ export default {
   name: "RwvCharacterCreation",
   components: {
     RwvStandardInformations,
-    RwvAttributes
+    RwvAttributes,
+    RwvSavingThrows
   },
   data() {
     return {

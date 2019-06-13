@@ -8,26 +8,26 @@
       </b-col>
     </b-row>
     <b-row class="padding">
-      <b-col md="3">
+      <b-col md="2">
         <RwvStrength/>
       </b-col>
-      <b-col md="3">
+      <b-col md="2">
         <RwvDexterity/>
       </b-col>
-      <b-col md="3">
+      <b-col md="2">
         <RwvConstitution/>
       </b-col>
-      <b-col md="3">
+      <b-col md="2">
         <RwvIntelligence/>
       </b-col>
-    </b-row>
-    <b-row class="padding">
-      <b-col md="3">
+      <b-col md="2">
         <RwvWisdom/>
       </b-col>
-      <b-col md="3">
+      <b-col md="2">
         <RwvCharisma/>
       </b-col>
+      
+      
     </b-row>
   </b-container>
 </template>
@@ -70,6 +70,17 @@ export default {
           OnePoint: 0,
           TwoPoints: 14
         }
+      ],
+      BaseRaceInfo: [
+        {
+          Strength: 0,
+          Dexterity: 0,
+          Constitution: 0,
+          Intelligence: 0,
+          Wisdom: 0,
+          Charisma: 0,
+          Speed: 0
+        }
       ]
     };
   },
@@ -78,18 +89,23 @@ export default {
   },
   methods: {
     ...mapMutations(["SetBaseAttributes"]),
-    ...mapMutations(["SetBaseAttributePoints"])
+    ...mapMutations(["SetBaseAttributePoints"]),
+    ...mapMutations(["InitializeDataRace"]),
+    SetData() {
+      this.InitializeDataRace(this.BaseRaceInfo);
+    }
   },
   created: function() {
     this.SetBaseAttributes(this.BaseAttributes);
     this.SetBaseAttributePoints(this.BaseAttributePoints);
+    this.SetData();
   }
 };
 </script>
 
 <style>
 .AvailableAttributePoints {
-  font-size: 20px;
+  font-size: 30px;
 }
 .AttributeFrame .AtributeIncDec {
   padding: 10px;
@@ -105,7 +121,7 @@ export default {
   text-align: center;
   border: solid 1px;
   border-color: grey;
-  border-radius: 15px 15px 30px 30px;
+  border-radius: 5px 5px 30px 30px;
   box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
     0 15px 40px rgba(166, 173, 201, 0.2);
 }

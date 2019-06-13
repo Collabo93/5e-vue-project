@@ -6,13 +6,13 @@ const state = {
   dataRace: [],
   RaceNames: [],
   Race: [{ name: String }, { url: String }],
-  RaceAbilityBonusStrength: Int32Array,
-  RaceAbilityBonusDexterity: Int32Array,
-  RaceAbilityBonusConstitution: Int32Array,
-  RaceAbilityBonusIntelligence: Int32Array,
-  RaceAbilityBonusWisdom: Int32Array,
-  RaceAbilityBonusCharisma: Int32Array,
-  RaceSpeed: Int32Array
+  RaceAbilityBonusStrength: Boolean,
+  RaceAbilityBonusDexterity: Boolean,
+  RaceAbilityBonusConstitution: Boolean,
+  RaceAbilityBonusIntelligence: Boolean,
+  RaceAbilityBonusWisdom: Boolean,
+  RaceAbilityBonusCharisma: Boolean,
+  RaceSpeed: Boolean
 };
 
 const getters = {
@@ -44,7 +44,7 @@ const actions = {
 };
 
 const mutations = {
-  InitializeData(state, BaseRaceInfo) {
+  InitializeDataRace(state, BaseRaceInfo) {
     state.RaceAbilityBonusStrength = BaseRaceInfo[0].Strength;
     state.RaceAbilityBonusDexterity = BaseRaceInfo[0].Dexterity;
     state.RaceAbilityBonusConstitution = BaseRaceInfo[0].Constitution;

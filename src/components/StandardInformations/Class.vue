@@ -21,13 +21,15 @@ export default {
   methods: {
     ...mapActions(["fetchDataClass"]),
     ...mapActions(["SetDataClass"]),
+    ...mapActions(["SetClassInfo"]),
     ...mapMutations(["SetClass"]),
-    ...mapMutations(["SetChoosenOptions"])
+    ...mapMutations(["SetChoosenOptions"]),
   },
   watch: {
     SelectedClassName: function() {
       this.SetDataClass(this.SelectedClassName);
       this.SetClass(this.GetClass);
+      this.SetClassInfo();
     }
   }
 };

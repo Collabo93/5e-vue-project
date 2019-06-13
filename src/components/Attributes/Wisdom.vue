@@ -5,7 +5,7 @@
       <b-button :pressed.sync="DecrementPressed" variant="outline-success" class="decrement">^</b-button>
     </div>
 
-    <div class="AttributeOutput padding">
+    <div class="AttributeOutput">
       <p class="AttributeTitel">Wisdom</p>
       <div class="AttributeAbilityScore">
         <p>{{CurrentBaseAttribute}}&nbsp;</p>

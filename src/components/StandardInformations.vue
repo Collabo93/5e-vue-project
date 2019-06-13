@@ -37,8 +37,6 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-
 import RwvCharacterName from "./StandardInformations/CharacterName";
 import RwvClass from "./StandardInformations/Class";
 import RwvLevel from "./StandardInformations/Level";
@@ -57,30 +55,6 @@ export default {
     RwvPlayerName,
     RwvBackground,
     RwvAlignment
-  },
-  data() {
-    return {
-      BaseRaceInfo: [
-        {
-          Strength: 0,
-          Dexterity: 0,
-          Constitution: 0,
-          Intelligence: 0,
-          Wisdom: 0,
-          Charisma: 0,
-          Speed: 0
-        }
-      ]
-    };
-  },
-  created: function() {
-    this.SetData();
-  },
-  methods: {
-    ...mapMutations(["InitializeData"]),
-    SetData() {
-      this.InitializeData(this.BaseRaceInfo);
-    }
   }
 };
 </script>
