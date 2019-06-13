@@ -7,7 +7,7 @@
         </div>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="padding">
       <b-col md="3">
         <RwvStrength/>
       </b-col>
@@ -21,7 +21,7 @@
         <RwvIntelligence/>
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="padding">
       <b-col md="3">
         <RwvWisdom/>
       </b-col>

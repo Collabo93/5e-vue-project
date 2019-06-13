@@ -41,21 +41,25 @@ export default {
     SelectedRaceName: function() {
       this.SetDataRace(this.SelectedRaceName);
       this.SetRace(this.GetRace);
-      this.SetRaceInfo();
+      this.SetRaceInfo().then(result => {
+        this.SetAbilityModifier(["Strength", this.GetRaceAbilityBonusStrength]);
+        this.SetAbilityModifier([
+          "Dexterity",
+          this.GetRaceAbilityBonusDexterity
+        ]);
+        this.SetAbilityModifier([
+          "Constitution",
+          this.GetRaceAbilityBonusConstitution
+        ]);
+        this.SetAbilityModifier([
+          "Intelligence",
+          this.GetRaceAbilityBonusIntelligence
+        ]);
+        this.SetAbilityModifier(["Wisdom", this.GetRaceAbilityBonusWisdom]);
+        this.SetAbilityModifier(["Charisma", this.GetRaceAbilityBonusCharisma]);
+        return result;
+      });
       //need to wait for SetRaceInfo to update the race bonuses
-      this.SetAbilityModifier(["Strength", this.GetRaceAbilityBonusStrength]);
-      this.SetAbilityModifier(["Dexterity", this.GetRaceAbilityBonusDexterity]);
-      this.SetAbilityModifier([
-        "Constitution",
-        this.GetRaceAbilityBonusConstitution
-      ]);
-      this.SetAbilityModifier([
-        "Intelligence",
-        this.GetRaceAbilityBonusIntelligence
-      ]);
-      this.SetAbilityModifier(["Wisdom", this.GetRaceAbilityBonusWisdom]);
-      this.SetAbilityModifier(["Charisma", this.GetRaceAbilityBonusCharisma]);
-
     }
   }
 };

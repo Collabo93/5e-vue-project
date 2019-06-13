@@ -1,5 +1,5 @@
 <template>
-  <div class="AttributeFrame padding">
+  <div class="AttributeFrame">
     <div class="AtributeIncDec">
       <b-button :pressed.sync="IncrementPressed" variant="outline-success" class="increment">^</b-button>
       <b-button :pressed.sync="DecrementPressed" variant="outline-success" class="decrement">^</b-button>
