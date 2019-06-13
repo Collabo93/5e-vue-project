@@ -1,18 +1,56 @@
 <template>
-  <b-row md="3">
-    <RwvStrength/>
-  </b-row>
+  <b-container>
+    <b-row>
+      <b-col>
+        <div class="AvailableAttributePoints">
+          <p>Remaining points: {{GetAvailableAttributePoints}}</p>
+        </div>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col md="3">
+        <RwvStrength/>
+      </b-col>
+      <b-col md="3">
+        <RwvDexterity/>
+      </b-col>
+      <b-col md="3">
+        <RwvConstitution/>
+      </b-col>
+      <b-col md="3">
+        <RwvIntelligence/>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col md="3">
+        <RwvWisdom/>
+      </b-col>
+      <b-col md="3">
+        <RwvCharisma/>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
 
 import RwvStrength from "./Attributes/Strength";
+import RwvDexterity from "./Attributes/Dexterity";
+import RwvConstitution from "./Attributes/Constitution";
+import RwvIntelligence from "./Attributes/Intelligence";
+import RwvWisdom from "./Attributes/Wisdom";
+import RwvCharisma from "./Attributes/Charisma";
 
 export default {
   name: "RwvAttributes",
   components: {
-    RwvStrength
+    RwvStrength,
+    RwvDexterity,
+    RwvConstitution,
+    RwvIntelligence,
+    RwvWisdom,
+    RwvCharisma
   },
   data() {
     return {
@@ -25,26 +63,37 @@ export default {
           Wisdom: 8,
           Charisma: 8
         }
+      ],
+      BaseAttributePoints: 27,
+      BaseAttributePointsCalculation: [
+        {
+          OnePoint: 0,
+          TwoPoints: 14
+        }
       ]
     };
   },
   computed: {
-    ...mapGetters(["GetCharacterSheet"])
+    ...mapGetters(["GetAvailableAttributePoints"])
   },
   methods: {
-    ...mapMutations(["SetChoosenOptions"]),
-    ...mapMutations(["SetBaseAttributes"])
+    ...mapMutations(["SetBaseAttributes"]),
+    ...mapMutations(["SetBaseAttributePoints"])
   },
   created: function() {
     this.SetBaseAttributes(this.BaseAttributes);
+    this.SetBaseAttributePoints(this.BaseAttributePoints);
   }
 };
 </script>
 
 <style>
 .AttributeFrame {
-  float: right;
-  right: 0;
+}
+.AvailableAttributePoints {
+  font-size: 30px;
+}
+.AttributeOutput {
   text-align: center;
   border: solid 1px;
   border-color: grey;
@@ -53,14 +102,11 @@ export default {
     0 15px 40px rgba(166, 173, 201, 0.2);
 }
 .AtributeIncDec {
-  float: left;
-  left: 0;
-  position: relative;
-  top: 18%;
   padding: 10px;
+  text-align: center;
 }
 .AtributeIncDec button {
-  margin: 5px !important;
+  margin: 5px;
 }
 .AtributeIncDec .decrement {
   transform: rotate(180deg);

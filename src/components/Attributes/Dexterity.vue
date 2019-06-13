@@ -6,9 +6,9 @@
     </div>
 
     <div class="AttributeOutput padding">
-      <p class="AttributeTitel">Strength</p>
+      <p class="AttributeTitel">Dexterity</p>
       <p>{{CurrentBaseAttribute}}</p>
-      <p class="AbilityModifier">{{GetAbilityModifierStrength}}</p>
+      <p class="AbilityModifier">{{GetAbilityModifierDexterity}}</p>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "RwvStrength",
+  name: "RwvDexterity",
   data() {
     return {
       IncrementPressed: false,
@@ -27,19 +27,19 @@ export default {
   },
   computed: {
     ...mapGetters(["GetCharacterSheet"]),
-    ...mapGetters(["GetAbilityModifierStrength"]),
+    ...mapGetters(["GetAbilityModifierDexterity"]),
     ...mapGetters(["GetAttributePointsAvailableMinus"]),
     ...mapGetters(["GetAttributePointsAvailablePlus"])
   },
   methods: {
     ...mapMutations(["SetAbilityModifier"]),
-    ...mapMutations(["SetAttributeStrength"]),
+    ...mapMutations(["SetAttributeDexterity"]),
     ...mapMutations(["SetAvailableAttributePointsMinus"]),
     ...mapMutations(["SetAvailableAttributePointsPlus"])
   },
   created: function() {
-    this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Strength;
-    this.SetAbilityModifier("Strength");
+    this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Dexterity;
+    this.SetAbilityModifier("Dexterity");
   },
   watch: {
     IncrementPressed: function() {
@@ -50,8 +50,8 @@ export default {
         if (!isNaN(cache)) {
           this.CurrentBaseAttribute += 1;
           this.SetAvailableAttributePointsMinus(cache);
-          this.SetAttributeStrength(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Strength");
+          this.SetAttributeDexterity(this.CurrentBaseAttribute);
+          this.SetAbilityModifier("Dexterity");
         }
       }
       this.IncrementPressed = false;
@@ -64,8 +64,8 @@ export default {
         if (!isNaN(cache)) {
           this.CurrentBaseAttribute -= 1;
           this.SetAvailableAttributePointsPlus(cache);
-          this.SetAttributeStrength(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Strength");
+          this.SetAttributeDexterity(this.CurrentBaseAttribute);
+          this.SetAbilityModifier("Dexterity");
         }
         this.DecrementPressed = false;
       }

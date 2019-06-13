@@ -6,9 +6,9 @@
     </div>
 
     <div class="AttributeOutput padding">
-      <p class="AttributeTitel">Strength</p>
+      <p class="AttributeTitel">Charisma</p>
       <p>{{CurrentBaseAttribute}}</p>
-      <p class="AbilityModifier">{{GetAbilityModifierStrength}}</p>
+      <p class="AbilityModifier">{{GetAbilityModifierCharisma}}</p>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "RwvStrength",
+  name: "RwvCharisma",
   data() {
     return {
       IncrementPressed: false,
@@ -27,19 +27,19 @@ export default {
   },
   computed: {
     ...mapGetters(["GetCharacterSheet"]),
-    ...mapGetters(["GetAbilityModifierStrength"]),
+    ...mapGetters(["GetAbilityModifierCharisma"]),
     ...mapGetters(["GetAttributePointsAvailableMinus"]),
     ...mapGetters(["GetAttributePointsAvailablePlus"])
   },
   methods: {
     ...mapMutations(["SetAbilityModifier"]),
-    ...mapMutations(["SetAttributeStrength"]),
+    ...mapMutations(["SetAttributeCharisma"]),
     ...mapMutations(["SetAvailableAttributePointsMinus"]),
     ...mapMutations(["SetAvailableAttributePointsPlus"])
   },
   created: function() {
-    this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Strength;
-    this.SetAbilityModifier("Strength");
+    this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Charisma;
+    this.SetAbilityModifier("Charisma");
   },
   watch: {
     IncrementPressed: function() {
@@ -50,8 +50,8 @@ export default {
         if (!isNaN(cache)) {
           this.CurrentBaseAttribute += 1;
           this.SetAvailableAttributePointsMinus(cache);
-          this.SetAttributeStrength(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Strength");
+          this.SetAttributeCharisma(this.CurrentBaseAttribute);
+          this.SetAbilityModifier("Charisma");
         }
       }
       this.IncrementPressed = false;
@@ -64,8 +64,8 @@ export default {
         if (!isNaN(cache)) {
           this.CurrentBaseAttribute -= 1;
           this.SetAvailableAttributePointsPlus(cache);
-          this.SetAttributeStrength(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Strength");
+          this.SetAttributeCharisma(this.CurrentBaseAttribute);
+          this.SetAbilityModifier("Charisma");
         }
         this.DecrementPressed = false;
       }

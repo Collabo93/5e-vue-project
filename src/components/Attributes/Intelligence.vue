@@ -6,9 +6,9 @@
     </div>
 
     <div class="AttributeOutput padding">
-      <p class="AttributeTitel">Strength</p>
+      <p class="AttributeTitel">Intelligence</p>
       <p>{{CurrentBaseAttribute}}</p>
-      <p class="AbilityModifier">{{GetAbilityModifierStrength}}</p>
+      <p class="AbilityModifier">{{GetAbilityModifierIntelligence}}</p>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  name: "RwvStrength",
+  name: "RwvIntelligence",
   data() {
     return {
       IncrementPressed: false,
@@ -27,19 +27,19 @@ export default {
   },
   computed: {
     ...mapGetters(["GetCharacterSheet"]),
-    ...mapGetters(["GetAbilityModifierStrength"]),
+    ...mapGetters(["GetAbilityModifierIntelligence"]),
     ...mapGetters(["GetAttributePointsAvailableMinus"]),
     ...mapGetters(["GetAttributePointsAvailablePlus"])
   },
   methods: {
     ...mapMutations(["SetAbilityModifier"]),
-    ...mapMutations(["SetAttributeStrength"]),
+    ...mapMutations(["SetAttributeIntelligence"]),
     ...mapMutations(["SetAvailableAttributePointsMinus"]),
     ...mapMutations(["SetAvailableAttributePointsPlus"])
   },
   created: function() {
-    this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Strength;
-    this.SetAbilityModifier("Strength");
+    this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Intelligence;
+    this.SetAbilityModifier("Intelligence");
   },
   watch: {
     IncrementPressed: function() {
@@ -50,8 +50,8 @@ export default {
         if (!isNaN(cache)) {
           this.CurrentBaseAttribute += 1;
           this.SetAvailableAttributePointsMinus(cache);
-          this.SetAttributeStrength(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Strength");
+          this.SetAttributeIntelligence(this.CurrentBaseAttribute);
+          this.SetAbilityModifier("Intelligence");
         }
       }
       this.IncrementPressed = false;
@@ -64,8 +64,8 @@ export default {
         if (!isNaN(cache)) {
           this.CurrentBaseAttribute -= 1;
           this.SetAvailableAttributePointsPlus(cache);
-          this.SetAttributeStrength(this.CurrentBaseAttribute);
-          this.SetAbilityModifier("Strength");
+          this.SetAttributeIntelligence(this.CurrentBaseAttribute);
+          this.SetAbilityModifier("Intelligence");
         }
         this.DecrementPressed = false;
       }

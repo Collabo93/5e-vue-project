@@ -22,13 +22,17 @@ const state = {
     }
   ],
   BaseAttributePoints: 27,
-  AbilityModifier: Int32Array,
-  ChoosenOptions: [
+  AvailableAttributePoints: Int32Array,
+  AbilityModifierStrength: Int32Array,
+  AbilityModifierDexterity: Int32Array,
+  AbilityModifierConstitution: Int32Array,
+  AbilityModifierIntelligence: Int32Array,
+  AbilityModifierWisdom: Int32Array,
+  AbilityModifierCharisma: Int32Array,
+  BaseAttributePointsCalculation: [
     {
-      Class: String,
-      Level: String,
-      Race: String,
-      Background: String
+      OnePoint: 0,
+      TwoPoints: 14
     }
   ]
 };
@@ -38,7 +42,46 @@ const getters = {
   GetCharacterSheet: state => state.CharacterSheet,
 
   //Attributes
-  GetAbilityModifier: state => state.AbilityModifier
+  GetAvailableAttributePoints: state => state.AvailableAttributePoints,
+  GetAbilityModifierStrength: state => state.AbilityModifierStrength,
+  GetAbilityModifierDexterity: state => state.AbilityModifierDexterity,
+  GetAbilityModifierConstitution: state => state.AbilityModifierConstitution,
+  GetAbilityModifierIntelligence: state => state.AbilityModifierIntelligence,
+  GetAbilityModifierWisdom: state => state.AbilityModifierWisdom,
+  GetAbilityModifierCharisma: state => state.AbilityModifierCharisma,
+  GetAttributePointsAvailableMinus(state) {
+    return CurrentBaseAttribute => {
+      if (
+        CurrentBaseAttribute >=
+        state.BaseAttributePointsCalculation[0].TwoPoints
+      ) {
+        if (state.AvailableAttributePoints - 2 >= 0) {
+          return 2;
+        }
+      } else if (
+        CurrentBaseAttribute >= state.BaseAttributePointsCalculation[0].OnePoint
+      ) {
+        if (state.AvailableAttributePoints - 1 >= 0) {
+          return 1;
+        }
+      }
+    };
+  },
+  GetAttributePointsAvailablePlus(state) {
+    return CurrentBaseAttribute => {
+      if (
+        CurrentBaseAttribute >=
+        state.BaseAttributePointsCalculation[0].TwoPoints - 1
+      ) {
+        return 2;
+      } else if (
+        CurrentBaseAttribute >=
+        state.BaseAttributePointsCalculation[0].OnePoint - 1
+      ) {
+        return 1;
+      }
+    };
+  }
 };
 
 const actions = {};
@@ -64,14 +107,67 @@ const mutations = {
 
   //Attributes
   SetBaseAttributes: (state, BaseAttributes) =>
-    (state.CharacterSheet.Attributes = BaseAttributes),
-  SetAbilityModifier() {
-    state.AbilityModifier = Math.floor(
-      state.CharacterSheet.Attributes[0].Strength / 2 - 5
-    );
+    (state.CharacterSheet.Attributes = BaseAttributes), //need to adress character loading here later
+  SetBaseAttributePoints(state, BaseAttributePoints) {
+    if (
+      state.AvailableAttributePoints == null ||
+      typeof state.AvailableAttributePoints == "function"
+    ) {
+      state.BaseAttributePoints = BaseAttributePoints;
+      state.AvailableAttributePoints = BaseAttributePoints;
+    }
+  },
+  SetAbilityModifier(state, Attribute) {
+    if (Attribute == "Strength") {
+      state.AbilityModifierStrength = Math.floor(
+        state.CharacterSheet.Attributes[0].Strength / 2 - 5
+      );
+    } else if (Attribute == "Dexterity") {
+      state.AbilityModifierDexterity = Math.floor(
+        state.CharacterSheet.Attributes[0].Dexterity / 2 - 5
+      );
+    } else if (Attribute == "Constitution") {
+      state.AbilityModifierConstitution = Math.floor(
+        state.CharacterSheet.Attributes[0].Constitution / 2 - 5
+      );
+    } else if (Attribute == "Intelligence") {
+      state.AbilityModifierIntelligence = Math.floor(
+        state.CharacterSheet.Attributes[0].Intelligence / 2 - 5
+      );
+    } else if (Attribute == "Wisdom") {
+      state.AbilityModifierWisdom = Math.floor(
+        state.CharacterSheet.Attributes[0].Wisdom / 2 - 5
+      );
+    } else if (Attribute == "Charisma") {
+      state.AbilityModifierCharisma = Math.floor(
+        state.CharacterSheet.Attributes[0].Charisma / 2 - 5
+      );
+    }
+  },
+  SetBaseAttributePointsCalculation: (state, BaseAttributePointsCalculation) =>
+    (state.BaseAttributePointsCalculation = BaseAttributePointsCalculation), //Bases values set by Attributes.vue
+  SetAvailableAttributePointsMinus(state, CurrentBaseAttribute) {
+    state.AvailableAttributePoints =
+      state.AvailableAttributePoints - CurrentBaseAttribute;
+    return true;
+  },
+  SetAvailableAttributePointsPlus(state, CurrentBaseAttribute) {
+    state.AvailableAttributePoints =
+      state.AvailableAttributePoints + CurrentBaseAttribute;
+    return true;
   },
   SetAttributeStrength: (state, Strength) =>
-    (state.CharacterSheet.Attributes[0].Strength = Strength)
+    (state.CharacterSheet.Attributes[0].Strength = Strength),
+  SetAttributeDexterity: (state, Dexterity) =>
+    (state.CharacterSheet.Attributes[0].Dexterity = Dexterity),
+  SetAttributeConstitution: (state, Constitution) =>
+    (state.CharacterSheet.Attributes[0].Constitution = Constitution),
+  SetAttributeIntelligence: (state, Intelligence) =>
+    (state.CharacterSheet.Attributes[0].Intelligence = Intelligence),
+  SetAttributeWisdom: (state, Wisdom) =>
+    (state.CharacterSheet.Attributes[0].Wisdom = Wisdom),
+  SetAttributeCharisma: (state, Charisma) =>
+    (state.CharacterSheet.Attributes[0].Charisma = Charisma)
 };
 
 export default {
