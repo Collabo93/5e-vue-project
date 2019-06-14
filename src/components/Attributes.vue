@@ -121,9 +121,8 @@ export default {
   text-align: center;
   border: solid 1px;
   border-color: grey;
-  border-radius: 5px 5px 30px 30px;
-  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
-    0 15px 40px rgba(166, 173, 201, 0.2);
+  border-radius: 5px 5px 20px 20px;
+
 }
 .AttributeFrame .AttributeOutput .AttributeTitel {
   font-size: 16px;

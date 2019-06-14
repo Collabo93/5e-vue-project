@@ -14,14 +14,19 @@ export default {
       SelectedClassName: ""
     };
   },
-  computed: mapGetters(["GetClassNames", "GetClass", "GetCharacterSheet"]),
+  computed: {
+    ...mapGetters(["GetClassNames"]),
+    ...mapGetters(["GetClass"]),
+    ...mapGetters(["GetCharacterSheet"])
+  },
   created: function() {
     this.fetchDataClass();
   },
   methods: {
     ...mapActions(["fetchDataClass"]),
     ...mapActions(["SetDataClass"]),
-    ...mapActions(["SetClassInfo"]),
+    ...mapActions(["FetchClassInfo"]),
+    ...mapActions(["FetchClassDetailPerLevel"]),
     ...mapMutations(["SetClass"]),
     ...mapMutations(["SetChoosenOptions"]),
   },
@@ -29,7 +34,8 @@ export default {
     SelectedClassName: function() {
       this.SetDataClass(this.SelectedClassName);
       this.SetClass(this.GetClass);
-      this.SetClassInfo();
+      this.FetchClassInfo();
+      this.FetchClassDetailPerLevel([this.GetCharacterSheet.Class["name"],this.GetCharacterSheet.Level]);
     }
   }
 };

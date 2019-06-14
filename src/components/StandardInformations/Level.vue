@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "RwvLevel",
@@ -19,7 +19,11 @@ export default {
   created: function() {
     this.SetLevelRange();
   },
+  computed:{
+    ...mapGetters(["GetCharacterSheet"])
+  },
   methods: {
+    ...mapActions(["FetchClassDetailPerLevel"]),
     SetLevelRange() {
       for (let index = 1; index <= this.LevelMax; index++) {
         this.LevelRange.push(index);
@@ -30,6 +34,7 @@ export default {
   watch: {
     Level: function() {
       this.SetLevel(this.Level);
+      this.FetchClassDetailPerLevel([this.GetCharacterSheet.Class["name"],this.GetCharacterSheet.Level]);
     }
   }
 };
