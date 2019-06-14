@@ -1,7 +1,7 @@
 <template>
   <div class="SavingThrowFrame">
-    <input type="radio" :checked="value" :disabled="true" id="Strength">
-    <label for="Strength">
+    <input type="radio" :checked="value" :disabled="true" id="Wisdom">
+    <label for="Wisdom">
       <span class="radio"></span>
     </label>
   </div>
@@ -11,13 +11,13 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "RwvStrength",
+  name: "RwvWisdom",
   computed: {
-    ...mapGetters(["GetClassSavingThrowStrength"]),
+    ...mapGetters(["GetClassSavingThrowWisdom"]),
     value: {
       get() {
-        if (typeof this.GetClassSavingThrowStrength === "boolean")
-          return this.GetClassSavingThrowStrength;
+        if (typeof this.GetClassSavingThrowWisdom === "boolean")
+          return this.GetClassSavingThrowWisdom;
         else return false;
       },
       set(value) {

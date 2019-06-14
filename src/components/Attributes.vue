@@ -7,7 +7,7 @@
         </div>
       </b-col>
     </b-row>
-    <b-row class="padding">
+    <b-row>
       <b-col md="2">
         <RwvStrength/>
       </b-col>
