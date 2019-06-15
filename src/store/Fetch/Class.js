@@ -20,7 +20,9 @@ const state = {
   //Class in detail per Level
   dataClassDetailPerLevel: [],
   ClassAbilityScoreBonusesPerLevel: Int32Array,
-  ClassProficiencyBonusPerLevel: Int32Array
+  ClassProficiencyBonusPerLevel: Int32Array,
+  ClassAbilityScoreBonusSpendOnAbilityScore: Int32Array,
+  ClassAbilityScoreBonusSpendOnFeat: Int32Array,
 };
 
 const getters = {
@@ -37,7 +39,9 @@ const getters = {
 
   GetClassAbilityScoreBonusesPerLevel: state =>
     state.ClassAbilityScoreBonusesPerLevel,
-  GetClassProficiencyBonusPerLevel: state => state.ClassProficiencyBonusPerLevel
+  GetClassProficiencyBonusPerLevel: state => state.ClassProficiencyBonusPerLevel,
+  GetClassAbilityScoreBonusSpendOnAbilityScore: state => state.ClassAbilityScoreBonusSpendOnAbilityScore,
+  GetClassAbilityScoreBonusSpendOnFeat: state => state.ClassAbilityScoreBonusSpendOnFeat,
 };
 
 const actions = {
@@ -81,6 +85,9 @@ const mutations = {
     state.GetClassSavingThrowCharisma = BaseClassInfo[0].Charisma;
     state.ClassAbilityScoreBonusesPerLevel = "";
     state.ClassProficiencyBonusPerLevel = "";
+    state.ClassAbilityScoreBonusSpendOnAbilityScore = 0;
+    state.ClassAbilityScoreBonusSpendOnFeat = 0;
+    state.ClassAbilityScoreBonusesPerLevel = 0;
   },
   SetDataClass: (state, dataClass) => (state.dataClass = dataClass),
   SetClassNames() {
@@ -134,7 +141,10 @@ const mutations = {
       state.dataClassDetailPerLevel.ability_score_bonuses;
     state.ClassProficiencyBonusPerLevel =
       state.dataClassDetailPerLevel.prof_bonus;
-  }
+  },
+  SetClassAbilityScoreBonusSpendOnAbilityScore: (state, AbilityScore) => (state.ClassAbilityScoreBonusSpendOnAbilityScore = AbilityScore),
+  SetClassAbilityScoreBonusSpendOnFeat: (state, Feat) => (state.ClassAbilityScoreBonusSpendOnFeat = Feat),
+  SetClassAbilityScoreBonusesPerLevel: (state, ClassAbilityScoreBonusesPerLevel) => (state.ClassAbilityScoreBonusesPerLevel = ClassAbilityScoreBonusesPerLevel)
 };
 
 export default {

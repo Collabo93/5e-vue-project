@@ -31,4 +31,31 @@ body{
 .padding{
   padding: 2em!important;
 }
+.InformationDiv{
+  display: inline-block;
+  padding-left: 10px;
+}
+.Information .InformationValue{
+  font-size: 3em;
+  display: inline;
+}
+.Information .InformationValue::after{
+background-color: #4caf50;
+  height: 2px;
+  width: 60px;
+  content: "";
+  display: block;
+}
+.Information .InformationTitle{
+  font-weight: bold;
+  color: grey;
+}
+.InformationButton{
+  float: left;
+  vertical-align: center;
+}
+.InformationButton button{
+  width: 25px !important;
+  height: 25px !important;
+}
 </style>

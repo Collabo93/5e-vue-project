@@ -2,7 +2,7 @@
     <div class="ProficiencyBonus CharacterDetail" v-if="GetClassProficiencyBonusPerLevel">
         
         <p class="CharacterDetailOutput">{{GetClassProficiencyBonusPerLevel}}</p>
-        <p class="CharacterDetailTitle">Proficiency Bonus</p>
+        <p class="CharacterDetailTitle">Initiative</p>
     </div>
 </template>
 
@@ -10,7 +10,7 @@
 import { mapGetters } from "vuex";
 
 export default{
-    name:"RwvProficiencyBonus",
+    name:"RwvInitiative",
     computed:{
         ...mapGetters(["GetClassProficiencyBonusPerLevel"])
     }

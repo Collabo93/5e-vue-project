@@ -1,12 +1,26 @@
 <template>
   <b-container>
     <b-row>
-      <b-col>
-        <div class="AvailableAttributePoints">
-          <p>Remaining points: {{GetAvailableAttributePoints}}</p>
+      <b-col md="2">
+        <div class="AvailableAttributePoints Information">
+          <p class="InformationValue">{{GetAvailableAttributePoints}}</p>
+          <p class="InformationTitle">Available Points</p>
         </div>
       </b-col>
+      <b-col md="3">
+        <div class="AvailableAttributePoints Information">
+          <p class="InformationValue">{{GetClassAbilityScoreBonusesPerLevel}}</p>
+          <p class="InformationTitle">Ability Score Improvement</p>
+        </div>
+      </b-col>
+      <b-col md="2">
+        <RwvAbilityScoreImprovement />
+      </b-col>
+      <b-col md="2">
+        <RwvFeatImprovement />
+      </b-col>
     </b-row>
+
     <b-row>
       <b-col md="2">
         <RwvStrength/>
@@ -41,6 +55,8 @@ import RwvConstitution from "./Attributes/Constitution";
 import RwvIntelligence from "./Attributes/Intelligence";
 import RwvWisdom from "./Attributes/Wisdom";
 import RwvCharisma from "./Attributes/Charisma";
+import RwvAbilityScoreImprovement from "./Attributes/AbilityScoreImprovement";
+import RwvFeatImprovement from "./Attributes/FeatImprovement";
 
 export default {
   name: "RwvAttributes",
@@ -50,7 +66,9 @@ export default {
     RwvConstitution,
     RwvIntelligence,
     RwvWisdom,
-    RwvCharisma
+    RwvCharisma,
+    RwvAbilityScoreImprovement,
+    RwvFeatImprovement
   },
   data() {
     return {
@@ -85,7 +103,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["GetAvailableAttributePoints"])
+    ...mapGetters(["GetAvailableAttributePoints"]),
+    ...mapGetters(["GetClassAbilityScoreBonusesPerLevel"])
   },
   methods: {
     ...mapMutations(["SetBaseAttributes"]),
@@ -104,9 +123,6 @@ export default {
 </script>
 
 <style>
-.AvailableAttributePoints {
-  font-size: 30px;
-}
 .AttributeFrame .AtributeIncDec {
   padding: 10px;
   text-align: center;
@@ -122,6 +138,8 @@ export default {
   border: solid 1px;
   border-color: grey;
   border-radius: 5px 5px 20px 20px;
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+    0 15px 40px rgba(166, 173, 201, 0.2);
 
 }
 .AttributeFrame .AttributeOutput .AttributeTitel {

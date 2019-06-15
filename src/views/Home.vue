@@ -37,7 +37,9 @@ export default {
 
 <style>
 img.home-pictures {
-  max-width: 250px;
+  width: 250px;
+  padding:0;
+  margin:0;
   border: solid 1px;
   border-color: black;
   box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
@@ -51,6 +53,9 @@ img.home-pictures {
 .HomeMenuText {
   text-align: center;
   font-size: 18px;
+}
+.column {
+  transition: .2s;
 }
 .column:hover {
   background-color: rgba(76, 175, 80, 0.5);

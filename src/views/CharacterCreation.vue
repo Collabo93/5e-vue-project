@@ -1,6 +1,7 @@
 <template>
   <b-container class="padding">
     <RwvStandardInformations/>
+    <hr>
     <RwvAttributes/>
     <RwvSavingThrows/>
     <RwvCharacterDetails/>

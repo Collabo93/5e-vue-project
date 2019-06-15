@@ -19,11 +19,13 @@ export default {
   created: function() {
     this.SetLevelRange();
   },
-  computed:{
+  computed: {
     ...mapGetters(["GetCharacterSheet"])
   },
   methods: {
     ...mapActions(["FetchClassDetailPerLevel"]),
+    ...mapMutations(["SetClassAbilityScoreBonusSpendOnFeat"]),
+    ...mapMutations(["SetClassAbilityScoreBonusSpendOnAbilityScore"]),
     SetLevelRange() {
       for (let index = 1; index <= this.LevelMax; index++) {
         this.LevelRange.push(index);
@@ -34,7 +36,12 @@ export default {
   watch: {
     Level: function() {
       this.SetLevel(this.Level);
-      this.FetchClassDetailPerLevel([this.GetCharacterSheet.Class["name"],this.GetCharacterSheet.Level]);
+      this.FetchClassDetailPerLevel([
+        this.GetCharacterSheet.Class["name"],
+        this.GetCharacterSheet.Level
+      ]);
+      this.SetClassAbilityScoreBonusSpendOnFeat(0);
+      this.SetClassAbilityScoreBonusSpendOnAbilityScore(0);
     }
   }
 };
