@@ -1,18 +1,22 @@
 <template>
-    <div class="ProficiencyBonus CharacterDetail" v-if="GetClassProficiencyBonusPerLevel">
-        
-        <p class="CharacterDetailOutput">{{GetClassProficiencyBonusPerLevel}}</p>
-        <p class="CharacterDetailTitle">Initiative</p>
+  <div class="ProficiencyBonus CharacterDetail">
+    <div class="InformationDiv">
+      <div class="Information">
+        <p class="InformationValue">{{GetAbilityModifierDexterity}}</p>
+        <p class="InformationTitle">Initiative</p>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
 
-export default{
-    name:"RwvInitiative",
-    computed:{
-        ...mapGetters(["GetClassProficiencyBonusPerLevel"])
-    }
-}
+export default {
+  name: "RwvInitiative",
+  computed: {
+    ...mapGetters(["GetClassProficiencyBonusPerLevel"]),
+    ...mapGetters(["GetAbilityModifierDexterity"]),
+  }
+};
 </script>

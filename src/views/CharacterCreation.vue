@@ -3,15 +3,13 @@
     <RwvStandardInformations/>
     <hr>
     <RwvAttributes/>
-    <RwvSavingThrows/>
     <RwvCharacterDetails/>
-    <img src="../assets/test-characterSheet.jpg">
+    
   </b-container>
 </template>
 <script>
 import RwvStandardInformations from "@/components/StandardInformations";
 import RwvAttributes from "@/components/Attributes";
-import RwvSavingThrows from "@/components/SavingThrows";
 import RwvCharacterDetails from "@/components/CharacterDetails";
 
 import { mapGetters, mapMutations } from "vuex";
@@ -21,11 +19,20 @@ export default {
   components: {
     RwvStandardInformations,
     RwvAttributes,
-    RwvSavingThrows,
     RwvCharacterDetails
   },
   data() {
     return {
+      BaseClassInfo: [
+        {
+          Strength: false,
+          Dexterity: false,
+          Constitution: false,
+          Intelligence: false,
+          Wisdom: false,
+          Charisma: false
+        }
+      ],
       BaseACPerArmorType: [
         {
           None: [
@@ -72,8 +79,11 @@ export default {
     ...mapGetters(["GetCharacterSheet"])
   },
   methods: {
+    ...mapMutations(["InitDataClass"]),  
     ...mapMutations(["InitBaseAC"]),
+
     SetBaseAC() {
+      this.InitDataClass(this.BaseClassInfo);
       this.InitBaseAC(this.BaseACPerArmorType);
     }
   },
@@ -84,26 +94,31 @@ export default {
 </script>
 
 <style>
-#EndData {
-  position: fixed;
-  background: #4caf50;
-  color: #fff;
-  padding: 20px;
-  width: auto;
-  right: 0;
-  top: 30%;
-  transition: 0.5s !important;
-  border: solid;
-  border-width: 0.5px 0px 0.5px 0.5px;
-  border-color: black;
-  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
-    0 15px 40px rgba(166, 173, 201, 0.2);
-  color: black;
-}
-#EndData #EndDataTitel p {
+.InformationDiv{
   display: inline-block;
+  padding-left: 10px;
 }
-#EndData:hover {
-  transform: translateX(40px);
+.Information .InformationValue{
+  font-size: 3em;
+  display: inline;
+}
+.Information .InformationValue::after{
+background-color: #4caf50;
+  height: 2px;
+  width: 60px;
+  content: "";
+  display: block;
+}
+.Information .InformationTitle{
+  font-weight: bold;
+  color: grey;
+}
+.InformationButton{
+  float: left;
+  vertical-align: center;
+}
+.InformationButton button{
+  width: 25px !important;
+  height: 25px !important;
 }
 </style>

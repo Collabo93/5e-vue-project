@@ -1,19 +1,23 @@
 <template>
-  <b-container>
+  <b-container class="CharacterDetailFrame padding">
+    <hr>
     <b-row>
-      <b-col md="2">
+      <b-col md="6">
         <RwvProficiencyBonus/>
       </b-col>
-      <b-col md="2">
-        <RwvArmorClass/>
-      </b-col>
-      <b-col md="2">
-        <RwvInitiative/>
-      </b-col>
-      <b-col md="2">
+      <b-col md="3">
         <RwvSpeed/>
       </b-col>
-      <b-col md="5">
+      <b-col md="3">
+        <RwvInitiative/>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col md="6"></b-col>
+      <b-col md="3">
+        <RwvArmorClass/>
+      </b-col>
+      <b-col md="3">
         <RwvHitPoints/>
       </b-col>
     </b-row>
@@ -46,18 +50,5 @@ export default {
 </script>
 
 <style>
-.CharacterDetail .CharacterDetailTitle {
-  font-weight: bold;
-  color: grey;
-}
-.CharacterDetail .CharacterDetailOutput {
-  font-size: 3em;
-}
-.CharacterDetail .CharacterDetailOutput::after {
-  background-color: #4caf50;
-  height: 2px;
-  width: 20px;
-  content: "";
-  display: block;
-}
+
 </style>

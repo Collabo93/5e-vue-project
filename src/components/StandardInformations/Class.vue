@@ -17,7 +17,9 @@ export default {
   computed: {
     ...mapGetters(["GetClassNames"]),
     ...mapGetters(["GetClass"]),
-    ...mapGetters(["GetCharacterSheet"])
+    ...mapGetters(["GetCharacterSheet"]),
+
+    ...mapGetters(["GetAbilityModifierDexterity"]),
   },
   created: function() {
     this.fetchDataClass();
@@ -29,13 +31,21 @@ export default {
     ...mapActions(["FetchClassDetailPerLevel"]),
     ...mapMutations(["SetClass"]),
     ...mapMutations(["SetChoosenOptions"]),
+    ...mapMutations(["SetBaseAC"])
   },
   watch: {
     SelectedClassName: function() {
       this.SetDataClass(this.SelectedClassName);
       this.SetClass(this.GetClass);
       this.FetchClassInfo();
-      this.FetchClassDetailPerLevel([this.GetCharacterSheet.Class["name"],this.GetCharacterSheet.Level]);
+      this.FetchClassDetailPerLevel([
+        this.GetCharacterSheet.Class["name"],
+        this.GetCharacterSheet.Level
+      ]);
+      this.SetBaseAC([
+        this.GetCharacterSheet.ArmorType,
+        this.GetAbilityModifierDexterity
+      ]);
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container class="padding">
     <b-row>
       <b-col md="2">
         <div class="AvailableAttributePoints Information">
@@ -24,21 +24,27 @@
     <b-row>
       <b-col md="2">
         <RwvStrength/>
+        <RwvSavingThrowStrength/>
       </b-col>
       <b-col md="2">
         <RwvDexterity/>
+        <RwvSavingThrowDexterity/>
       </b-col>
       <b-col md="2">
         <RwvConstitution/>
+        <RwvSavingThrowConstitution/>
       </b-col>
       <b-col md="2">
         <RwvIntelligence/>
+        <RwvSavingThrowIntelligence/>
       </b-col>
       <b-col md="2">
         <RwvWisdom/>
+        <RwvSavingThrowWisdom/>
       </b-col>
       <b-col md="2">
         <RwvCharisma/>
+        <RwvSavingThrowCharisma/>
       </b-col>
       
       
@@ -58,6 +64,13 @@ import RwvCharisma from "./Attributes/Charisma";
 import RwvAbilityScoreImprovement from "./Attributes/AbilityScoreImprovement";
 import RwvFeatImprovement from "./Attributes/FeatImprovement";
 
+import RwvSavingThrowStrength from "./SavingThrows/Strength";
+import RwvSavingThrowDexterity from "./SavingThrows/Dexterity";
+import RwvSavingThrowConstitution from "./SavingThrows/Constitution";
+import RwvSavingThrowIntelligence from "./SavingThrows/Intelligence";
+import RwvSavingThrowWisdom from "./SavingThrows/Wisdom";
+import RwvSavingThrowCharisma from "./SavingThrows/Charisma";
+
 export default {
   name: "RwvAttributes",
   components: {
@@ -68,7 +81,13 @@ export default {
     RwvWisdom,
     RwvCharisma,
     RwvAbilityScoreImprovement,
-    RwvFeatImprovement
+    RwvFeatImprovement,
+    RwvSavingThrowStrength,
+    RwvSavingThrowDexterity,
+    RwvSavingThrowConstitution,
+    RwvSavingThrowIntelligence,
+    RwvSavingThrowWisdom,
+    RwvSavingThrowCharisma
   },
   data() {
     return {
@@ -138,9 +157,6 @@ export default {
   border: solid 1px;
   border-color: grey;
   border-radius: 5px 5px 20px 20px;
-  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
-    0 15px 40px rgba(166, 173, 201, 0.2);
-
 }
 .AttributeFrame .AttributeOutput .AttributeTitel {
   font-size: 16px;
@@ -151,5 +167,47 @@ export default {
 }
 .AttributeFrame .AttributeOutput .AttributeRaceAbilityScore{
   color: green;
+}
+
+.SavingThrowFrame{
+  text-align: center;
+}
+.SavingThrowFrame input[type='radio']{
+  display:none;
+}
+.SavingThrowFrame label{
+  position: relative;
+}
+.SavingThrowFrame span::before,
+.SavingThrowFrame span::after{
+  content:"";
+  position: absolute;
+  top:0;
+  bottom:0;
+  margin:0
+}
+.SavingThrowFrame span.radio:hover{
+  cursor: pointer;
+}
+.container span.radio::before {
+  left: -22px;
+  width: 44px;
+  height: 20px;
+  background-color: rgba(190,190,190,.2);
+  border-radius: 50%;
+}
+.SavingThrowFrame span.radio::after{
+  left: -22px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: grey;
+  transition: .25s;
+}
+input[type="radio"]:checked + label span.radio::after {
+  left: 0px;
+   width: 20px;
+  height: 20px;
+  background-color: #4caf50;
 }
 </style>

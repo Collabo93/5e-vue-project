@@ -10,6 +10,7 @@ const state = {
   Class: [{ name: String }, { url: String }],
 
   //Class in detail
+  dataClassInfo: [],
   ClassSavingThrowStrength: Int32Array,
   ClassSavingThrowDexterity: Int32Array,
   ClassSavingThrowConstitution: Int32Array,
@@ -25,7 +26,7 @@ const state = {
   ClassAbilityScoreBonusSpendOnFeat: Int32Array,
 
   //ClassProficiencies
-  Proficiencies:[]
+  ClassProficiencies: []
 };
 
 const getters = {
@@ -42,9 +43,14 @@ const getters = {
 
   GetClassAbilityScoreBonusesPerLevel: state =>
     state.ClassAbilityScoreBonusesPerLevel,
-  GetClassProficiencyBonusPerLevel: state => state.ClassProficiencyBonusPerLevel,
-  GetClassAbilityScoreBonusSpendOnAbilityScore: state => state.ClassAbilityScoreBonusSpendOnAbilityScore,
-  GetClassAbilityScoreBonusSpendOnFeat: state => state.ClassAbilityScoreBonusSpendOnFeat,
+  GetClassProficiencyBonusPerLevel: state =>
+    state.ClassProficiencyBonusPerLevel,
+  GetClassAbilityScoreBonusSpendOnAbilityScore: state =>
+    state.ClassAbilityScoreBonusSpendOnAbilityScore,
+  GetClassAbilityScoreBonusSpendOnFeat: state =>
+    state.ClassAbilityScoreBonusSpendOnFeat,
+
+  GetClassProficiencies: state => state.ClassProficiencies
 };
 
 const actions = {
@@ -60,7 +66,7 @@ const actions = {
   async FetchClassInfo({ commit }) {
     const { data } = await GetDataFromURL.get(state.Class["url"]);
     commit("SetClassInfo", data);
-    commit("SetProficiencies");
+    commit("SetClassProficiencies");
   },
 
   async FetchClassDetailPerLevel({ commit }, ClassLevel) {
@@ -80,7 +86,7 @@ const actions = {
 };
 
 const mutations = {
-  InitializeDataClass(state, BaseClassInfo) {
+  InitDataClass(state, BaseClassInfo) {
     state.GetClassSavingThrowStrength = BaseClassInfo[0].Strength;
     state.GetClassSavingThrowDexterity = BaseClassInfo[0].Dexterity;
     state.GetClassSavingThrowConstitution = BaseClassInfo[0].Constitution;
@@ -110,6 +116,7 @@ const mutations = {
   },
 
   SetClassInfo(state, SelectedClass) {
+    state.dataClassInfo = SelectedClass;
     state.ClassSavingThrowStrength = false;
     state.ClassSavingThrowDexterity = false;
     state.ClassSavingThrowConstitution = false;
@@ -146,13 +153,19 @@ const mutations = {
     state.ClassProficiencyBonusPerLevel =
       state.dataClassDetailPerLevel.prof_bonus;
   },
-  SetClassAbilityScoreBonusSpendOnAbilityScore: (state, AbilityScore) => (state.ClassAbilityScoreBonusSpendOnAbilityScore = AbilityScore),
-  SetClassAbilityScoreBonusSpendOnFeat: (state, Feat) => (state.ClassAbilityScoreBonusSpendOnFeat = Feat),
-  SetClassAbilityScoreBonusesPerLevel: (state, ClassAbilityScoreBonusesPerLevel) => (state.ClassAbilityScoreBonusesPerLevel = ClassAbilityScoreBonusesPerLevel),
+  SetClassAbilityScoreBonusSpendOnAbilityScore: (state, AbilityScore) =>
+    (state.ClassAbilityScoreBonusSpendOnAbilityScore = AbilityScore),
+  SetClassAbilityScoreBonusSpendOnFeat: (state, Feat) =>
+    (state.ClassAbilityScoreBonusSpendOnFeat = Feat),
+  SetClassAbilityScoreBonusesPerLevel: (
+    state,
+    ClassAbilityScoreBonusesPerLevel
+  ) =>
+    (state.ClassAbilityScoreBonusesPerLevel = ClassAbilityScoreBonusesPerLevel),
 
-  SetProficiencies(){
-    array.forEach(element => {
-      
+  SetClassProficiencies() {
+    state.dataClassInfo["proficiencies"].forEach(element => {
+      state.ClassProficiencies.push([element["name"], element["url"]]);
     });
   }
 };

@@ -39,7 +39,7 @@ const state = {
       ]
     }
   ],
-  BaseAC: Int32Array
+  BaseAC: Int32Array,
 };
 
 const getters = {

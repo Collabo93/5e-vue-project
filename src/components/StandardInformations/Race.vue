@@ -24,7 +24,9 @@ export default {
     ...mapGetters(["GetRaceAbilityBonusConstitution"]),
     ...mapGetters(["GetRaceAbilityBonusIntelligence"]),
     ...mapGetters(["GetRaceAbilityBonusWisdom"]),
-    ...mapGetters(["GetRaceAbilityBonusCharisma"])
+    ...mapGetters(["GetRaceAbilityBonusCharisma"]),
+
+    ...mapGetters(["GetAbilityModifierDexterity"]),
   },
   created: function() {
     this.fetchDataRace();
@@ -35,7 +37,8 @@ export default {
     ...mapActions(["SetRaceInfo"]),
     ...mapMutations(["SetRace"]),
 
-    ...mapMutations(["SetAbilityModifier"])
+    ...mapMutations(["SetAbilityModifier"]),
+    ...mapMutations(["SetBaseAC"])
   },
   watch: {
     SelectedRaceName: function() {
@@ -57,9 +60,13 @@ export default {
         ]);
         this.SetAbilityModifier(["Wisdom", this.GetRaceAbilityBonusWisdom]);
         this.SetAbilityModifier(["Charisma", this.GetRaceAbilityBonusCharisma]);
+        this.SetBaseAC([
+          this.GetCharacterSheet.ArmorType,
+          this.GetAbilityModifierDexterity
+        ]);
         return result;
       });
-      //need to wait for SetRaceInfo to update the race bonuses
+      //need to wait for SetRaceInfo to update the race bonuses      
     }
   }
 };

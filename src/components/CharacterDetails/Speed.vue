@@ -1,8 +1,11 @@
 <template>
     <div class="ProficiencyBonus CharacterDetail" v-if="GetRaceSpeed">
-        
-        <p class="CharacterDetailOutput">{{GetRaceSpeed}}</p>
-        <p class="CharacterDetailTitle">Speed</p>
+        <div class="InformationDiv">
+            <div class="Information">
+                <p class="InformationValue">{{GetRaceSpeed}}</p>
+                <p class="InformationTitle">Speed</p>
+            </div>
+        </div>
     </div>
 </template>
 

@@ -1,8 +1,11 @@
 <template>
     <div class="ProficiencyBonus CharacterDetail" v-if="GetClassProficiencyBonusPerLevel">
-        
-        <p class="CharacterDetailOutput">{{GetClassProficiencyBonusPerLevel}}</p>
-        <p class="CharacterDetailTitle">Hit Points</p>
+        <div class="InformationDiv">
+            <div class="Information">
+                <p class="InformationValue">{{GetClassProficiencyBonusPerLevel}}</p>
+                <p class="InformationTitle">Hit Points</p>
+            </div>
+        </div>
     </div>
 </template>
 

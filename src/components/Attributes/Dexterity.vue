@@ -39,7 +39,8 @@ export default {
     ...mapMutations(["SetAbilityModifier"]),
     ...mapMutations(["SetAttributeDexterity"]),
     ...mapMutations(["SetAvailableAttributePointsMinus"]),
-    ...mapMutations(["SetAvailableAttributePointsPlus"])
+    ...mapMutations(["SetAvailableAttributePointsPlus"]),
+    ...mapMutations(["SetBaseAC"])
   },
   created: function() {
     this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Dexterity;
@@ -60,6 +61,10 @@ export default {
             this.GetRaceAbilityBonusDexterity
           ]);
         }
+        this.SetBaseAC([
+          this.GetCharacterSheet.ArmorType,
+          this.GetAbilityModifierDexterity
+        ]);
       }
       this.IncrementPressed = false;
     },
@@ -75,6 +80,10 @@ export default {
           this.SetAbilityModifier([
             "Dexterity",
             this.GetRaceAbilityBonusDexterity
+          ]);
+          this.SetBaseAC([
+            this.GetCharacterSheet.ArmorType,
+            this.GetAbilityModifierDexterity
           ]);
         }
         this.DecrementPressed = false;

@@ -18,7 +18,8 @@ const state = {
           Wisdom: Int32Array,
           Charisma: Int32Array
         }
-      ]
+      ],
+      ArmorType: String
     }
   ],
   BaseAttributePoints: 27,
@@ -104,6 +105,8 @@ const mutations = {
     (state.CharacterSheet.Alignment = Alignment),
   SetAttributes: (state, Attributes) =>
     (state.CharacterSheet.Attributes = Attributes),
+  SaveArmorType: (state, ArmorType) =>
+    (state.CharacterSheet.ArmorType = ArmorType),
 
   //Attributes
   SetBaseAttributes: (state, BaseAttributes) =>
