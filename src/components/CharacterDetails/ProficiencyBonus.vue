@@ -19,3 +19,8 @@ export default{
     }
 }
 </script>
+<style>
+.ProficiencyBonus p{
+    size:40px
+}
+</style>

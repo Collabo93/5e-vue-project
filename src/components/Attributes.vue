@@ -186,9 +186,6 @@ export default {
   bottom:0;
   margin:0
 }
-.SavingThrowFrame span.radio:hover{
-  cursor: pointer;
-}
 .container span.radio::before {
   left: -22px;
   width: 44px;

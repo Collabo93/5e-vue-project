@@ -40,10 +40,12 @@ const state = {
     }
   ],
   BaseAC: Int32Array,
+  HitPoints: Int32Array
 };
 
 const getters = {
-  GetBaseAC: state => state.BaseAC
+  GetBaseAC: state => state.BaseAC,
+  GetHitPoints: state => state.HitPoints
 };
 
 const actions = {};
@@ -72,7 +74,8 @@ const mutations = {
       state.BaseACPerArmorType[0][ArmorName][2]["DexModifier"] &&
       Info[1] > state.BaseACPerArmorType[0][ArmorName][3]["maxDexModifier"]
     ) {
-      state.BaseAC += state.BaseACPerArmorType[0][ArmorName][3]["maxDexModifier"];
+      state.BaseAC +=
+        state.BaseACPerArmorType[0][ArmorName][3]["maxDexModifier"];
     } else if (
       state.BaseACPerArmorType[0][ArmorName][2]["DexModifier"] &&
       Info[1] <= state.BaseACPerArmorType[0][ArmorName][3]["maxDexModifier"]
@@ -80,8 +83,14 @@ const mutations = {
       state.BaseAC += Info[1];
     }
     // name = 0 , 1 = BaseAC, 2 = DexModifier, 3 = maxDexModifier
-  }
+  },
   //ArmorType = 0, DexModifier = 1
+
+  SetHitPoints(state, Info) {
+    state.HitPoints = 0;
+    state.HitPoints = (Info[0]*0.75) * Info[1];
+  }
+  // HitDice = 0, Level =1
 };
 
 export default {

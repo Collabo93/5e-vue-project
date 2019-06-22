@@ -17,6 +17,7 @@ const state = {
   ClassSavingThrowIntelligence: Int32Array,
   ClassSavingThrowWisdom: Int32Array,
   ClassSavingThrowCharisma: Int32Array,
+  HitDie:Int32Array,
 
   //Class in detail per Level
   dataClassDetailPerLevel: [],
@@ -40,6 +41,7 @@ const getters = {
   GetClassSavingThrowIntelligence: state => state.ClassSavingThrowIntelligence,
   GetClassSavingThrowWisdom: state => state.ClassSavingThrowWisdom,
   GetClassSavingThrowCharisma: state => state.ClassSavingThrowCharisma,
+  GetHitDie: state => state.HitDie,
 
   GetClassAbilityScoreBonusesPerLevel: state =>
     state.ClassAbilityScoreBonusesPerLevel,
@@ -124,26 +126,27 @@ const mutations = {
     state.ClassSavingThrowWisdom = false;
     state.ClassSavingThrowCharisma = false;
     let i;
-    for (i = 0; i < SelectedClass.saving_throws.length; i++) {
-      if (SelectedClass.saving_throws[i]["name"] == "STR") {
+    for (i = 0; i < state.dataClassInfo.saving_throws.length; i++) {
+      if (state.dataClassInfo.saving_throws[i]["name"] == "STR") {
         state.ClassSavingThrowStrength = true;
       }
-      if (SelectedClass.saving_throws[i]["name"] == "DEX") {
+      if (state.dataClassInfo.saving_throws[i]["name"] == "DEX") {
         state.ClassSavingThrowDexterity = true;
       }
-      if (SelectedClass.saving_throws[i]["name"] == "CON") {
+      if (state.dataClassInfo.saving_throws[i]["name"] == "CON") {
         state.ClassSavingThrowConstitution = true;
       }
-      if (SelectedClass.saving_throws[i]["name"] == "INT") {
+      if (state.dataClassInfo.saving_throws[i]["name"] == "INT") {
         state.ClassSavingThrowIntelligence = true;
       }
-      if (SelectedClass.saving_throws[i]["name"] == "WIS") {
+      if (state.dataClassInfo.saving_throws[i]["name"] == "WIS") {
         state.ClassSavingThrowWisdom = true;
       }
-      if (SelectedClass.saving_throws[i]["name"] == "CHA") {
+      if (state.dataClassInfo.saving_throws[i]["name"] == "CHA") {
         state.ClassSavingThrowCharisma = true;
       }
     }
+    state.HitDie = state.dataClassInfo["hit_die"];
   },
 
   SetClassInfoPerLevel(state, SelectedClass) {

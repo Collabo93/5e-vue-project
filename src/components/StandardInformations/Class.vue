@@ -20,6 +20,7 @@ export default {
     ...mapGetters(["GetCharacterSheet"]),
 
     ...mapGetters(["GetAbilityModifierDexterity"]),
+    ...mapGetters(["GetHitDie"])
   },
   created: function() {
     this.fetchDataClass();
@@ -31,7 +32,8 @@ export default {
     ...mapActions(["FetchClassDetailPerLevel"]),
     ...mapMutations(["SetClass"]),
     ...mapMutations(["SetChoosenOptions"]),
-    ...mapMutations(["SetBaseAC"])
+    ...mapMutations(["SetBaseAC"]),
+    ...mapMutations(["SetHitPoints"])
   },
   watch: {
     SelectedClassName: function() {
@@ -46,6 +48,7 @@ export default {
         this.GetCharacterSheet.ArmorType,
         this.GetAbilityModifierDexterity
       ]);
+      this.SetHitPoints([this.GetHitDie, this.GetCharacterSheet.Level]);
     }
   }
 };

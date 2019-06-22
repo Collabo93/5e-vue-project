@@ -20,7 +20,8 @@ export default {
     this.SetLevelRange();
   },
   computed: {
-    ...mapGetters(["GetCharacterSheet"])
+    ...mapGetters(["GetCharacterSheet"]),
+    ...mapGetters(["GetHitDie"])
   },
   methods: {
     ...mapActions(["FetchClassDetailPerLevel"]),
@@ -31,7 +32,8 @@ export default {
         this.LevelRange.push(index);
       }
     },
-    ...mapMutations(["SetLevel"])
+    ...mapMutations(["SetLevel"]),
+    ...mapMutations(["SetHitPoints"])
   },
   watch: {
     Level: function() {
@@ -42,6 +44,7 @@ export default {
       ]);
       this.SetClassAbilityScoreBonusSpendOnFeat(0);
       this.SetClassAbilityScoreBonusSpendOnAbilityScore(0);
+      this.SetHitPoints([this.GetHitDie, this.Level]);
     }
   }
 };
