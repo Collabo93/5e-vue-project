@@ -4,6 +4,7 @@ import CharacterSheet from "./Character/CharacterSheet";
 import FetchClass from "./Fetch/Class";
 import FetchRace from "./Fetch/Race";
 import FetchBackground from "./Fetch/Background";
+import Calculations from "./Calculations/Calculations";
 
 Vue.use(Vuex);
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
         CharacterSheet,
         FetchClass,
         FetchRace,
-        FetchBackground
+        FetchBackground,
+        Calculations
     }
 })

@@ -23,6 +23,9 @@ const state = {
   ClassProficiencyBonusPerLevel: Int32Array,
   ClassAbilityScoreBonusSpendOnAbilityScore: Int32Array,
   ClassAbilityScoreBonusSpendOnFeat: Int32Array,
+
+  //ClassProficiencies
+  Proficiencies:[]
 };
 
 const getters = {
@@ -57,6 +60,7 @@ const actions = {
   async FetchClassInfo({ commit }) {
     const { data } = await GetDataFromURL.get(state.Class["url"]);
     commit("SetClassInfo", data);
+    commit("SetProficiencies");
   },
 
   async FetchClassDetailPerLevel({ commit }, ClassLevel) {
@@ -144,7 +148,13 @@ const mutations = {
   },
   SetClassAbilityScoreBonusSpendOnAbilityScore: (state, AbilityScore) => (state.ClassAbilityScoreBonusSpendOnAbilityScore = AbilityScore),
   SetClassAbilityScoreBonusSpendOnFeat: (state, Feat) => (state.ClassAbilityScoreBonusSpendOnFeat = Feat),
-  SetClassAbilityScoreBonusesPerLevel: (state, ClassAbilityScoreBonusesPerLevel) => (state.ClassAbilityScoreBonusesPerLevel = ClassAbilityScoreBonusesPerLevel)
+  SetClassAbilityScoreBonusesPerLevel: (state, ClassAbilityScoreBonusesPerLevel) => (state.ClassAbilityScoreBonusesPerLevel = ClassAbilityScoreBonusesPerLevel),
+
+  SetProficiencies(){
+    array.forEach(element => {
+      
+    });
+  }
 };
 
 export default {
