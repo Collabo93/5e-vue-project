@@ -1,7 +1,7 @@
 <template>
   <b-container class="padding">
     <b-row>
-      <b-col class="column">
+      <b-col md="4" class="column">
         <div class="setToMiddle padding">
           <router-link active-class="active" exact :to="{ name: 'characterCreation' }">
             <img src="@/assets/home-character-creation.jpg" class="home-pictures">
@@ -9,7 +9,7 @@
         </div>
         <p class="HomeMenuText">Character creation</p>
       </b-col>
-      <b-col class="column">
+      <b-col md="4" class="column">
         <div class="setToMiddle padding">
           <router-link active-class="active" exact :to="{ name: 'items' }">
             <img src="@/assets/home-items.jpg" class="home-pictures">
@@ -17,7 +17,7 @@
         </div>
         <p class="HomeMenuText">Items</p>
       </b-col>
-      <b-col class="column">
+      <b-col md="4" class="column">
         <div class="setToMiddle padding">
           <router-link active-class="active" exact :to="{ name: 'creature' }">
             <img src="@/assets/home-creatures.jpg" class="home-pictures">
@@ -38,6 +38,7 @@ export default {
 <style>
 img.home-pictures {
   width: 250px;
+  height: 250px;
   padding:0;
   margin:0;
   border: solid 1px;

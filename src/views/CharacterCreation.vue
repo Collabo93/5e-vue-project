@@ -4,7 +4,6 @@
     <hr>
     <RwvAttributes/>
     <RwvCharacterDetails/>
-    
   </b-container>
 </template>
 <script>
@@ -23,6 +22,39 @@ export default {
   },
   data() {
     return {
+      CharacterSheet: [
+        {
+          CharacterName: "",
+          Class: [{ name: "" }, { url: "" }],
+          Level: "",
+          Race: [{ name: "" }, { url: "" }],
+          PlayerName: "",
+          Background: [{ name: "" }, { url: "" }],
+          Alignment: "",
+          Attributes: [
+            {
+              Strength: "",
+              Dexterity: "",
+              Constitution: "",
+              Intelligence: "",
+              Wisdom: "",
+              Charisma: ""
+            }
+          ],
+          ArmorType: ""
+        }
+      ],
+      BaseAttributes: [
+        {
+          Strength: 8,
+          Dexterity: 8,
+          Constitution: 8,
+          Intelligence: 8,
+          Wisdom: 8,
+          Charisma: 8
+        }
+      ],
+      BaseAttributePoints: 27,
       BaseClassInfo: [
         {
           Strength: false,
@@ -31,6 +63,17 @@ export default {
           Intelligence: false,
           Wisdom: false,
           Charisma: false
+        }
+      ],
+      BaseRaceInfo: [
+        {
+          Strength: 0,
+          Dexterity: 0,
+          Constitution: 0,
+          Intelligence: 0,
+          Wisdom: 0,
+          Charisma: 0,
+          Speed: 0
         }
       ],
       BaseACPerArmorType: [
@@ -79,45 +122,53 @@ export default {
     ...mapGetters(["GetCharacterSheet"])
   },
   methods: {
-    ...mapMutations(["InitDataClass"]),  
+    ...mapMutations(["InitCharacterSheetFormular"]),
+    ...mapMutations(["InitDataClass"]),
     ...mapMutations(["InitBaseAC"]),
+    ...mapMutations(["InitializeDataRace"]),
+    ...mapMutations(["SetBaseAttributes"]),
+    ...mapMutations(["SetBaseAttributePoints"]),
 
-    SetBaseAC() {
+    InitializeStore() {
+      this.InitCharacterSheetFormular(this.CharacterSheet[0]);
       this.InitDataClass(this.BaseClassInfo);
       this.InitBaseAC(this.BaseACPerArmorType);
+      this.InitializeDataRace(this.BaseRaceInfo);
+      this.SetBaseAttributes(this.BaseAttributes);
+      this.SetBaseAttributePoints(this.BaseAttributePoints);
     }
   },
   created: function() {
-    this.SetBaseAC();
+    this.InitializeStore();
   }
 };
 </script>
 
 <style>
-.InformationDiv{
+.InformationDiv {
   display: inline-block;
   padding-left: 10px;
 }
-.Information .InformationValue{
+.Information .InformationValue {
   font-size: 3em;
   display: inline;
 }
-.Information .InformationValue::after{
-background-color: #4caf50;
+.Information .InformationValue::after {
+  background-color: #4caf50;
   height: 2px;
   width: 60px;
   content: "";
   display: block;
 }
-.Information .InformationTitle{
+.Information .InformationTitle {
   font-weight: bold;
   color: grey;
 }
-.InformationButton{
+.InformationButton {
   float: left;
   vertical-align: center;
 }
-.InformationButton button{
+.InformationButton button {
   width: 25px !important;
   height: 25px !important;
 }

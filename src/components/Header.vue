@@ -10,7 +10,7 @@
       <li class="nav-item">
         <router-link active-class="active" exact :to="{ name: 'register' }">Register</router-link>
       </li>
-      <li class="nav-item rightfloat">
+      <li class="nav-item">
         <router-link active-class="active" exact :to="{ name: 'about' }">About</router-link>
       </li>
     </ul>
@@ -37,10 +37,6 @@ ul.nav {
 }
 ul.nav li {
   float: left;
-}
-ul.nav li.rightfloat {
-  float: right!important;
-  right: 0;
 }
 ul.nav li a {
   text-decoration: none;

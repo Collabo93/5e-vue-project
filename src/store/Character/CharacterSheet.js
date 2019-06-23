@@ -88,6 +88,7 @@ const getters = {
 const actions = {};
 
 const mutations = {
+  InitCharacterSheetFormular:(state, CharacterSheet) => (state.CharacterSheet = CharacterSheet),
   //StandartInformation
   SetCharacterName: (state, CharacterName) =>
     (state.CharacterSheet.CharacterName = CharacterName),

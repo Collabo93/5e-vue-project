@@ -1,13 +1,15 @@
 <template>
-  <div class="ProficiencyBonus CharacterDetail">
-    <div class="InformationDiv">
-      <div class="Information">
-        <p class="InformationValue">{{GetBaseAC}}</p>
-        <p class="InformationTitle">Armor Class</p>
-        <b-form-select v-model="SelectedArmorClass" :options="AvailableArmorClass"></b-form-select>
+  <transition name="InfoBoxes">
+    <div class="ProficiencyBonus CharacterDetail" v-if="GetBaseAC">
+      <div class="InformationDiv">
+        <div class="Information">
+          <p class="InformationValue">{{GetBaseAC}}</p>
+          <p class="InformationTitle">Armor Class</p>
+          <b-form-select v-model="SelectedArmorClass" :options="AvailableArmorClass"></b-form-select>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>

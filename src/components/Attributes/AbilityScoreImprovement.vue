@@ -1,17 +1,19 @@
 <template>
-  <div class="AbilityScoreImprovement">
-    <div class="InformationButton">
-      <b-button :pressed.sync="IncrementPressed" variant="success" class="increment">+</b-button>
-      <br>
-      <b-button :pressed.sync="DecrementPressed" variant="danger" class="increment">-</b-button>
-    </div>
-    <div class="InformationDiv">
-      <div class="AvailableAttributePoints Information">
-        <p class="InformationValue">{{GetClassAbilityScoreBonusSpendOnAbilityScore}}</p>
-        <p class="InformationTitle">Ability Score</p>
+  <transition>
+    <div class="AbilityScoreImprovement">
+      <div class="InformationButton">
+        <b-button :pressed.sync="IncrementPressed" variant="success" class="increment">+</b-button>
+        <br>
+        <b-button :pressed.sync="DecrementPressed" variant="danger" class="increment">-</b-button>
+      </div>
+      <div class="InformationDiv">
+        <div class="AvailableAttributePoints Information">
+          <p class="InformationValue">{{GetClassAbilityScoreBonusSpendOnAbilityScore}}</p>
+          <p class="InformationTitle">Ability Score</p>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -35,7 +37,10 @@ export default {
   },
   watch: {
     IncrementPressed: function() {
-      if (this.GetClassAbilityScoreBonusesPerLevel > 0 && this.IncrementPressed ) {
+      if (
+        this.GetClassAbilityScoreBonusesPerLevel > 0 &&
+        this.IncrementPressed
+      ) {
         this.SetClassAbilityScoreBonusesPerLevel(
           this.GetClassAbilityScoreBonusesPerLevel - 1
         );
@@ -46,7 +51,10 @@ export default {
       }
     },
     DecrementPressed: function() {
-      if (this.GetClassAbilityScoreBonusSpendOnAbilityScore > 0 && this.DecrementPressed ) {
+      if (
+        this.GetClassAbilityScoreBonusSpendOnAbilityScore > 0 &&
+        this.DecrementPressed
+      ) {
         this.SetClassAbilityScoreBonusesPerLevel(
           this.GetClassAbilityScoreBonusesPerLevel + 1
         );

@@ -1,24 +1,30 @@
 <template>
   <b-container class="padding">
     <b-row>
-      <b-col md="2">
+      <b-col md="6">
         <div class="AvailableAttributePoints Information">
           <p class="InformationValue">{{GetAvailableAttributePoints}}</p>
           <p class="InformationTitle">Available Points</p>
         </div>
       </b-col>
-      <b-col md="3">
-        <div class="AvailableAttributePoints Information">
-          <p class="InformationValue">{{GetClassAbilityScoreBonusesPerLevel}}</p>
-          <p class="InformationTitle">Ability Score Improvement</p>
-        </div>
-      </b-col>
-      <b-col md="2">
-        <RwvAbilityScoreImprovement />
-      </b-col>
-      <b-col md="2">
-        <RwvFeatImprovement />
-      </b-col>
+      <transition name="InfoBoxes">
+        <b-col md="2" v-if="toggle()">
+          <div class="AvailableAttributePoints Information">
+            <p class="InformationValue">{{GetClassAbilityScoreBonusesPerLevel}}</p>
+            <p class="InformationTitle">Improvements</p>
+          </div>
+        </b-col>
+      </transition>
+      <transition name="InfoBoxes">
+        <b-col md="2" v-if="toggle()">
+          <RwvAbilityScoreImprovement/>
+        </b-col>
+      </transition>
+      <transition name="InfoBoxes">
+        <b-col md="2" v-if="toggle()">
+          <RwvFeatImprovement/>
+        </b-col>
+      </transition>
     </b-row>
 
     <b-row>
@@ -46,14 +52,12 @@
         <RwvCharisma/>
         <RwvSavingThrowCharisma/>
       </b-col>
-      
-      
     </b-row>
   </b-container>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 
 import RwvStrength from "./Attributes/Strength";
 import RwvDexterity from "./Attributes/Dexterity";
@@ -89,54 +93,23 @@ export default {
     RwvSavingThrowWisdom,
     RwvSavingThrowCharisma
   },
-  data() {
-    return {
-      BaseAttributes: [
-        {
-          Strength: 8,
-          Dexterity: 8,
-          Constitution: 8,
-          Intelligence: 8,
-          Wisdom: 8,
-          Charisma: 8
-        }
-      ],
-      BaseAttributePoints: 27,
-      BaseAttributePointsCalculation: [
-        {
-          OnePoint: 0,
-          TwoPoints: 14
-        }
-      ],
-      BaseRaceInfo: [
-        {
-          Strength: 0,
-          Dexterity: 0,
-          Constitution: 0,
-          Intelligence: 0,
-          Wisdom: 0,
-          Charisma: 0,
-          Speed: 0
-        }
-      ]
-    };
-  },
   computed: {
     ...mapGetters(["GetAvailableAttributePoints"]),
-    ...mapGetters(["GetClassAbilityScoreBonusesPerLevel"])
+    ...mapGetters(["GetClassAbilityScoreBonusesPerLevel"]),
+    ...mapGetters(["GetClassAbilityScoreBonusSpendOnAbilityScore"]),
+    ...mapGetters(["GetClassAbilityScoreBonusSpendOnFeat"])
   },
   methods: {
-    ...mapMutations(["SetBaseAttributes"]),
-    ...mapMutations(["SetBaseAttributePoints"]),
-    ...mapMutations(["InitializeDataRace"]),
-    SetData() {
-      this.InitializeDataRace(this.BaseRaceInfo);
+    toggle() {
+      if (
+        this.GetClassAbilityScoreBonusesPerLevel > 0 ||
+        this.GetClassAbilityScoreBonusSpendOnAbilityScore > 0 ||
+        this.GetClassAbilityScoreBonusSpendOnFeat > 0
+      ) {
+        return true;
+      }
+      return false;
     }
-  },
-  created: function() {
-    this.SetBaseAttributes(this.BaseAttributes);
-    this.SetBaseAttributePoints(this.BaseAttributePoints);
-    this.SetData();
   }
 };
 </script>
@@ -154,56 +127,55 @@ export default {
 }
 .AttributeFrame .AttributeOutput {
   text-align: center;
-  border: solid 1px;
-  border-color: grey;
+  border: solid 1.2px;
   border-radius: 5px 5px 20px 20px;
 }
 .AttributeFrame .AttributeOutput .AttributeTitel {
   font-size: 16px;
   font-weight: bold;
 }
-.AttributeFrame .AttributeOutput .AttributeAbilityScore p{
+.AttributeFrame .AttributeOutput .AttributeAbilityScore p {
   display: inline-block;
 }
-.AttributeFrame .AttributeOutput .AttributeRaceAbilityScore{
+.AttributeFrame .AttributeOutput .AttributeRaceAbilityScore {
   color: green;
 }
 
-.SavingThrowFrame{
+.SavingThrowFrame {
   text-align: center;
 }
-.SavingThrowFrame input[type='radio']{
-  display:none;
+.SavingThrowFrame input[type="radio"] {
+  display: none;
 }
-.SavingThrowFrame label{
+.SavingThrowFrame label {
   position: relative;
 }
 .SavingThrowFrame span::before,
-.SavingThrowFrame span::after{
-  content:"";
+.SavingThrowFrame span::after {
+  content: "";
   position: absolute;
-  top:0;
-  bottom:0;
-  margin:0
+  top: 0;
+  bottom: 0;
+  margin: 0;
 }
 .container span.radio::before {
   left: -22px;
   width: 44px;
   height: 20px;
-  background-color: rgba(190,190,190,.2);
+  background-color: rgba(190, 190, 190, 0.2);
   border-radius: 50%;
 }
-.SavingThrowFrame span.radio::after{
+.SavingThrowFrame span.radio::after {
   left: -22px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background-color: grey;
-  transition: .25s;
+  transition: 0.25s;
 }
 input[type="radio"]:checked + label span.radio::after {
   left: 0px;
-   width: 20px;
+  width: 20px;
   height: 20px;
   background-color: #4caf50;
 }
