@@ -40,10 +40,12 @@ export default {
       this.SetDataClass(this.SelectedClassName);
       this.SetClass(this.GetClass);
       this.FetchClassInfo();
-      this.FetchClassDetailPerLevel([
+      if ( this.GetCharacterSheet.Level !== ""){
+        this.FetchClassDetailPerLevel([
         this.GetCharacterSheet.Class["name"],
         this.GetCharacterSheet.Level
       ]);
+      }
       this.SetBaseAC([
         this.GetCharacterSheet.ArmorType,
         this.GetAbilityModifierDexterity

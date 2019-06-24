@@ -29,7 +29,7 @@ const state = {
   //ClassProficiencies
   ClassProficiencies: [],
   ClassProficiencieSkillChoices: [],
-  ClassProficiencieSkillChoicesChoose: Int32Array,
+  ClassProficiencieSkillChoicesNumber: []
 };
 
 const getters = {
@@ -54,7 +54,9 @@ const getters = {
   GetClassAbilityScoreBonusSpendOnFeat: state =>
     state.ClassAbilityScoreBonusSpendOnFeat,
 
-  GetClassProficiencies: state => state.ClassProficiencies
+  GetClassProficiencies: state => state.ClassProficiencies,
+  GetClassProficiencieSkillChoices: state => state.ClassProficiencieSkillChoices,
+  GetClassProficiencieSkillChoicesNumber: state => state.ClassProficiencieSkillChoicesNumber
 };
 
 const actions = {
@@ -171,13 +173,19 @@ const mutations = {
   SetClassProficiencies() {
     state.ClassProficiencies = [];
     state.ClassProficiencieSkillChoices = [];
+    state.ClassProficiencieSkillChoicesNumber = [];
     state.dataClassInfo["proficiencies"].forEach(element => {
       state.ClassProficiencies.push([element["name"], element["url"]]);
     });
-    state.dataClassInfo["proficiency_choices"][0]["from"].forEach(element => {
-      state.ClassProficiencieSkillChoices.push([element["name"], element["url"]]);
-    })
-    state.ClassProficiencieSkillChoicesChoose = state.dataClassInfo["proficiency_choices"][0]["choose"];
+    let cache = [];
+    state.dataClassInfo["proficiency_choices"].forEach(element => {
+      cache = [];
+      element["from"].forEach(element => {
+        cache.push([element["name"], element["url"]]);
+      });
+      state.ClassProficiencieSkillChoices.push(cache);
+      state.ClassProficiencieSkillChoicesNumber.push(element["choose"]);
+    });
   }
 };
 

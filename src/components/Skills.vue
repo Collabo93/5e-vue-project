@@ -234,19 +234,39 @@ export default {
 </script>
 
 <style>
+.Str{
+    transition: .5s;
+}
+.Dex{
+    transition: .5s;
+}
+.Int{
+    transition: .5s;
+}
+.Wis{
+    transition: .5s;
+}
+.Cha{
+    transition: .5s;
+}
 .Str:hover{
   background-color: rgba(255, 0, 0, .5)!important;
+  transform: scale(1.1);
 }
 .Dex:hover{
   background-color: rgba(255, 255, 0, .5)!important;
+  transform: scale(1.1);
 }
 .Int:hover{
   background-color: rgba(0, 0, 255, .5)!important;
+  transform: scale(1.1);
 }
 .Wis:hover{
   background-color: rgba(128, 128, 128, .5)!important;
+  transform: scale(1.1);
 }
 .Cha:hover{
   background-color: rgba(128, 0, 128, .5)!important;
+  transform: scale(1.1);
 }
 </style>
