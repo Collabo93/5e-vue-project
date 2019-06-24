@@ -84,3 +84,10 @@ export default {
 };
 </script>
 
+<style>
+.Constitution .AttributeOutput{
+  background-color: rgba(0, 128, 0, 0.5);
+}
+</style>
+
+

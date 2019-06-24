@@ -1,15 +1,19 @@
 <template>
   <b-container class="padding">
     <RwvStandardInformations/>
-    <hr>
     <RwvAttributes/>
-    <RwvCharacterDetails/>
+    <hr>
+    <RwvRaceSkillChoice/>
+    <RwvSkills/>
+    <img src="../assets/test-characterSheet.jpg">
   </b-container>
+  
 </template>
 <script>
 import RwvStandardInformations from "@/components/StandardInformations";
 import RwvAttributes from "@/components/Attributes";
-import RwvCharacterDetails from "@/components/CharacterDetails";
+import RwvRaceSkillChoice from "@/components/RaceSkillChoice"
+import RwvSkills from "@/components/Skills";
 
 import { mapGetters, mapMutations } from "vuex";
 
@@ -18,7 +22,8 @@ export default {
   components: {
     RwvStandardInformations,
     RwvAttributes,
-    RwvCharacterDetails
+    RwvRaceSkillChoice,
+    RwvSkills
   },
   data() {
     return {

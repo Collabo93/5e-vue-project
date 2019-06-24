@@ -27,7 +27,9 @@ const state = {
   ClassAbilityScoreBonusSpendOnFeat: Int32Array,
 
   //ClassProficiencies
-  ClassProficiencies: []
+  ClassProficiencies: [],
+  ClassProficiencieSkillChoices: [],
+  ClassProficiencieSkillChoicesChoose: Int32Array,
 };
 
 const getters = {
@@ -167,9 +169,15 @@ const mutations = {
     (state.ClassAbilityScoreBonusesPerLevel = ClassAbilityScoreBonusesPerLevel),
 
   SetClassProficiencies() {
+    state.ClassProficiencies = [];
+    state.ClassProficiencieSkillChoices = [];
     state.dataClassInfo["proficiencies"].forEach(element => {
       state.ClassProficiencies.push([element["name"], element["url"]]);
     });
+    state.dataClassInfo["proficiency_choices"][0]["from"].forEach(element => {
+      state.ClassProficiencieSkillChoices.push([element["name"], element["url"]]);
+    })
+    state.ClassProficiencieSkillChoicesChoose = state.dataClassInfo["proficiency_choices"][0]["choose"];
   }
 };
 

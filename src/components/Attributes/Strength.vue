@@ -84,3 +84,9 @@ export default {
 };
 </script>
 
+<style>
+.Strength .AttributeOutput{
+  background-color: rgba(255, 0, 0, 0.5);
+}
+</style>
+

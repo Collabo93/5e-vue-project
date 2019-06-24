@@ -1,7 +1,7 @@
 <template>
   <b-container class="padding">
     <b-row>
-      <b-col md="6">
+      <b-col md="2">
         <div class="AvailableAttributePoints Information">
           <p class="InformationValue">{{GetAvailableAttributePoints}}</p>
           <p class="InformationTitle">Available Points</p>
@@ -24,9 +24,13 @@
         <b-col md="2" v-if="toggle()">
           <RwvFeatImprovement/>
         </b-col>
-      </transition>
+        </transition>
+        <b-col md="1"></b-col>
+        <b-col md="3">
+          <RwvProficiencyBonus/>
+        </b-col>
     </b-row>
-
+  <hr>
     <b-row>
       <b-col md="2">
         <RwvStrength/>
@@ -40,6 +44,16 @@
         <RwvConstitution/>
         <RwvSavingThrowConstitution/>
       </b-col>
+      <b-col md="2"></b-col>
+      <b-col md="2">
+        <RwvSpeed/>
+      </b-col>
+      <b-col md="2">
+        <RwvInitiative/>
+      </b-col>
+    </b-row>
+
+    <b-row>
       <b-col md="2">
         <RwvIntelligence/>
         <RwvSavingThrowIntelligence/>
@@ -51,6 +65,13 @@
       <b-col md="2">
         <RwvCharisma/>
         <RwvSavingThrowCharisma/>
+      </b-col>
+      <b-col md="2"></b-col>
+      <b-col md="2">
+        <RwvArmorClass/>
+      </b-col>
+      <b-col md="2">
+        <RwvHitPoints/>
       </b-col>
     </b-row>
   </b-container>
@@ -75,6 +96,12 @@ import RwvSavingThrowIntelligence from "./SavingThrows/Intelligence";
 import RwvSavingThrowWisdom from "./SavingThrows/Wisdom";
 import RwvSavingThrowCharisma from "./SavingThrows/Charisma";
 
+import RwvProficiencyBonus from "./CharacterDetails/ProficiencyBonus";
+import RwvArmorClass from "./CharacterDetails/ArmorClass";
+import RwvInitiative from "./CharacterDetails/Initiative";
+import RwvSpeed from "./CharacterDetails/Speed";
+import RwvHitPoints from "./CharacterDetails/HitPoints";
+
 export default {
   name: "RwvAttributes",
   components: {
@@ -86,18 +113,26 @@ export default {
     RwvCharisma,
     RwvAbilityScoreImprovement,
     RwvFeatImprovement,
+
     RwvSavingThrowStrength,
     RwvSavingThrowDexterity,
     RwvSavingThrowConstitution,
     RwvSavingThrowIntelligence,
     RwvSavingThrowWisdom,
-    RwvSavingThrowCharisma
+    RwvSavingThrowCharisma,
+
+    RwvProficiencyBonus,
+    RwvArmorClass,
+    RwvInitiative,
+    RwvSpeed,
+    RwvHitPoints
   },
   computed: {
     ...mapGetters(["GetAvailableAttributePoints"]),
     ...mapGetters(["GetClassAbilityScoreBonusesPerLevel"]),
     ...mapGetters(["GetClassAbilityScoreBonusSpendOnAbilityScore"]),
-    ...mapGetters(["GetClassAbilityScoreBonusSpendOnFeat"])
+    ...mapGetters(["GetClassAbilityScoreBonusSpendOnFeat"]),
+    ...mapGetters(["GetClassProficiencyBonusPerLevel"])
   },
   methods: {
     toggle() {
@@ -127,7 +162,7 @@ export default {
 }
 .AttributeFrame .AttributeOutput {
   text-align: center;
-  border: solid 1.2px;
+  border: solid 1.5px;
   border-radius: 5px 5px 20px 20px;
 }
 .AttributeFrame .AttributeOutput .AttributeTitel {
@@ -138,7 +173,8 @@ export default {
   display: inline-block;
 }
 .AttributeFrame .AttributeOutput .AttributeRaceAbilityScore {
-  color: green;
+  color: black;
+  font-weight: bold;
 }
 
 .SavingThrowFrame {
