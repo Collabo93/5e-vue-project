@@ -87,6 +87,9 @@ export default {
 .Charisma .AttributeOutput{
   background-color: rgba(128, 0, 128, 0.5);
 }
+.Charisma .AtributeIncDec button:hover {
+  background-color: rgba(128, 0, 128, 0.5);
+}
 </style>
 
 

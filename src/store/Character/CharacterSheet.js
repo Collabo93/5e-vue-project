@@ -19,7 +19,8 @@ const state = {
           Charisma: Int32Array
         }
       ],
-      ArmorType: String
+      ArmorType: String,
+      ChoosenProficiencies: []
     }
   ],
   BaseAttributePoints: 27,
@@ -88,7 +89,8 @@ const getters = {
 const actions = {};
 
 const mutations = {
-  InitCharacterSheetFormular:(state, CharacterSheet) => (state.CharacterSheet = CharacterSheet),
+  InitCharacterSheetFormular: (state, CharacterSheet) =>
+    (state.CharacterSheet = CharacterSheet),
   //StandartInformation
   SetCharacterName: (state, CharacterName) =>
     (state.CharacterSheet.CharacterName = CharacterName),
@@ -108,6 +110,8 @@ const mutations = {
     (state.CharacterSheet.Attributes = Attributes),
   SaveArmorType: (state, ArmorType) =>
     (state.CharacterSheet.ArmorType = ArmorType),
+  SaveChoosenProficiencies: (state, ChoosenProficiencies) =>
+    (state.CharacterSheet.ChoosenProficiencies = ChoosenProficiencies),
 
   //Attributes
   SetBaseAttributes: (state, BaseAttributes) =>

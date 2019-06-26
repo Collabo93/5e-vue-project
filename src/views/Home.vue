@@ -1,18 +1,27 @@
 <template>
   <b-container class="padding">
     <b-row>
-      <b-col md="4" class="column">
+      <b-col md="6" class="column">
         <div class="setToMiddle padding">
           <router-link active-class="active" exact :to="{ name: 'characterCreation' }">
-            <img src="@/assets/home-character-creation.jpg" class="home-pictures">
+            <img src="@/assets/menu/home-character-creation.jpg" class="home-pictures">
           </router-link>
         </div>
         <p class="HomeMenuText">Character creation</p>
       </b-col>
+      <b-col md="6" class="column">
+        <div class="setToMiddle padding">
+          <router-link active-class="active" exact :to="{ name: 'savedCharacters' }">
+            <img src="@/assets/menu/home-save.jpg" class="home-pictures">
+          </router-link>
+        </div>
+        <p class="HomeMenuText">Saved Characters</p>
+      </b-col>
+      <!--
       <b-col md="4" class="column">
         <div class="setToMiddle padding">
           <router-link active-class="active" exact :to="{ name: 'items' }">
-            <img src="@/assets/home-items.jpg" class="home-pictures">
+            <img src="@/assets/menu/home-items.jpg" class="home-pictures">
           </router-link>
         </div>
         <p class="HomeMenuText">Items</p>
@@ -20,11 +29,13 @@
       <b-col md="4" class="column">
         <div class="setToMiddle padding">
           <router-link active-class="active" exact :to="{ name: 'creature' }">
-            <img src="@/assets/home-creatures.jpg" class="home-pictures">
+            <img src="@/assets/menu/home-creatures.jpg" class="home-pictures">
           </router-link>
         </div>
         <p class="HomeMenuText">Creatures</p>
       </b-col>
+      Maybe later
+      -->
     </b-row>
   </b-container>
 </template>

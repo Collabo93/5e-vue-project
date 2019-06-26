@@ -88,6 +88,9 @@ export default {
 .Constitution .AttributeOutput{
   background-color: rgba(0, 128, 0, 0.5);
 }
+.Constitution .AtributeIncDec button:hover {
+  background-color: rgba(0, 128, 0, 0.5);
+}
 </style>
 
 

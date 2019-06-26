@@ -88,5 +88,8 @@ export default {
 .Intelligence .AttributeOutput{
   background-color: rgba(0, 0, 255, 0.5);
 }
+.Intelligence .AtributeIncDec button:hover {
+  background-color: rgba(0, 0, 255, 0.5);
+}
 </style>
 

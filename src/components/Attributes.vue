@@ -52,7 +52,7 @@
         <RwvInitiative/>
       </b-col>
     </b-row>
-
+  <br>
     <b-row>
       <b-col md="2">
         <RwvIntelligence/>
@@ -156,6 +156,8 @@ export default {
 }
 .AttributeFrame .AtributeIncDec button {
   margin: 5px;
+  color: black;
+  border-color: black;
 }
 .AttributeFrame .AtributeIncDec .decrement {
   transform: rotate(180deg);

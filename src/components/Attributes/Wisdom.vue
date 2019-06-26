@@ -82,4 +82,7 @@ export default {
 .Wisdom .AttributeOutput{
   background-color: rgba(128, 128, 128, 0.5);
 }
+.Wisdom .AtributeIncDec button:hover {
+  background-color: rgba(128, 128, 128, 0.5);
+}
 </style>

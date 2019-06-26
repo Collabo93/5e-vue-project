@@ -88,5 +88,8 @@ export default {
 .Strength .AttributeOutput{
   background-color: rgba(255, 0, 0, 0.5);
 }
+.Strength .AtributeIncDec button:hover {
+  background-color: rgba(255, 0, 0, 0.5);
+}
 </style>
 

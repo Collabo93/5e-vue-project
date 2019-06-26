@@ -97,5 +97,8 @@ export default {
 .Dexterity .AttributeOutput{
   background-color: rgba(255, 255, 0, 0.5);
 }
+.Dexterity .AtributeIncDec button:hover {
+  background-color: rgba(255, 255, 0, 0.5);
+}
 </style>
 
