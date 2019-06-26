@@ -7,12 +7,11 @@
     <RwvSkills/>
     <img src="../assets/test-characterSheet.jpg">
   </b-container>
-  
 </template>
 <script>
 import RwvStandardInformations from "@/components/StandardInformations";
 import RwvAttributes from "@/components/Attributes";
-import RwvRaceSkillChoice from "@/components/RaceSkillChoice"
+import RwvRaceSkillChoice from "@/components/RaceSkillChoice";
 import RwvSkills from "@/components/Skills";
 
 import { mapGetters, mapMutations } from "vuex";
@@ -120,6 +119,28 @@ export default {
             { maxDexModifier: null }
           ]
         }
+      ],
+      BaseSkillPoints: [
+        {
+          SkillPointsAcrobatics: 0,
+          SkillPointsAnimalHandling: 0,
+          SkillPointsArcana: 0,
+          SkillPointsAthletics: 0,
+          SkillPointsDeception: 0,
+          SkillPointsHistory: 0,
+          SkillPointsInsight: 0,
+          SkillPointsIntimidation: 0,
+          SkillPointsInvestigation: 0,
+          SkillPointsMedicine: 0,
+          SkillPointsNature: 0,
+          SkillPointsPerception: 0,
+          SkillPointsPerformance: 0,
+          SkillPointsPursuasion: 0,
+          SkillPointsReligion: 0,
+          SkillPointsSleightofHand: 0,
+          SkillPointsStealth: 0,
+          SkillPointsSurvival: 0
+        }
       ]
     };
   },
@@ -133,6 +154,7 @@ export default {
     ...mapMutations(["InitializeDataRace"]),
     ...mapMutations(["SetBaseAttributes"]),
     ...mapMutations(["SetBaseAttributePoints"]),
+    ...mapMutations(["InitBaseSkillPoints"]),
 
     InitializeStore() {
       this.InitCharacterSheetFormular(this.CharacterSheet[0]);
@@ -141,6 +163,7 @@ export default {
       this.InitializeDataRace(this.BaseRaceInfo);
       this.SetBaseAttributes(this.BaseAttributes);
       this.SetBaseAttributePoints(this.BaseAttributePoints);
+      this.InitBaseSkillPoints(this.BaseSkillPoints);
     }
   },
   created: function() {
