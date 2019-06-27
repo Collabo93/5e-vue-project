@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "RwvRaceSkillChoice",
@@ -37,10 +37,29 @@ export default {
   computed: {
     ...mapGetters(["GetClassProficiencieSkillChoices"]),
     ...mapGetters(["GetClassProficiencieSkillChoicesNumber"]),
-    ...mapGetters(["GetCharacterSheet"])
+    ...mapGetters(["GetCharacterSheet"]),
+
+    ...mapGetters(["GetClassProficiencyBonusPerLevel"]),
+    ...mapGetters(["GetBackgroundProficiencies"]),
+
+    ...mapGetters(["GetClassSavingThrowStrength"]),
+    ...mapGetters(["GetClassSavingThrowDexterity"]),
+    ...mapGetters(["GetClassSavingThrowConstitution"]),
+    ...mapGetters(["GetClassSavingThrowIntelligence"]),
+    ...mapGetters(["GetClassSavingThrowWisdom"]),
+    ...mapGetters(["GetClassSavingThrowCharisma"]),
+
+    ...mapGetters(["GetAbilityModifierStrength"]),
+    ...mapGetters(["GetAbilityModifierDexterity"]),
+    ...mapGetters(["GetAbilityModifierConstitution"]),
+    ...mapGetters(["GetAbilityModifierIntelligence"]),
+    ...mapGetters(["GetAbilityModifierWisdom"]),
+    ...mapGetters(["GetAbilityModifierCharisma"])
   },
   methods: {
     ...mapMutations(["SaveChoosenProficiencies"]),
+    ...mapActions(["SetAllSkillPoints"]),
+
     KlickEvent(el, index, Proficiency) {
       if (this.WorkingClass !== this.GetCharacterSheet.Class["name"]) {
         this.Selected = [];
@@ -82,6 +101,32 @@ export default {
         el.target.style.transform = "scale(1)";
       }
       this.SaveChoosenProficiencies(this.Selected);
+
+      let ArrayList1 = [
+        [this.GetClassProficiencyBonusPerLevel],
+        [
+          this.GetClassSavingThrowStrength,
+          this.GetClassSavingThrowDexterity,
+          this.GetClassSavingThrowConstitution,
+          this.GetClassSavingThrowIntelligence,
+          this.GetClassSavingThrowWisdom,
+          this.GetClassSavingThrowCharisma
+        ],
+        [
+          this.GetAbilityModifierStrength,
+          this.GetAbilityModifierDexterity,
+          this.GetAbilityModifierConstitution,
+          this.GetAbilityModifierIntelligence,
+          this.GetAbilityModifierWisdom,
+          this.GetAbilityModifierCharisma
+        ]
+      ];
+      let ArrayList2 = [
+        [this.GetClassProficiencyBonusPerLevel],
+        this.Selected,
+        [this.GetBackgroundProficiencies]
+      ];
+      this.SetAllSkillPoints([ArrayList1,ArrayList2]);
     }
   }
 };

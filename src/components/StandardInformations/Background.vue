@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations} from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "RwvBackground",
@@ -14,21 +14,68 @@ export default {
       SelectedBackgroundName: ""
     };
   },
-  computed: mapGetters([
-    "GetBackgroundNames","GetBackground","GetCharacterSheet"
-  ]),
+  computed: {
+    ...mapGetters(["GetBackgroundNames"]),
+    ...mapGetters(["GetBackground"]),
+    ...mapGetters(["GetCharacterSheet"]),
+
+    ...mapGetters(["GetClassProficiencyBonusPerLevel"]),
+
+    ...mapGetters(["GetClassSavingThrowStrength"]),
+    ...mapGetters(["GetClassSavingThrowDexterity"]),
+    ...mapGetters(["GetClassSavingThrowConstitution"]),
+    ...mapGetters(["GetClassSavingThrowIntelligence"]),
+    ...mapGetters(["GetClassSavingThrowWisdom"]),
+    ...mapGetters(["GetClassSavingThrowCharisma"]),
+
+    ...mapGetters(["GetAbilityModifierStrength"]),
+    ...mapGetters(["GetAbilityModifierDexterity"]),
+    ...mapGetters(["GetAbilityModifierConstitution"]),
+    ...mapGetters(["GetAbilityModifierIntelligence"]),
+    ...mapGetters(["GetAbilityModifierWisdom"]),
+    ...mapGetters(["GetAbilityModifierCharisma"])
+  },
   created: function() {
     this.fetchDataBackground();
   },
   methods: {
     ...mapActions(["fetchDataBackground"]),
     ...mapActions(["SetDataBackground"]),
-    ...mapMutations(["SetBackground"])
+    ...mapActions(["FetchBackgroundInfo"]),
+    ...mapMutations(["SetBackground"]),
+    ...mapActions(["SetAllSkillPoints"])
   },
   watch: {
     SelectedBackgroundName: function() {
       this.SetDataBackground(this.SelectedBackgroundName);
       this.SetBackground(this.GetBackground);
+      this.FetchBackgroundInfo();
+
+      let ArrayList1 = [
+        [this.GetClassProficiencyBonusPerLevel],
+        [
+          this.GetClassSavingThrowStrength,
+          this.GetClassSavingThrowDexterity,
+          this.GetClassSavingThrowConstitution,
+          this.GetClassSavingThrowIntelligence,
+          this.GetClassSavingThrowWisdom,
+          this.GetClassSavingThrowCharisma
+        ],
+        [
+          this.GetAbilityModifierStrength,
+          this.GetAbilityModifierDexterity,
+          this.GetAbilityModifierConstitution,
+          this.GetAbilityModifierIntelligence,
+          this.GetAbilityModifierWisdom,
+          this.GetAbilityModifierCharisma
+        ]
+      ];
+      let ArrayList2 = [
+        [this.GetClassProficiencyBonusPerLevel],
+        this.Selected,
+        [this.GetBackgroundProficiencies]
+      ];
+      this.SetAllSkillPoints([ArrayList1, ArrayList2]);
     }
   }
 };

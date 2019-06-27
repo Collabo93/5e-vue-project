@@ -1,8 +1,9 @@
 import BackgroundRepository from "./HomeAPI/BackgroundRepository";
-
+import GetBackgroundFromURL from "./HomeAPI/GetBackgroundFromURL";
 
 const repositories = {
-  backgrounds: BackgroundRepository
+  backgrounds: BackgroundRepository,
+  createdURL: GetBackgroundFromURL
 };
 
 export const RepositoryFactory = {

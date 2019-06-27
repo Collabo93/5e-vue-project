@@ -142,7 +142,7 @@
             <div class="InformationDiv">
               <div class="Information">
                 <p class="InformationValue">{{GetSkillPointsPerception}}</p>
-                <p class="InformationTitle">Nature</p>
+                <p class="InformationTitle">Perception</p>
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@
             <div class="InformationDiv">
               <div class="Information">
                 <p class="InformationValue">{{GetSkillPointsPerformance}}</p>
-                <p class="InformationTitle">Perception</p>
+                <p class="InformationTitle">Performance</p>
               </div>
             </div>
           </div>
@@ -169,7 +169,7 @@
             <div class="InformationDiv">
               <div class="Information">
                 <p class="InformationValue">{{GetSkillPointsPursuasion}}</p>
-                <p class="InformationTitle">Pursuasion</p>
+                <p class="InformationTitle">Persuasion</p>
               </div>
             </div>
           </div>
@@ -228,7 +228,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "RwvSkills",
@@ -268,6 +268,31 @@ export default {
     ...mapGetters(["GetSkillPointsSleightofHand"]),
     ...mapGetters(["GetSkillPointsStealth"]),
     ...mapGetters(["GetSkillPointsSurvival"])
+  },
+  methods: {
+    ...mapMutations(["SetSkillPoints"])
+  },
+  created: function() {
+    let cache = [
+      [this.GetClassProficiencyBonusPerLevel],
+      [
+        this.GetClassSavingThrowStrength,
+        this.GetClassSavingThrowDexterity,
+        this.GetClassSavingThrowConstitution,
+        this.GetClassSavingThrowIntelligence,
+        this.GetClassSavingThrowWisdom,
+        this.GetClassSavingThrowCharisma
+      ],
+      [
+        this.GetAbilityModifierStrength,
+        this.GetAbilityModifierDexterity,
+        this.GetAbilityModifierConstitution,
+        this.GetAbilityModifierIntelligence,
+        this.GetAbilityModifierWisdom,
+        this.GetAbilityModifierCharisma
+      ]
+    ];
+    this.SetSkillPoints(cache);
   }
 };
 </script>

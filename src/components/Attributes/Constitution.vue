@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "RwvConstitution",
@@ -33,13 +33,30 @@ export default {
     ...mapGetters(["GetAbilityModifierConstitution"]),
     ...mapGetters(["GetAttributePointsAvailableMinus"]),
     ...mapGetters(["GetAttributePointsAvailablePlus"]),
-    ...mapGetters(["GetRaceAbilityBonusConstitution"])
+    ...mapGetters(["GetRaceAbilityBonusConstitution"]),
+
+    ...mapGetters(["GetClassProficiencyBonusPerLevel"]),
+
+    ...mapGetters(["GetClassSavingThrowStrength"]),
+    ...mapGetters(["GetClassSavingThrowDexterity"]),
+    ...mapGetters(["GetClassSavingThrowConstitution"]),
+    ...mapGetters(["GetClassSavingThrowIntelligence"]),
+    ...mapGetters(["GetClassSavingThrowWisdom"]),
+    ...mapGetters(["GetClassSavingThrowCharisma"]),
+
+    ...mapGetters(["GetAbilityModifierStrength"]),
+    ...mapGetters(["GetAbilityModifierDexterity"]),
+    ...mapGetters(["GetAbilityModifierConstitution"]),
+    ...mapGetters(["GetAbilityModifierIntelligence"]),
+    ...mapGetters(["GetAbilityModifierWisdom"]),
+    ...mapGetters(["GetAbilityModifierCharisma"])
   },
   methods: {
     ...mapMutations(["SetAbilityModifier"]),
     ...mapMutations(["SetAttributeConstitution"]),
     ...mapMutations(["SetAvailableAttributePointsMinus"]),
-    ...mapMutations(["SetAvailableAttributePointsPlus"])
+    ...mapMutations(["SetAvailableAttributePointsPlus"]),
+    ...mapActions(["SetAllSkillPoints"])
   },
   created: function() {
     this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Constitution;
@@ -59,6 +76,32 @@ export default {
             "Constitution",
             this.GetRaceAbilityBonusConstitution
           ]);
+
+          let ArrayList1 = [
+            [this.GetClassProficiencyBonusPerLevel],
+            [
+              this.GetClassSavingThrowStrength,
+              this.GetClassSavingThrowDexterity,
+              this.GetClassSavingThrowConstitution,
+              this.GetClassSavingThrowIntelligence,
+              this.GetClassSavingThrowWisdom,
+              this.GetClassSavingThrowCharisma
+            ],
+            [
+              this.GetAbilityModifierStrength,
+              this.GetAbilityModifierDexterity,
+              this.GetAbilityModifierConstitution,
+              this.GetAbilityModifierIntelligence,
+              this.GetAbilityModifierWisdom,
+              this.GetAbilityModifierCharisma
+            ]
+          ];
+          let ArrayList2 = [
+            [this.GetClassProficiencyBonusPerLevel],
+            this.Selected,
+            [this.GetBackgroundProficiencies]
+          ];
+          this.SetAllSkillPoints([ArrayList1, ArrayList2]);
         }
       }
       this.IncrementPressed = false;
@@ -76,6 +119,27 @@ export default {
             "Constitution",
             this.GetRaceAbilityBonusConstitution
           ]);
+
+          let ArrayList = [
+            [this.GetClassProficiencyBonusPerLevel],
+            [
+              this.GetClassSavingThrowStrength,
+              this.GetClassSavingThrowDexterity,
+              this.GetClassSavingThrowConstitution,
+              this.GetClassSavingThrowIntelligence,
+              this.GetClassSavingThrowWisdom,
+              this.GetClassSavingThrowCharisma
+            ],
+            [
+              this.GetAbilityModifierStrength,
+              this.GetAbilityModifierDexterity,
+              this.GetAbilityModifierConstitution,
+              this.GetAbilityModifierIntelligence,
+              this.GetAbilityModifierWisdom,
+              this.GetAbilityModifierCharisma
+            ]
+          ];
+          this.SetSkillPoints(ArrayList);
         }
         this.DecrementPressed = false;
       }
@@ -85,7 +149,7 @@ export default {
 </script>
 
 <style>
-.Constitution .AttributeOutput{
+.Constitution .AttributeOutput {
   background-color: rgba(0, 128, 0, 0.5);
 }
 .Constitution .AtributeIncDec button:hover {

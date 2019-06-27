@@ -1,16 +1,21 @@
 import { RepositoryFactory } from "../../services/RepositoryFactoryHomeAPI";
 const BackgroundRepository = RepositoryFactory.get("backgrounds");
+const GetBackgroundFromURL = RepositoryFactory.get("createdURL");
 
 const state = {
   dataBackground: [],
   BackgroundNames: [],
-  Background: [{ name: String }, { url: String }]
+  Background: [{ name: String }, { url: String }],
+
+  BackgroundDetails:[],
+  BackgroundProficiencies:[]
 };
 
 const getters = {
   GetDataBackground: state => state.dataBackground,
   GetBackgroundNames: state => state.BackgroundNames,
-  GetBackground: state => state.Background
+  GetBackground: state => state.Background,
+  GetBackgroundProficiencies: state => state.BackgroundProficiencies
 };
 
 const actions = {
@@ -21,7 +26,11 @@ const actions = {
   },
   SetDataBackground({ commit }, SelectedBackground) {
     commit("SetBackgroundURL", SelectedBackground);
-  }
+  },
+  async FetchBackgroundInfo({ commit }) {
+    const { data } = await GetBackgroundFromURL.get(state.Background["url"]);
+    commit("SetBackgroundProficiencies", data);
+  },
 };
 
 const mutations = {
@@ -39,6 +48,13 @@ const mutations = {
       }
     }
     state.Background["name"] = SelectedBackground;
+  },
+  SetBackgroundProficiencies(state, data){
+    state.BackgroundDetails = data;
+    //alert(data.skill_proficiency.from[0]["name"]);
+    data.skill_proficiency.from.forEach(element => {
+      state.BackgroundProficiencies.push(element["name"]);
+    });
   }
 };
 

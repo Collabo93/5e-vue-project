@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "RwvDexterity",
@@ -33,14 +33,31 @@ export default {
     ...mapGetters(["GetAbilityModifierDexterity"]),
     ...mapGetters(["GetAttributePointsAvailableMinus"]),
     ...mapGetters(["GetAttributePointsAvailablePlus"]),
-    ...mapGetters(["GetRaceAbilityBonusDexterity"])
+    ...mapGetters(["GetRaceAbilityBonusDexterity"]),
+
+    ...mapGetters(["GetClassProficiencyBonusPerLevel"]),
+
+    ...mapGetters(["GetClassSavingThrowStrength"]),
+    ...mapGetters(["GetClassSavingThrowDexterity"]),
+    ...mapGetters(["GetClassSavingThrowConstitution"]),
+    ...mapGetters(["GetClassSavingThrowIntelligence"]),
+    ...mapGetters(["GetClassSavingThrowWisdom"]),
+    ...mapGetters(["GetClassSavingThrowCharisma"]),
+
+    ...mapGetters(["GetAbilityModifierStrength"]),
+    ...mapGetters(["GetAbilityModifierDexterity"]),
+    ...mapGetters(["GetAbilityModifierConstitution"]),
+    ...mapGetters(["GetAbilityModifierIntelligence"]),
+    ...mapGetters(["GetAbilityModifierWisdom"]),
+    ...mapGetters(["GetAbilityModifierCharisma"])
   },
   methods: {
     ...mapMutations(["SetAbilityModifier"]),
     ...mapMutations(["SetAttributeDexterity"]),
     ...mapMutations(["SetAvailableAttributePointsMinus"]),
     ...mapMutations(["SetAvailableAttributePointsPlus"]),
-    ...mapMutations(["SetBaseAC"])
+    ...mapMutations(["SetBaseAC"]),
+    ...mapActions(["SetAllSkillPoints"])
   },
   created: function() {
     this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Dexterity;
@@ -65,6 +82,32 @@ export default {
           this.GetCharacterSheet.ArmorType,
           this.GetAbilityModifierDexterity
         ]);
+
+        let ArrayList1 = [
+          [this.GetClassProficiencyBonusPerLevel],
+          [
+            this.GetClassSavingThrowStrength,
+            this.GetClassSavingThrowDexterity,
+            this.GetClassSavingThrowConstitution,
+            this.GetClassSavingThrowIntelligence,
+            this.GetClassSavingThrowWisdom,
+            this.GetClassSavingThrowCharisma
+          ],
+          [
+            this.GetAbilityModifierStrength,
+            this.GetAbilityModifierDexterity,
+            this.GetAbilityModifierConstitution,
+            this.GetAbilityModifierIntelligence,
+            this.GetAbilityModifierWisdom,
+            this.GetAbilityModifierCharisma
+          ]
+        ];
+        let ArrayList2 = [
+          [this.GetClassProficiencyBonusPerLevel],
+          this.Selected,
+          [this.GetBackgroundProficiencies]
+        ];
+        this.SetAllSkillPoints([ArrayList1, ArrayList2]);
       }
       this.IncrementPressed = false;
     },
@@ -85,6 +128,27 @@ export default {
             this.GetCharacterSheet.ArmorType,
             this.GetAbilityModifierDexterity
           ]);
+
+          let ArrayList = [
+            [this.GetClassProficiencyBonusPerLevel],
+            [
+              this.GetClassSavingThrowStrength,
+              this.GetClassSavingThrowDexterity,
+              this.GetClassSavingThrowConstitution,
+              this.GetClassSavingThrowIntelligence,
+              this.GetClassSavingThrowWisdom,
+              this.GetClassSavingThrowCharisma
+            ],
+            [
+              this.GetAbilityModifierStrength,
+              this.GetAbilityModifierDexterity,
+              this.GetAbilityModifierConstitution,
+              this.GetAbilityModifierIntelligence,
+              this.GetAbilityModifierWisdom,
+              this.GetAbilityModifierCharisma
+            ]
+          ];
+          this.SetSkillPoints(ArrayList);
         }
         this.DecrementPressed = false;
       }
@@ -94,7 +158,7 @@ export default {
 </script>
 
 <style>
-.Dexterity .AttributeOutput{
+.Dexterity .AttributeOutput {
   background-color: rgba(255, 255, 0, 0.5);
 }
 .Dexterity .AtributeIncDec button:hover {

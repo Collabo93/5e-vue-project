@@ -26,7 +26,21 @@ export default {
     ...mapGetters(["GetRaceAbilityBonusWisdom"]),
     ...mapGetters(["GetRaceAbilityBonusCharisma"]),
 
+    ...mapGetters(["GetClassProficiencyBonusPerLevel"]),
+
+    ...mapGetters(["GetClassSavingThrowStrength"]),
+    ...mapGetters(["GetClassSavingThrowDexterity"]),
+    ...mapGetters(["GetClassSavingThrowConstitution"]),
+    ...mapGetters(["GetClassSavingThrowIntelligence"]),
+    ...mapGetters(["GetClassSavingThrowWisdom"]),
+    ...mapGetters(["GetClassSavingThrowCharisma"]),
+
+    ...mapGetters(["GetAbilityModifierStrength"]),
     ...mapGetters(["GetAbilityModifierDexterity"]),
+    ...mapGetters(["GetAbilityModifierConstitution"]),
+    ...mapGetters(["GetAbilityModifierIntelligence"]),
+    ...mapGetters(["GetAbilityModifierWisdom"]),
+    ...mapGetters(["GetAbilityModifierCharisma"])
   },
   created: function() {
     this.fetchDataRace();
@@ -38,7 +52,8 @@ export default {
     ...mapMutations(["SetRace"]),
 
     ...mapMutations(["SetAbilityModifier"]),
-    ...mapMutations(["SetBaseAC"])
+    ...mapMutations(["SetBaseAC"]),
+    ...mapActions(["SetAllSkillPoints"])
   },
   watch: {
     SelectedRaceName: function() {
@@ -64,9 +79,36 @@ export default {
           this.GetCharacterSheet.ArmorType,
           this.GetAbilityModifierDexterity
         ]);
+
+        let ArrayList1 = [
+          [this.GetClassProficiencyBonusPerLevel],
+          [
+            this.GetClassSavingThrowStrength,
+            this.GetClassSavingThrowDexterity,
+            this.GetClassSavingThrowConstitution,
+            this.GetClassSavingThrowIntelligence,
+            this.GetClassSavingThrowWisdom,
+            this.GetClassSavingThrowCharisma
+          ],
+          [
+            this.GetAbilityModifierStrength,
+            this.GetAbilityModifierDexterity,
+            this.GetAbilityModifierConstitution,
+            this.GetAbilityModifierIntelligence,
+            this.GetAbilityModifierWisdom,
+            this.GetAbilityModifierCharisma
+          ]
+        ];
+        let ArrayList2 = [
+          [this.GetClassProficiencyBonusPerLevel],
+          this.Selected,
+          [this.GetBackgroundProficiencies]
+        ];
+        this.SetAllSkillPoints([ArrayList1, ArrayList2]);
+
         return result;
       });
-      //need to wait for SetRaceInfo to update the race bonuses      
+      //need to wait for SetRaceInfo to update the race bonuses
     }
   }
 };
