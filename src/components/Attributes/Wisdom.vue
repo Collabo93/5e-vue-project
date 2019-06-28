@@ -113,28 +113,33 @@ export default {
           this.SetAvailableAttributePointsPlus(cache);
           this.SetAttributeWisdom(this.CurrentBaseAttribute);
           this.SetAbilityModifier(["Wisdom", this.GetRaceAbilityBonusWisdom]);
-        }
 
-        let ArrayList = [
-          [this.GetClassProficiencyBonusPerLevel],
-          [
-            this.GetClassSavingThrowStrength,
-            this.GetClassSavingThrowDexterity,
-            this.GetClassSavingThrowConstitution,
-            this.GetClassSavingThrowIntelligence,
-            this.GetClassSavingThrowWisdom,
-            this.GetClassSavingThrowCharisma
-          ],
-          [
-            this.GetAbilityModifierStrength,
-            this.GetAbilityModifierDexterity,
-            this.GetAbilityModifierConstitution,
-            this.GetAbilityModifierIntelligence,
-            this.GetAbilityModifierWisdom,
-            this.GetAbilityModifierCharisma
-          ]
-        ];
-        this.SetSkillPoints(ArrayList);
+          let ArrayList1 = [
+            [this.GetClassProficiencyBonusPerLevel],
+            [
+              this.GetClassSavingThrowStrength,
+              this.GetClassSavingThrowDexterity,
+              this.GetClassSavingThrowConstitution,
+              this.GetClassSavingThrowIntelligence,
+              this.GetClassSavingThrowWisdom,
+              this.GetClassSavingThrowCharisma
+            ],
+            [
+              this.GetAbilityModifierStrength,
+              this.GetAbilityModifierDexterity,
+              this.GetAbilityModifierConstitution,
+              this.GetAbilityModifierIntelligence,
+              this.GetAbilityModifierWisdom,
+              this.GetAbilityModifierCharisma
+            ]
+          ];
+          let ArrayList2 = [
+            [this.GetClassProficiencyBonusPerLevel],
+            this.GetCharacterSheet.ChoosenProficiencies,
+            [this.GetBackgroundProficiencies]
+          ];
+          this.SetAllSkillPoints([ArrayList1, ArrayList2]);
+        }
         this.DecrementPressed = false;
       }
     }

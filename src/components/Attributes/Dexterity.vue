@@ -129,7 +129,7 @@ export default {
             this.GetAbilityModifierDexterity
           ]);
 
-          let ArrayList = [
+          let ArrayList1 = [
             [this.GetClassProficiencyBonusPerLevel],
             [
               this.GetClassSavingThrowStrength,
@@ -148,7 +148,12 @@ export default {
               this.GetAbilityModifierCharisma
             ]
           ];
-          this.SetSkillPoints(ArrayList);
+          let ArrayList2 = [
+            [this.GetClassProficiencyBonusPerLevel],
+            this.GetCharacterSheet.ChoosenProficiencies,
+            [this.GetBackgroundProficiencies]
+          ];
+          this.SetAllSkillPoints([ArrayList1, ArrayList2]);
         }
         this.DecrementPressed = false;
       }

@@ -262,7 +262,6 @@ const mutations = {
       }
     }
     //Background Proficiencies compared with current content and pushed in array
-
     Info[0][0] = parseInt(Info[0][0]);
     if (ChosenProficienciesCache.length > 0) {
       ChosenProficienciesCache.forEach(element => {
@@ -302,6 +301,9 @@ const mutations = {
           state.SkillPointsStealth += Info[0][0];
         } else if (element === "Survival") {
           state.SkillPointsSurvival += Info[0][0];
+        }
+        else if ( element !== "" ){
+          alert("error in SetSkillPointsByProficiency(): "+element);
         }
       });
     }

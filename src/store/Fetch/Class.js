@@ -104,6 +104,7 @@ const mutations = {
     state.ClassAbilityScoreBonusSpendOnAbilityScore = 0;
     state.ClassAbilityScoreBonusSpendOnFeat = 0;
     state.ClassAbilityScoreBonusesPerLevel = 0;
+    state.ClassProficiencyBonusPerLevel = 0;
   },
   SetDataClass: (state, dataClass) => (state.dataClass = dataClass),
   SetClassNames() {
