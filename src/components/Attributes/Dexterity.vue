@@ -25,7 +25,8 @@ export default {
     return {
       IncrementPressed: false,
       DecrementPressed: false,
-      CurrentBaseAttribute: 0
+      CurrentBaseAttribute: 0,
+      SkillsArrayList: []
     };
   },
   computed: {
@@ -37,27 +38,69 @@ export default {
 
     ...mapGetters(["GetClassProficiencyBonusPerLevel"]),
 
-    ...mapGetters(["GetClassSavingThrowStrength"]),
+    ...mapGetters(["GetClassSavingThrowDexterity"]),
     ...mapGetters(["GetClassSavingThrowDexterity"]),
     ...mapGetters(["GetClassSavingThrowConstitution"]),
     ...mapGetters(["GetClassSavingThrowIntelligence"]),
     ...mapGetters(["GetClassSavingThrowWisdom"]),
     ...mapGetters(["GetClassSavingThrowCharisma"]),
 
-    ...mapGetters(["GetAbilityModifierStrength"]),
+    ...mapGetters(["GetAbilityModifierDexterity"]),
     ...mapGetters(["GetAbilityModifierDexterity"]),
     ...mapGetters(["GetAbilityModifierConstitution"]),
     ...mapGetters(["GetAbilityModifierIntelligence"]),
     ...mapGetters(["GetAbilityModifierWisdom"]),
-    ...mapGetters(["GetAbilityModifierCharisma"])
+    ...mapGetters(["GetAbilityModifierCharisma"]),
+
+    ...mapGetters(["GetAvailableAttributePoints"]),
+    ...mapGetters(["GetClassAbilityScoreBonusSpendOnAbilityScore"])
   },
   methods: {
     ...mapMutations(["SetAbilityModifier"]),
     ...mapMutations(["SetAttributeDexterity"]),
     ...mapMutations(["SetAvailableAttributePointsMinus"]),
     ...mapMutations(["SetAvailableAttributePointsPlus"]),
-    ...mapMutations(["SetBaseAC"]),
-    ...mapActions(["SetAllSkillPoints"])
+    ...mapActions(["SetAllSkillPoints"]),
+    ...mapMutations(["SetClassAbilityScoreBonusSpendOnAbilityScore"]),
+    ...mapMutations(["SetAbilityScoreSpend"]),
+
+    StartAttributeOperation(Increment, AttributeCost) {
+      if (Increment === true) {
+        this.CurrentBaseAttribute += 1;
+        this.SetAvailableAttributePointsMinus(AttributeCost);
+      } else if (Increment === false) {
+        this.CurrentBaseAttribute -= 1;
+        this.SetAvailableAttributePointsPlus(AttributeCost);
+      }
+      this.SetAttributeDexterity(this.CurrentBaseAttribute);
+      this.SetAbilityModifier(["Dexterity", this.GetRaceAbilityBonusDexterity]);
+
+      let ArrayList1 = [
+        [this.GetClassProficiencyBonusPerLevel],
+        [
+          this.GetClassSavingThrowDexterity,
+          this.GetClassSavingThrowDexterity,
+          this.GetClassSavingThrowConstitution,
+          this.GetClassSavingThrowIntelligence,
+          this.GetClassSavingThrowWisdom,
+          this.GetClassSavingThrowCharisma
+        ],
+        [
+          this.GetAbilityModifierDexterity,
+          this.GetAbilityModifierDexterity,
+          this.GetAbilityModifierConstitution,
+          this.GetAbilityModifierIntelligence,
+          this.GetAbilityModifierWisdom,
+          this.GetAbilityModifierCharisma
+        ]
+      ];
+      let ArrayList2 = [
+        [this.GetClassProficiencyBonusPerLevel],
+        this.Selected,
+        [this.GetBackgroundProficiencies]
+      ];
+      this.SetAllSkillPoints([ArrayList1, ArrayList2]);
+    }
   },
   created: function() {
     this.CurrentBaseAttribute = this.GetCharacterSheet.Attributes[0].Dexterity;
@@ -65,98 +108,53 @@ export default {
   },
   watch: {
     IncrementPressed: function() {
-      if (this.CurrentBaseAttribute < 15 && this.IncrementPressed) {
+      if (
+        this.GetAvailableAttributePoints == 0 &&
+        this.IncrementPressed &&
+        this.GetClassAbilityScoreBonusSpendOnAbilityScore > 0
+      ) {
+        this.CurrentBaseAttribute += 1;
+        this.SetClassAbilityScoreBonusSpendOnAbilityScore(
+          this.GetClassAbilityScoreBonusSpendOnAbilityScore - 1
+        );
+        this.SetAbilityScoreSpend(this.GetCharacterSheet.AbilityScoreSpend + 1);
+        this.StartAttributeOperation(null, null);
+      } else if (
+        this.CurrentBaseAttribute < 15 &&
+        this.IncrementPressed &&
+        this.GetAvailableAttributePoints > 0
+      ) {
         let cache = this.GetAttributePointsAvailableMinus(
           this.CurrentBaseAttribute + 1
         );
         if (!isNaN(cache)) {
-          this.CurrentBaseAttribute += 1;
-          this.SetAvailableAttributePointsMinus(cache);
-          this.SetAttributeDexterity(this.CurrentBaseAttribute);
-          this.SetAbilityModifier([
-            "Dexterity",
-            this.GetRaceAbilityBonusDexterity
-          ]);
+          this.StartAttributeOperation(true, cache);
         }
-        this.SetBaseAC([
-          this.GetCharacterSheet.ArmorType,
-          this.GetAbilityModifierDexterity
-        ]);
-
-        let ArrayList1 = [
-          [this.GetClassProficiencyBonusPerLevel],
-          [
-            this.GetClassSavingThrowStrength,
-            this.GetClassSavingThrowDexterity,
-            this.GetClassSavingThrowConstitution,
-            this.GetClassSavingThrowIntelligence,
-            this.GetClassSavingThrowWisdom,
-            this.GetClassSavingThrowCharisma
-          ],
-          [
-            this.GetAbilityModifierStrength,
-            this.GetAbilityModifierDexterity,
-            this.GetAbilityModifierConstitution,
-            this.GetAbilityModifierIntelligence,
-            this.GetAbilityModifierWisdom,
-            this.GetAbilityModifierCharisma
-          ]
-        ];
-        let ArrayList2 = [
-          [this.GetClassProficiencyBonusPerLevel],
-          this.Selected,
-          [this.GetBackgroundProficiencies]
-        ];
-        this.SetAllSkillPoints([ArrayList1, ArrayList2]);
       }
       this.IncrementPressed = false;
     },
     DecrementPressed: function() {
-      if (this.CurrentBaseAttribute > 8 && this.DecrementPressed) {
+      if (
+        this.GetAvailableAttributePoints == 0 &&
+        this.DecrementPressed &&
+        this.GetCharacterSheet.AbilityScoreSpend > 0 &&
+        this.CurrentBaseAttribute > 8
+      ) {
+        this.CurrentBaseAttribute -= 1;
+        this.SetClassAbilityScoreBonusSpendOnAbilityScore(
+          this.GetClassAbilityScoreBonusSpendOnAbilityScore + 1
+        );
+        this.SetAbilityScoreSpend(this.GetCharacterSheet.AbilityScoreSpend - 1);
+        this.StartAttributeOperation(null, null);
+      } else if (this.CurrentBaseAttribute > 8 && this.DecrementPressed) {
         let cache = this.GetAttributePointsAvailablePlus(
           this.CurrentBaseAttribute - 1
         );
         if (!isNaN(cache)) {
-          this.CurrentBaseAttribute -= 1;
-          this.SetAvailableAttributePointsPlus(cache);
-          this.SetAttributeDexterity(this.CurrentBaseAttribute);
-          this.SetAbilityModifier([
-            "Dexterity",
-            this.GetRaceAbilityBonusDexterity
-          ]);
-          this.SetBaseAC([
-            this.GetCharacterSheet.ArmorType,
-            this.GetAbilityModifierDexterity
-          ]);
-
-          let ArrayList1 = [
-            [this.GetClassProficiencyBonusPerLevel],
-            [
-              this.GetClassSavingThrowStrength,
-              this.GetClassSavingThrowDexterity,
-              this.GetClassSavingThrowConstitution,
-              this.GetClassSavingThrowIntelligence,
-              this.GetClassSavingThrowWisdom,
-              this.GetClassSavingThrowCharisma
-            ],
-            [
-              this.GetAbilityModifierStrength,
-              this.GetAbilityModifierDexterity,
-              this.GetAbilityModifierConstitution,
-              this.GetAbilityModifierIntelligence,
-              this.GetAbilityModifierWisdom,
-              this.GetAbilityModifierCharisma
-            ]
-          ];
-          let ArrayList2 = [
-            [this.GetClassProficiencyBonusPerLevel],
-            this.GetCharacterSheet.ChoosenProficiencies,
-            [this.GetBackgroundProficiencies]
-          ];
-          this.SetAllSkillPoints([ArrayList1, ArrayList2]);
+          this.StartAttributeOperation(false, cache);
         }
-        this.DecrementPressed = false;
       }
+      this.DecrementPressed = false;
     }
   }
 };

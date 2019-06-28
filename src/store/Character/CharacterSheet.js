@@ -20,7 +20,8 @@ const state = {
         }
       ],
       ArmorType: String,
-      ChoosenProficiencies: []
+      ChoosenProficiencies: [],
+      AbilityScoreSpend: Int32Array
     }
   ],
   BaseAttributePoints: 27,
@@ -175,7 +176,9 @@ const mutations = {
   SetAttributeWisdom: (state, Wisdom) =>
     (state.CharacterSheet.Attributes[0].Wisdom = Wisdom),
   SetAttributeCharisma: (state, Charisma) =>
-    (state.CharacterSheet.Attributes[0].Charisma = Charisma)
+    (state.CharacterSheet.Attributes[0].Charisma = Charisma),
+  SetAbilityScoreSpend: (state, AbilityScoreSpend) =>
+    (state.CharacterSheet.AbilityScoreSpend = AbilityScoreSpend)
 };
 
 export default {

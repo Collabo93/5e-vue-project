@@ -126,7 +126,7 @@ export default {
         this.Selected,
         [this.GetBackgroundProficiencies]
       ];
-      this.SetAllSkillPoints([ArrayList1,ArrayList2]);
+      this.SetAllSkillPoints([ArrayList1, ArrayList2]);
     }
   }
 };
@@ -143,6 +143,9 @@ export default {
 }
 .proficiencyRow p {
   transition: 0.4s;
+  -ms-user-select: None;
+  -moz-user-select: None;
+  -webkit-user-select: None;
 }
 .proficiencyRow p:hover {
   background-color: #333;

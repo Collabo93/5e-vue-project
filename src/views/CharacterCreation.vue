@@ -2,17 +2,15 @@
   <b-container class="padding">
     <RwvStandardInformations/>
     <RwvAttributes/>
-    <hr>
     <RwvRaceSkillChoice/>
     <RwvSkills/>
-    <img src="../assets/test-characterSheet.jpg">
   </b-container>
 </template>
 <script>
 import RwvStandardInformations from "@/components/StandardInformations";
 import RwvAttributes from "@/components/Attributes";
-import RwvRaceSkillChoice from "@/components/RaceSkillChoice";
-import RwvSkills from "@/components/Skills";
+//import RwvRaceSkillChoice from "@/components/RaceSkillChoice";
+//import RwvSkills from "@/components/Skills";
 
 import { mapGetters, mapMutations } from "vuex";
 
@@ -21,8 +19,8 @@ export default {
   components: {
     RwvStandardInformations,
     RwvAttributes,
-    RwvRaceSkillChoice,
-    RwvSkills
+    RwvRaceSkillChoice:() => import("@/components/RaceSkillChoice"),
+    RwvSkills:() => import("@/components/Skills")
   },
   data() {
     return {
@@ -45,7 +43,8 @@ export default {
               Charisma: ""
             }
           ],
-          ArmorType: ""
+          ArmorType: "",
+          AbilityScoreSpend: 0
         }
       ],
       BaseAttributes: [

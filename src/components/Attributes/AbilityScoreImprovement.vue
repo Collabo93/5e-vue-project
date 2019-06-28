@@ -45,24 +45,26 @@ export default {
           this.GetClassAbilityScoreBonusesPerLevel - 1
         );
         this.SetClassAbilityScoreBonusSpendOnAbilityScore(
-          this.GetClassAbilityScoreBonusSpendOnAbilityScore + 1
+          this.GetClassAbilityScoreBonusSpendOnAbilityScore + 2
         );
-        this.IncrementPressed = false;
       }
+      this.IncrementPressed = false;
     },
     DecrementPressed: function() {
       if (
         this.GetClassAbilityScoreBonusSpendOnAbilityScore > 0 &&
         this.DecrementPressed
       ) {
-        this.SetClassAbilityScoreBonusesPerLevel(
-          this.GetClassAbilityScoreBonusesPerLevel + 1
-        );
-        this.SetClassAbilityScoreBonusSpendOnAbilityScore(
-          this.GetClassAbilityScoreBonusSpendOnAbilityScore - 1
-        );
-        this.DecrementPressed = false;
+        if (this.GetClassAbilityScoreBonusSpendOnAbilityScore % 2 == 0 || this.GetClassAbilityScoreBonusSpendOnAbilityScore >= 2) {
+          this.SetClassAbilityScoreBonusesPerLevel(
+            this.GetClassAbilityScoreBonusesPerLevel + 1
+          );
+          this.SetClassAbilityScoreBonusSpendOnAbilityScore(
+            this.GetClassAbilityScoreBonusSpendOnAbilityScore - 2
+          );
+        }
       }
+      this.DecrementPressed = false;
     }
   }
 };
