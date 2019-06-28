@@ -1,7 +1,7 @@
 <template>
   <b-container class="padding">
     <b-row>
-      <b-col md="6" class="column">
+      <b-col md="4" class="column">
         <div class="setToMiddle padding">
           <router-link active-class="active" exact :to="{ name: 'characterCreation' }">
             <img src="@/assets/menu/home-character-creation.jpg" class="home-pictures">
@@ -9,7 +9,15 @@
         </div>
         <p class="HomeMenuText">Character creation</p>
       </b-col>
-      <b-col md="6" class="column">
+      <b-col md="4" class="column">
+        <div class="setToMiddle padding">
+          <router-link active-class="active" exact :to="{ name: 'backgrounds' }">
+            <img src="@/assets/menu/home-creatures.jpg" class="home-pictures">
+          </router-link>
+        </div>
+        <p class="HomeMenuText">Backgrounds</p>
+      </b-col>
+      <b-col md="4" class="column">
         <div class="setToMiddle padding">
           <router-link active-class="active" exact :to="{ name: 'savedCharacters' }">
             <img src="@/assets/menu/home-save.jpg" class="home-pictures">

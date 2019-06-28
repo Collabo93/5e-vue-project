@@ -36,19 +36,14 @@ export default new Router({
       component: () => import("@/views/CharacterCreation")
     },
     {
+      name: "backgrounds",
+      path: "/backgrounds",
+      component: () => import("@/views/Backgrounds")
+    },
+    {
       name: "savedCharacters",
       path: "/savedCharacters",
       component: () => import("@/views/SavedCharacters")
-    },
-    {
-      name: "creature",
-      path: "/creature",
-      component: () => import("@/views/Creature")
-    },
-    {
-      name: "items",
-      path: "/items",
-      component: () => import("@/views/Items")
     }
   ]
 });

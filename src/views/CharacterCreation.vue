@@ -4,6 +4,12 @@
     <RwvAttributes/>
     <RwvRaceSkillChoice/>
     <RwvSkills/>
+    <b-row class="ButtonSaveRow">
+      <b-col md="12">
+        <b-button class="ButtonSave" size="lg">Save
+        </b-button>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 <script>
@@ -198,5 +204,14 @@ export default {
 .InformationButton button {
   width: 25px !important;
   height: 25px !important;
+}
+
+.ButtonSaveRow{
+  padding-top:50px;
+  padding-bottom:50px;
+  text-align: center;
+}
+.ButtonSaveRow .ButtonSave{
+  width: 80%;
 }
 </style>
