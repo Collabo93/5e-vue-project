@@ -41,6 +41,11 @@ export default new Router({
       component: () => import("@/views/Backgrounds")
     },
     {
+      name: "backgroundDetail",
+      path: "/backgroundDetail/:BackgroundName",
+      component: () => import("@/views/BackgroundDetail")
+    },
+    {
       name: "savedCharacters",
       path: "/savedCharacters",
       component: () => import("@/views/SavedCharacters")
