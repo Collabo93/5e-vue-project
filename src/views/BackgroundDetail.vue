@@ -10,14 +10,14 @@
       <b-col class="Skill" v-if="GetBackgroundDetail.skill_proficiency">
         <p class="title">Skills Proficiency: {{GetBackgroundDetail.skill_proficiency.choose}}</p>
         <p class="choose"></p>
-          <ul
-            class="from"
-            v-for="(name, index) in GetBackgroundDetail.skill_proficiency.from"
-            :key="index"
-          >
-          <li v-if="name.name = 'choice'">Skill of your choice</li>
-          <li v-else>{{name.name}}</li>
-          </ul>
+        <ul
+          class="from"
+          v-for="(name, index) in GetBackgroundDetail.skill_proficiency.from"
+          :key="index"
+        >
+          <li v-if="name.name === 'choice'">Skill of your choice</li>
+          <li>{{name.name}}</li>
+        </ul>
       </b-col>
       <b-col class="Weapon" v-if="GetBackgroundDetail.weapon_proficiency">
         <p class="title">Weapons Proficiency: {{GetBackgroundDetail.weapon_proficiency.choose}}</p>
@@ -45,7 +45,7 @@
         <p class="title">Languages Proficiency: {{GetBackgroundDetail.language.choose}}</p>
         <p class="choose"></p>
         <ul class="from" v-for="(name, index) in GetBackgroundDetail.language.from" :key="index">
-          <li v-if="name.name = 'choice'">Language of your choice</li>
+          <li v-if="name.name === 'choice'">Language of your choice</li>
 
           <li v-else>{{name.name}}</li>
         </ul>
@@ -68,6 +68,7 @@
             <i>{{name.name}}</i>
           </p>
           <p class="descDesc">{{name.desc}}</p>
+          <br>
         </div>
       </b-col>
     </b-row>
@@ -98,8 +99,8 @@ export default {
 </script>
 
 <style>
-ul{
-    padding-bottom:0!important;
+ul {
+  margin-bottom: 0 !important;
 }
 .title {
   font-weight: bold;

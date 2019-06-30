@@ -50,13 +50,19 @@
       </transition>
     </b-row>
     <b-row>
-      <b-col md="4" v-for="(Backgrounds, index) in GetBackgroundNames" :key="index">
-        <div class="kachel">
-          <router-link active-class="active" exact :to="{ name: 'backgroundDetail', params: {BackgroundName:Backgrounds}}">
-            <p>{{Backgrounds}}</p>
-          </router-link>
-        </div>
-      </b-col>
+      <transition-group name="Kachel">
+        <b-col md="4" v-for="Backgrounds in GetBackgroundNames" :key="Backgrounds">
+          <div class="kachel">
+            <router-link
+              active-class="active"
+              exact
+              :to="{ name: 'backgroundDetail', params: {BackgroundName:Backgrounds}}"
+            >
+              <p>{{Backgrounds}}</p>
+            </router-link>
+          </div>
+        </b-col>
+      </transition-group>
     </b-row>
   </b-container>
 </template>
@@ -156,8 +162,12 @@ export default {
         }
       }
     },
-    Clear(){
+    Clear() {
       this.SetBackgroundNames();
+      this.LanguageToggle = false;
+      this.SkillsToggle = false;
+      this.WeaponsToggle = false;
+      this.ToolToggle = false;
     },
 
     Filter(el, Filter, index) {
@@ -209,6 +219,9 @@ export default {
   backface-visibility: hidden;
   background-color: rgba(197, 208, 209, 0.1);
 }
+span {
+  display: contents;
+}
 .kachel p {
   height: 2.5rem;
   margin: 0.75rem 0;
@@ -220,8 +233,9 @@ export default {
   -webkit-user-select: None;
   color: black;
   text-decoration: none;
+  transition: 1s;
 }
-.kachel a{
+.kachel a {
   text-decoration-color: rgba(76, 175, 80, 1);
 }
 .Filter {
@@ -237,7 +251,49 @@ export default {
   -moz-user-select: None;
   -webkit-user-select: None;
 }
-#Clear{
-  color:#f68185;
+#Clear {
+  color: #f68185;
+}
+
+.Filter-move{
+  transition: all 700ms ease-in-out;
+}
+.Filter-enter-active {
+  animation: fadeInDown 0.4s ease-out;
+}
+.Filter-leave-active {
+  animation: fadeInDown 0.2s ease-in reverse;
+  position: absolute;
+}
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, -20px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.Kachel-move {
+  transition: all 600ms ease-in-out 50ms;
+}
+.Kachel-enter-active {
+  transition: all 300ms ease-out;
+}
+.Kachel-leave-active {
+  transition: all 200ms ease-in;
+  position: absolute;
+}
+.Kachel-enter,
+.Kachel-leave-to {
+  opacity: 0;
+}
+.Kachel-enter {
+  transform: scale(0.9);
 }
 </style>

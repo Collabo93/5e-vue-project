@@ -75,7 +75,7 @@ img.home-pictures {
   font-size: 18px;
 }
 .column {
-  transition: .2s;
+  transition: .3s;
 }
 .column:hover {
   background-color: rgba(76, 175, 80, 0.5);
