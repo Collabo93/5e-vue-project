@@ -195,6 +195,7 @@ export default {
 }
 .Information .InformationTitle {
   font-weight: bold;
+  z-index:10;
   color: grey;
 }
 .InformationButton {
@@ -204,6 +205,7 @@ export default {
 .InformationButton button {
   width: 25px !important;
   height: 25px !important;
+  padding: 0!important;
 }
 
 .ButtonSaveRow{

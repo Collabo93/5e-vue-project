@@ -163,6 +163,7 @@ const mutations = {
   SetSkillPoints(state, Info) {
     if (Info[1][0] === true) {
       state.SkillPointsAthletics = Info[2][0] + Info[0][0];
+      
     } else {
       state.SkillPointsAthletics = Info[2][0];
     }
@@ -242,26 +243,27 @@ const mutations = {
           }
         }
       }
-    }
+    } 
     // Choosen Class Proficiencies trimmed and pushed in array
 
     if (typeof Info[2] != "undefined") {
       let c;
-      for (c = 0; c < Info[2].length; c++) {
-        if (typeof Info[2][c] != "undefined") {
+      for (c = 0; c < Info[2][0].length; c++) {
+        if (typeof Info[2][0][c] != "undefined") {
           let newElement = true;
           ChosenProficienciesCache.forEach(element => {
-            if (element === Info[2][c].toString()) {
+            if (element === Info[2][0][c].toString()) {
               newElement = false;
             }
           });
           if (newElement) {
-            ChosenProficienciesCache.push(Info[2][c].toString());
+            ChosenProficienciesCache.push(Info[2][0][c].toString());
           }
         }
       }
     }
     //Background Proficiencies compared with current content and pushed in array
+
     Info[0][0] = parseInt(Info[0][0]);
     if (ChosenProficienciesCache.length > 0) {
       ChosenProficienciesCache.forEach(element => {
@@ -302,7 +304,7 @@ const mutations = {
         } else if (element === "Survival") {
           state.SkillPointsSurvival += Info[0][0];
         }
-        else if ( element !== "" ){
+        else if ( element !== "" || element !== "choice" ){
           alert("error in SetSkillPointsByProficiency(): "+element);
         }
       });

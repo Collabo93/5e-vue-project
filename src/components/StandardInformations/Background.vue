@@ -18,6 +18,7 @@ export default {
     ...mapGetters(["GetBackgroundNames"]),
     ...mapGetters(["GetBackground"]),
     ...mapGetters(["GetCharacterSheet"]),
+    ...mapGetters(["GetBackgroundProficiencies"]),
 
     ...mapGetters(["GetClassProficiencyBonusPerLevel"]),
 
@@ -49,33 +50,35 @@ export default {
     SelectedBackgroundName: function() {
       this.SetDataBackground(this.SelectedBackgroundName);
       this.SetBackground(this.GetBackground);
-      this.FetchBackgroundInfo();
+      this.FetchBackgroundInfo().then(result => {
+        let ArrayList1 = [
+          [this.GetClassProficiencyBonusPerLevel],
+          [
+            this.GetClassSavingThrowStrength,
+            this.GetClassSavingThrowDexterity,
+            this.GetClassSavingThrowConstitution,
+            this.GetClassSavingThrowIntelligence,
+            this.GetClassSavingThrowWisdom,
+            this.GetClassSavingThrowCharisma
+          ],
+          [
+            this.GetAbilityModifierStrength,
+            this.GetAbilityModifierDexterity,
+            this.GetAbilityModifierConstitution,
+            this.GetAbilityModifierIntelligence,
+            this.GetAbilityModifierWisdom,
+            this.GetAbilityModifierCharisma
+          ]
+        ];
+        let ArrayList2 = [
+          [this.GetClassProficiencyBonusPerLevel],
+          this.GetCharacterSheet.ChoosenProficiencies,
+          [this.GetBackgroundProficiencies]
+        ];
+        this.SetAllSkillPoints([ArrayList1, ArrayList2]);
 
-      let ArrayList1 = [
-        [this.GetClassProficiencyBonusPerLevel],
-        [
-          this.GetClassSavingThrowStrength,
-          this.GetClassSavingThrowDexterity,
-          this.GetClassSavingThrowConstitution,
-          this.GetClassSavingThrowIntelligence,
-          this.GetClassSavingThrowWisdom,
-          this.GetClassSavingThrowCharisma
-        ],
-        [
-          this.GetAbilityModifierStrength,
-          this.GetAbilityModifierDexterity,
-          this.GetAbilityModifierConstitution,
-          this.GetAbilityModifierIntelligence,
-          this.GetAbilityModifierWisdom,
-          this.GetAbilityModifierCharisma
-        ]
-      ];
-      let ArrayList2 = [
-        [this.GetClassProficiencyBonusPerLevel],
-        this.Selected,
-        [this.GetBackgroundProficiencies]
-      ];
-      this.SetAllSkillPoints([ArrayList1, ArrayList2]);
+        return result;
+      });
     }
   }
 };

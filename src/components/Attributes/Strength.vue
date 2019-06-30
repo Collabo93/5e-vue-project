@@ -31,7 +31,6 @@ export default {
   },
   computed: {
     ...mapGetters(["GetCharacterSheet"]),
-    ...mapGetters(["GetAbilityModifierStrength"]),
     ...mapGetters(["GetAttributePointsAvailableMinus"]),
     ...mapGetters(["GetAttributePointsAvailablePlus"]),
     ...mapGetters(["GetRaceAbilityBonusStrength"]),

@@ -50,50 +50,59 @@ export default {
     ...mapMutations(["SetChoosenOptions"]),
     ...mapMutations(["SetBaseAC"]),
     ...mapMutations(["SetHitPoints"]),
-    ...mapActions(["SetAllSkillPoints"])
+    ...mapActions(["SetAllSkillPoints"]),
+    ...mapMutations(["SaveChoosenProficiencies"])
   },
   watch: {
     SelectedClassName: function() {
       this.SetDataClass(this.SelectedClassName);
       this.SetClass(this.GetClass);
-      this.FetchClassInfo();
-      if (this.GetCharacterSheet.Level !== "") {
-        this.FetchClassDetailPerLevel([
-          this.GetCharacterSheet.Class["name"],
-          this.GetCharacterSheet.Level
-        ]);
-      }
-      this.SetBaseAC([
-        this.GetCharacterSheet.ArmorType,
-        this.GetAbilityModifierDexterity
-      ]);
-      this.SetHitPoints([this.GetHitDie, this.GetCharacterSheet.Level]);
+      this.FetchClassInfo().then(result => {
+        let levelCache = 1;
+        if (this.GetCharacterSheet.Level !== "") {
+          levelCache = this.GetCharacterSheet.Level;
+          this.FetchClassDetailPerLevel([
+            this.GetCharacterSheet.Class["name"],
+            levelCache
+          ]).then(result => {
+            this.SetBaseAC([
+              this.GetCharacterSheet.ArmorType,
+              this.GetAbilityModifierDexterity
+            ]);
+            this.SetHitPoints([this.GetHitDie, this.GetCharacterSheet.Level]);
 
-      let ArrayList1 = [
-        [this.GetClassProficiencyBonusPerLevel],
-        [
-          this.GetClassSavingThrowStrength,
-          this.GetClassSavingThrowDexterity,
-          this.GetClassSavingThrowConstitution,
-          this.GetClassSavingThrowIntelligence,
-          this.GetClassSavingThrowWisdom,
-          this.GetClassSavingThrowCharisma
-        ],
-        [
-          this.GetAbilityModifierStrength,
-          this.GetAbilityModifierDexterity,
-          this.GetAbilityModifierConstitution,
-          this.GetAbilityModifierIntelligence,
-          this.GetAbilityModifierWisdom,
-          this.GetAbilityModifierCharisma
-        ]
-      ];
-      let ArrayList2 = [
-        [this.GetClassProficiencyBonusPerLevel],
-        this.Selected,
-        [this.GetBackgroundProficiencies]
-      ];
-      this.SetAllSkillPoints([ArrayList1, ArrayList2]);
+            this.SaveChoosenProficiencies([]);
+            let ArrayList1 = [
+              [this.GetClassProficiencyBonusPerLevel],
+              [
+                this.GetClassSavingThrowStrength,
+                this.GetClassSavingThrowDexterity,
+                this.GetClassSavingThrowConstitution,
+                this.GetClassSavingThrowIntelligence,
+                this.GetClassSavingThrowWisdom,
+                this.GetClassSavingThrowCharisma
+              ],
+              [
+                this.GetAbilityModifierStrength,
+                this.GetAbilityModifierDexterity,
+                this.GetAbilityModifierConstitution,
+                this.GetAbilityModifierIntelligence,
+                this.GetAbilityModifierWisdom,
+                this.GetAbilityModifierCharisma
+              ]
+            ];
+            let ArrayList2 = [
+              [this.GetClassProficiencyBonusPerLevel],
+              this.GetCharacterSheet.ChoosenProficiencies,
+              [this.GetBackgroundProficiencies]
+            ];
+            this.SetAllSkillPoints([ArrayList1, ArrayList2]);
+
+            return result;
+          });
+        }
+        return result;
+      });
     }
   }
 };

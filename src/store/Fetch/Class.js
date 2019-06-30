@@ -100,7 +100,6 @@ const mutations = {
     state.GetClassSavingThrowWisdom = BaseClassInfo[0].Wisdom;
     state.GetClassSavingThrowCharisma = BaseClassInfo[0].Charisma;
     state.ClassAbilityScoreBonusesPerLevel = "";
-    state.ClassProficiencyBonusPerLevel = "";
     state.ClassAbilityScoreBonusSpendOnAbilityScore = 0;
     state.ClassAbilityScoreBonusSpendOnFeat = 0;
     state.ClassAbilityScoreBonusesPerLevel = 0;

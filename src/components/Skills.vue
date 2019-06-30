@@ -1,5 +1,5 @@
 <template>
-  <b-container class="Skills">
+  <b-container class="padding Skills">
     <b-row>
       <b-col md="2" class="Dex">
         <transition name="InfoBoxes">
@@ -299,38 +299,118 @@ export default {
 
 <style>
 .Str {
-  transition: 0.5s;
+  transition: 0.3s;
 }
 .Dex {
-  transition: 0.5s;
+  transition: 0.3s;
 }
 .Int {
-  transition: 0.5s;
+  transition: 0.3s;
 }
 .Wis {
-  transition: 0.5s;
+  transition: 0.3s;
 }
 .Cha {
-  transition: 0.5s;
+  transition: 0.3s;
 }
 .Str:hover {
   background-color: rgba(255, 0, 0, 0.5) !important;
-  transform: scale(1.1);
+}
+.Str:hover::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  border: solid 2px;
+}
+.Str:hover::after {
+  position: absolute;
+  top: 10px;
+  right:10px;
+  padding-right: 5px;
+  content: "Str";
+  font-weight:bold;
 }
 .Dex:hover {
   background-color: rgba(255, 255, 0, 0.5) !important;
-  transform: scale(1.1);
+}
+.Dex:hover::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  border: solid 2px;
+}
+.Dex:hover::after {
+  position: absolute;
+  top: 10px;
+  right:10px;
+  padding-right: 5px;
+  content: "Dex";
+  font-weight:bold;
 }
 .Int:hover {
   background-color: rgba(0, 0, 255, 0.5) !important;
-  transform: scale(1.1);
+}
+.Int:hover::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  border: solid 2px;
+}
+.Int:hover::after {
+  position: absolute;
+  top: 10px;
+  right:10px;
+  padding-right: 5px;
+  content: "Int";
+  font-weight:bold;
 }
 .Wis:hover {
   background-color: rgba(128, 128, 128, 0.5) !important;
-  transform: scale(1.1);
+}
+.Wis:hover::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  border: solid 2px;
+}
+.Wis:hover::after {
+  position: absolute;
+  top: 10px;
+  right:10px;
+  padding-right: 5px;
+  content: "Wis";
+  font-weight:bold;
 }
 .Cha:hover {
   background-color: rgba(128, 0, 128, 0.5) !important;
-  transform: scale(1.1);
+}
+.Cha:hover::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  border: solid 2px;
+}
+.Cha:hover::after {
+  position: absolute;
+  top: 10px;
+  right:10px;
+  padding-right: 5px;
+  content: "Cha";
+  font-weight:bold;
 }
 </style>

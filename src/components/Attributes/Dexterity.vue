@@ -38,15 +38,14 @@ export default {
 
     ...mapGetters(["GetClassProficiencyBonusPerLevel"]),
 
-    ...mapGetters(["GetClassSavingThrowDexterity"]),
+    ...mapGetters(["GetClassSavingThrowStrength"]),
     ...mapGetters(["GetClassSavingThrowDexterity"]),
     ...mapGetters(["GetClassSavingThrowConstitution"]),
     ...mapGetters(["GetClassSavingThrowIntelligence"]),
     ...mapGetters(["GetClassSavingThrowWisdom"]),
     ...mapGetters(["GetClassSavingThrowCharisma"]),
 
-    ...mapGetters(["GetAbilityModifierDexterity"]),
-    ...mapGetters(["GetAbilityModifierDexterity"]),
+    ...mapGetters(["GetAbilityModifierStrength"]),
     ...mapGetters(["GetAbilityModifierConstitution"]),
     ...mapGetters(["GetAbilityModifierIntelligence"]),
     ...mapGetters(["GetAbilityModifierWisdom"]),
@@ -78,7 +77,7 @@ export default {
       let ArrayList1 = [
         [this.GetClassProficiencyBonusPerLevel],
         [
-          this.GetClassSavingThrowDexterity,
+          this.GetClassSavingThrowStrength,
           this.GetClassSavingThrowDexterity,
           this.GetClassSavingThrowConstitution,
           this.GetClassSavingThrowIntelligence,
@@ -86,7 +85,7 @@ export default {
           this.GetClassSavingThrowCharisma
         ],
         [
-          this.GetAbilityModifierDexterity,
+          this.GetAbilityModifierStrength,
           this.GetAbilityModifierDexterity,
           this.GetAbilityModifierConstitution,
           this.GetAbilityModifierIntelligence,

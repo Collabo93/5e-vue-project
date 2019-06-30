@@ -71,6 +71,7 @@ const mutations = {
     state.Background["name"] = SelectedBackground;
   },
   SetBackgroundProficiencies(state, data){
+    state.BackgroundProficiencies = [];
     state.BackgroundDetails = data;
     data.skill_proficiency.from.forEach(element => {
       state.BackgroundProficiencies.push(element["name"]);

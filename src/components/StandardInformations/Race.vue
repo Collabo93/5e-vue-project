@@ -101,7 +101,7 @@ export default {
         ];
         let ArrayList2 = [
           [this.GetClassProficiencyBonusPerLevel],
-          this.Selected,
+          this.GetCharacterSheet.ChoosenProficiencies,
           [this.GetBackgroundProficiencies]
         ];
         this.SetAllSkillPoints([ArrayList1, ArrayList2]);

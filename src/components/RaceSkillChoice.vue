@@ -1,23 +1,21 @@
 <template>
-  <b-container>
+  <b-container class="padding">
     <div v-for="(Proficiencies, index) in GetClassProficiencieSkillChoices" :key="index">
       <b-row>
         <b-col md="12">
-          <p>Choose Proficiencies: {{GetClassProficiencieSkillChoicesNumber[index]}}</p>
+          <p>
+            <b>Choose Proficiencies: {{GetClassProficiencieSkillChoicesNumber[index]}}</b>
+          </p>
         </b-col>
       </b-row>
       <b-row>
-        <b-col
-          md="3"
-          class="proficiencyRow"
-          v-for="Proficiencie in Proficiencies"
-          :key="Proficiencie.id"
-        >
-          <p @click="KlickEvent($event, index, Proficiencie[0])">{{Proficiencie[0]}}</p>
+        <b-col md="3" v-for="Proficiencie in Proficiencies" :key="Proficiencie.id">
+          <p
+            class="proficiencyRow"
+            @click="KlickEvent($event, index, Proficiencie[0])"
+          >{{Proficiencie[0]}}</p>
         </b-col>
       </b-row>
-      <br>
-      <br>
     </div>
     <b-row></b-row>
   </b-container>
@@ -133,7 +131,7 @@ export default {
 </script>
 
 <style>
-.proficiencyRow p {
+.proficiencyRow {
   background-color: rgba(51, 51, 51, 0.3);
   color: white;
   padding: 5px;
@@ -141,13 +139,13 @@ export default {
   height: 100px;
   border-radius: 5px;
 }
-.proficiencyRow p {
+.proficiencyRow {
   transition: 0.4s;
   -ms-user-select: None;
   -moz-user-select: None;
   -webkit-user-select: None;
 }
-.proficiencyRow p:hover {
+.proficiencyRow:hover {
   background-color: #333;
   color: white;
 }

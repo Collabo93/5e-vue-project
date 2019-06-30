@@ -8,29 +8,33 @@
         </div>
       </b-col>
       <transition name="InfoBoxes">
-        <b-col md="2" v-if="toggle()">
-          <div class="AvailableAttributePoints Information">
+        <b-col md="2">
+          <div v-if="toggle()" class="AvailableAttributePoints Information">
             <p class="InformationValue">{{GetClassAbilityScoreBonusesPerLevel}}</p>
             <p class="InformationTitle">Improvements</p>
           </div>
         </b-col>
       </transition>
       <transition name="InfoBoxes">
-        <b-col md="2" v-if="toggle()">
-          <RwvAbilityScoreImprovement/>
+        <b-col md="2">
+          <div v-if="toggle()">
+            <RwvAbilityScoreImprovement/>
+          </div>
         </b-col>
       </transition>
       <transition name="InfoBoxes">
-        <b-col md="2" v-if="toggle()">
-          <RwvFeatImprovement/>
+        <b-col md="2">
+          <div v-if="toggle()">
+            <RwvFeatImprovement/>
+          </div>
         </b-col>
-        </transition>
-        <b-col md="1"></b-col>
-        <b-col md="3">
-          <RwvProficiencyBonus/>
-        </b-col>
+      </transition>
+      <b-col md="1"></b-col>
+      <b-col md="3">
+        <RwvProficiencyBonus/>
+      </b-col>
     </b-row>
-  <hr>
+    <hr>
     <b-row>
       <b-col md="2">
         <RwvStrength/>
@@ -52,7 +56,7 @@
         <RwvInitiative/>
       </b-col>
     </b-row>
-  <br>
+    <br>
     <b-row>
       <b-col md="2">
         <RwvIntelligence/>
