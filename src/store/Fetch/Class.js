@@ -108,6 +108,7 @@ const mutations = {
   },
   SetDataClass: (state, dataClass) => (state.dataClass = dataClass),
   SetClassNames() {
+    state.ClassNames = [];
     for (var index = 0; index < state.dataClass["count"]; index++) {
       state.ClassNames.push(state.dataClass["results"][index]["name"]);
     }

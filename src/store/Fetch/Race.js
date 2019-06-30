@@ -55,6 +55,7 @@ const mutations = {
   },
   SetDataRace: (state, dataRace) => (state.dataRace = dataRace),
   SetRaceNames() {
+    state.RaceNames = [];
     for (var index = 0; index < state.dataRace["count"]; index++) {
       state.RaceNames.push(state.dataRace["results"][index]["name"]);
     }
