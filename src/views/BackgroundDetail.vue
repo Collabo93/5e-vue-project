@@ -2,6 +2,9 @@
   <b-container class="padding backgroundDetail">
     <b-row>
       <b-col>
+        <router-link active-class="active" exact :to="{ name: 'backgrounds' }">
+            <p class="BreadCrump">Backgrounds</p>
+          </router-link>
         <h2>{{BackgroundName}}</h2>
       </b-col>
     </b-row>
@@ -104,6 +107,10 @@ ul {
 }
 .title {
   font-weight: bold;
+}
+.BreadCrump{
+  display: inline-block;
+  color:green;
 }
 </style>
 

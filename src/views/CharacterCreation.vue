@@ -1,15 +1,24 @@
 <template>
   <b-container class="padding">
-    <RwvStandardInformations/>
-    <RwvAttributes/>
-    <RwvRaceSkillChoice/>
-    <RwvSkills/>
+    <RwvStandardInformations />
+    <RwvAttributes />
+    <RwvRaceSkillChoice />
+    <RwvSkills />
     <b-row class="ButtonSaveRow">
       <b-col md="12">
-        <b-button class="ButtonSave" size="lg">Save
-        </b-button>
+        <b-button class="ButtonSave" size="lg" @click="CheckFormular()">Save</b-button>
       </b-col>
     </b-row>
+    <b-alert
+      v-model="CharacterNameNotSet"
+      variant="danger"
+      dismissible
+    >You need to set your character name</b-alert>
+    <b-alert v-model="ClassNotSet" variant="danger" dismissible>You need to set your class</b-alert>
+    <b-alert v-model="LevelNotSet" variant="danger" dismissible>You need to set your level</b-alert>
+    <b-alert v-model="RaceNotSet" variant="danger" dismissible>You need to set your race</b-alert>
+    <b-alert v-model="BackgroundNotSet" variant="danger" dismissible>You need to set your background</b-alert>
+    <b-alert v-model="Saved" variant="success" show>Saved</b-alert>
   </b-container>
 </template>
 <script>
@@ -18,18 +27,24 @@ import RwvAttributes from "@/components/Attributes";
 //import RwvRaceSkillChoice from "@/components/RaceSkillChoice";
 //import RwvSkills from "@/components/Skills";
 
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "RwvCharacterCreation",
   components: {
     RwvStandardInformations,
     RwvAttributes,
-    RwvRaceSkillChoice:() => import("@/components/RaceSkillChoice"),
-    RwvSkills:() => import("@/components/Skills")
+    RwvRaceSkillChoice: () => import("@/components/RaceSkillChoice"),
+    RwvSkills: () => import("@/components/Skills")
   },
   data() {
     return {
+      CharacterNameNotSet: false,
+      ClassNotSet: false,
+      LevelNotSet: false,
+      RaceNotSet: false,
+      BackgroundNotSet: false,
+      Saved: false,
       CharacterSheet: [
         {
           CharacterName: "",
@@ -161,6 +176,8 @@ export default {
     ...mapMutations(["SetBaseAttributePoints"]),
     ...mapMutations(["InitBaseSkillPoints"]),
 
+    ...mapActions(["PostCharacter"]),
+
     InitializeStore() {
       this.InitCharacterSheetFormular(this.CharacterSheet[0]);
       this.InitDataClass(this.BaseClassInfo);
@@ -169,6 +186,67 @@ export default {
       this.SetBaseAttributes(this.BaseAttributes);
       this.SetBaseAttributePoints(this.BaseAttributePoints);
       this.InitBaseSkillPoints(this.BaseSkillPoints);
+    },
+
+    CheckFormular() {
+      if (
+        this.GetCharacterSheet.CharacterName !== null &&
+        this.GetCharacterSheet.CharacterName !== ""
+      ) {
+        this.CharacterNameNotSet = false;
+      } else {
+        this.CharacterNameNotSet = true;
+      }
+
+      if (
+        typeof this.GetCharacterSheet.Class["name"] !== "undefined" &&
+        this.GetCharacterSheet.Class["name"] !== ""
+      ) {
+        this.ClassNotSet = false;
+      } else {
+        this.ClassNotSet = true;
+      }
+
+      if (
+        this.GetCharacterSheet.Level !== null &&
+        this.GetCharacterSheet.Level !== ""
+      ) {
+        this.LevelNotSet = false;
+      } else {
+        this.LevelNotSet = true;
+      }
+
+      if (
+        typeof this.GetCharacterSheet.Race["name"] !== "undefined" &&
+        this.GetCharacterSheet.Race["name"] !== ""
+      ) {
+        this.RaceNotSet = false;
+      } else {
+        this.RaceNotSet = true;
+      }
+
+      if (
+        typeof this.GetCharacterSheet.Background["name"] !== "undefined" &&
+        this.GetCharacterSheet.Background["name"] !== ""
+      ) {
+        this.BackgroundNotSet = false;
+      } else {
+        this.BackgroundNotSet = true;
+      }
+
+      if (
+        !this.CharacterNameNotSet &&
+        !this.ClassNotSet &&
+        !this.LevelNotSet &&
+        !this.RaceNotSet &&
+        !this.BackgroundNotSet
+      ) {
+        this.Saved = true;
+        this.PostCharacter();
+        
+      } else {
+        this.Saved = false;
+      }
     }
   },
   created: function() {
@@ -195,7 +273,7 @@ export default {
 }
 .Information .InformationTitle {
   font-weight: bold;
-  z-index:10;
+  z-index: 10;
   color: grey;
 }
 .InformationButton {
@@ -205,15 +283,15 @@ export default {
 .InformationButton button {
   width: 25px !important;
   height: 25px !important;
-  padding: 0!important;
+  padding: 0 !important;
 }
 
-.ButtonSaveRow{
-  padding-top:50px;
-  padding-bottom:50px;
+.ButtonSaveRow {
+  padding-top: 50px;
+  padding-bottom: 50px;
   text-align: center;
 }
-.ButtonSaveRow .ButtonSave{
+.ButtonSaveRow .ButtonSave {
   width: 80%;
 }
 </style>

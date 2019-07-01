@@ -30,9 +30,10 @@ export default {
 
 <style>
 html,
-body {
+body,#app {
   width: 100% !important;
   height: 100% !important;
+  min-height: 100%!important;
 }
 body {
   display: flex !important;

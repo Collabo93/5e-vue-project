@@ -1,3 +1,8 @@
+//import { RepositoryFactory } from "../../services/RepositoryFactoryHomeAPI";
+//const PostCharacterJSON = RepositoryFactory.get("postCharacter");
+
+import axios from "axios";
+
 const state = {
   //StandartInformation
   CharacterSheet: [
@@ -87,7 +92,14 @@ const getters = {
   }
 };
 
-const actions = {};
+const actions = {
+  async PostCharacter() {
+    await axios.post(
+      `http://localhost:8080/5e-Database/resources/classes`,
+      state.CharacterSheet
+    );
+  }
+};
 
 const mutations = {
   InitCharacterSheetFormular: (state, CharacterSheet) =>

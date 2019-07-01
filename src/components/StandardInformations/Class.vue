@@ -59,6 +59,7 @@ export default {
       this.SetClass(this.GetClass);
       this.FetchClassInfo().then(result => {
         let levelCache = 1;
+
         if (this.GetCharacterSheet.Level !== "") {
           levelCache = this.GetCharacterSheet.Level;
           this.FetchClassDetailPerLevel([
@@ -70,7 +71,6 @@ export default {
               this.GetAbilityModifierDexterity
             ]);
             this.SetHitPoints([this.GetHitDie, this.GetCharacterSheet.Level]);
-
             this.SaveChoosenProficiencies([]);
             let ArrayList1 = [
               [this.GetClassProficiencyBonusPerLevel],
@@ -97,7 +97,6 @@ export default {
               [this.GetBackgroundProficiencies]
             ];
             this.SetAllSkillPoints([ArrayList1, ArrayList2]);
-
             return result;
           });
         }

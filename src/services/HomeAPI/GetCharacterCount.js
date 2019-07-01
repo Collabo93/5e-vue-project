@@ -1,6 +1,6 @@
 import Repository from "./Repository";
 
-const resource ="/backgrounds";
+const resource ="/classes/CharacterCount";
 export default{
     get(){
         return Repository.get(`${resource}`);

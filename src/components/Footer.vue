@@ -10,11 +10,6 @@
           </p>
         </b-col>
       </b-row>
-      <b-row>
-        <b-col>
-          <img src="@/assets/logo.png" class="ConstructionIMG">
-        </b-col>
-      </b-row>
     </b-container>
   </footer>
 </template>
@@ -27,8 +22,15 @@ export default {
 
 <style>
 footer {
-  margin-top:auto;
-  width: 100%;
+  position: relative;
+   bottom:0;
+   width:100%;
+   font-size: 14px;
+   text-align: center;
+   
+}
+footer p{
+  padding-top:20px;
 }
 .ConstructionIMG {
   max-width: 250px;

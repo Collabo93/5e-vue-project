@@ -26,6 +26,8 @@ export default {
 <style>
 .navbar {
   width: 100%;
+  padding:0!important;
+  background-color: #333!important;
 }
 ul.nav {
   list-style-type: none;

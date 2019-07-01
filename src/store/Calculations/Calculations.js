@@ -246,7 +246,7 @@ const mutations = {
     } 
     // Choosen Class Proficiencies trimmed and pushed in array
 
-    if (typeof Info[2] != "undefined") {
+    if (typeof Info[2][0] != "undefined") {
       let c;
       for (c = 0; c < Info[2][0].length; c++) {
         if (typeof Info[2][0][c] != "undefined") {
@@ -303,9 +303,6 @@ const mutations = {
           state.SkillPointsStealth += Info[0][0];
         } else if (element === "Survival") {
           state.SkillPointsSurvival += Info[0][0];
-        }
-        else if ( element !== "" || element !== "choice" ){
-          alert("error in SetSkillPointsByProficiency(): "+element);
         }
       });
     }
