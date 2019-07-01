@@ -10,7 +10,7 @@ public class BackgroundsData18 implements BackgroundsData {
 	private int toolproficienciesChoose = 1;
 	private String[] toolproficiencies = { "Calligrapher tools", "Disguise Kit" };
 	private int languagesChoose = 1;
-	private String[] languages = { "language that your idol knows" };
+	private String[] languages = { "choice" };
 	private String[] equipment = { "A bottle of black ink", "a quill", "a tome",
 			"scrolls with the legends of your idol written out", "common clothes", "a costume inspired by your idol",
 			"and a belt pouch containing 10 gp" };

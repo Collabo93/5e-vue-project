@@ -2,15 +2,18 @@ public class BackgroundsData1 implements BackgroundsData{
 	private String name = "Adept";
 	private int index = 1;
 	private int skillproficienciesChoose = 1;
-	private String[] skillproficiencies = { "skill of your choice" };
+	private String[] skillproficiencies = { "choice" };
 	private int weaponproficienciesChoose = 1;
 	private String[] weaponproficiencies = { "simple weapon" };
 	private int toolproficienciesChoose = 1;
 	private String[] toolproficiencies = { "tool kit" };
 	private int languagesChoose = 1;
-	private String[] languages = { "standart language" };
+	private String[] languages = { "choice" };
 	private String[] equipment = {
-
+			"A trinket of your choice from your childhood",
+			"a set of common clothes",
+			"a book of your old teachings",
+			"a belt pouch containing 10gp"
 	};
 	private int descChoose = 1;
 	private String[] descNames = { "Prodigy" };

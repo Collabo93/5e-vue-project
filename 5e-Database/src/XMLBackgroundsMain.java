@@ -35,4 +35,15 @@ public class XMLBackgroundsMain {
 	public int getBackgroundsSize() {
 		return backgroundsNames.length;
 	}
+	
+	public int getBackgroundIndexByName(String Name) {
+		int index = 0;
+		for ( int i = 0; i<backgroundsNames.length;i++) {
+			if ( backgroundsNames[i].equals(Name)) {
+				index = i;
+			}
+		}
+		
+		return index;
+	}
 }

@@ -10,7 +10,7 @@ public class BackgroundsData4 implements BackgroundsData {
 	private int toolproficienciesChoose = 1;
 	private String[] toolproficiencies = { "One tool of any sort" };
 	private int languagesChoose = 1;
-	private String[] languages = { "language of your choice" };
+	private String[] languages = { "choice" };
 	private String[] equipment = { "A medical device (A mask, crutch, brace, etc.) you use to maintain some comfort",
 			"a set of common clothes", "a bag", "a blank", "notebook", "a belt pouch containing 5gp" };
 	private int descChoose = 1;

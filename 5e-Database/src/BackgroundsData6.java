@@ -12,7 +12,7 @@ public class BackgroundsData6 implements BackgroundsData {
 
 	};
 	private int languagesChoose = 1;
-	private String[] languages = { "language, specifically the language spoken by your creator" };
+	private String[] languages = { "choice" };
 	private String[] equipment = { "A simple set of robes", "a journal containing ciphered notes on your creation",
 			"a brand or tattoo left on you by your creator", "a pouch containing 5 gold pieces" };
 	private int descChoose = 1;

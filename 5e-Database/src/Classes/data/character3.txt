@@ -1,0 +1,1 @@
+{"CharacterName":"Lara Croft","Class":[{},{}],"Level":20,"Race":[{},{}],"PlayerName":"","Background":[{},{}],"Alignment":"","Attributes":[{"Strength":10,"Dexterity":13,"Constitution":15,"Intelligence":13,"Wisdom":11,"Charisma":11}],"ArmorType":"None","AbilityScoreSpend":0}

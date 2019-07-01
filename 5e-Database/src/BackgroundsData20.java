@@ -10,7 +10,7 @@ public class BackgroundsData20 implements BackgroundsData {
 	private int toolproficienciesChoose = 2;
 	private String[] toolproficiencies = { "One set of artisan's tools", "vehicles (air)" };
 	private int languagesChoose = 2;
-	private String[] languages = { "language of your choice" };
+	private String[] languages = { "choice" };
 	private String[] equipment = { "An ink pen", "Fine Clothes", "a bottle of ink", "10 sheets of parchment",
 			"an accounting book", "a taxroll", "a pouch containing 25 gp" };
 	private int descChoose = 1;

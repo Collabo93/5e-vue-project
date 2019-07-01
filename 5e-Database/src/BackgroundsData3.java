@@ -10,7 +10,7 @@ public class BackgroundsData3 implements BackgroundsData {
 	private int toolproficienciesChoose = 1;
 	private String[] toolproficiencies = { "Thieves' Tools" };
 	private int languagesChoose = 1;
-	private String[] languages = { "language of your choice" };
+	private String[] languages = { "choice" };
 	private String[] equipment = { "A wooden training sword, a set of traveler's clothes", "a cloak", "a shovel",
 			"a crowbar", "a trophy from your first adventure", "a small pouch containing 15g" };
 	private int descChoose = 1;
